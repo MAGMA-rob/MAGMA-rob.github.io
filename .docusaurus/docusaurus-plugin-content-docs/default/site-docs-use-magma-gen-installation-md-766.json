@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/installation",
+  "title": "Setup",
+  "description": "Prerequies",
+  "source": "@site/docs/use-magma-gen/installation.md",
+  "sourceDirName": "use-magma-gen",
+  "slug": "/use-magma-gen/installation",
+  "permalink": "/docs/use-magma-gen/installation",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/docs/use-magma-gen/overview"
+  },
+  "next": {
+    "title": "Launch the first generation",
+    "permalink": "/docs/use-magma-gen/launch-first-generation"
+  }
+}

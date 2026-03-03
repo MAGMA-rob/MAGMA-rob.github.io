@@ -1,0 +1,156 @@
+{
+  "/__docusaurus/debug-5ff": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/config-5ba": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/content-a2b": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    },
+    "__props": "__props---docusaurus-debug-content-3-c-0-be2"
+  },
+  "/__docusaurus/debug/globalData-c3c": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/metadata-156": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/registry-88c": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/routes-000": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/magma-bench-099": {
+    "__comp": "__comp---site-src-pages-magma-bench-jsdb-7-5f0",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "config": "config---magma-bench-5-e-9-578"
+  },
+  "/magma-gen-e2e": {
+    "__comp": "__comp---site-src-pages-magma-gen-jscfb-9f6",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "config": "config---magma-bench-5-e-9-578"
+  },
+  "/markdown-page-3d7": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---markdown-page-393-028"
+  },
+  "/publications-671": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---publications-0-c-9-232"
+  },
+  "/team-a94": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---team-634-649"
+  },
+  "/docs-990": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---docsaba-d7c"
+    }
+  },
+  "/docs-4c6": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---docs-005-788"
+  },
+  "/docs-3d3": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/docs/category/create-your-own-scenarios-24e": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-create-your-own-scenariosc-3-a-5fe"
+  },
+  "/docs/category/customization-7cd": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-customization-031-b8c"
+  },
+  "/docs/category/magma-bench-5f5": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-magma-bench-24-e-d1e"
+  },
+  "/docs/category/magma-gen-6dc": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-magma-gen-09-b-a34"
+  },
+  "/docs/customization/create-agent-69a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-agent-082-3c1"
+  },
+  "/docs/customization/create-backends-d9d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-backends-109-51f"
+  },
+  "/docs/customization/create-planner-94c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-planner-07-b-c55"
+  },
+  "/docs/installation-b74": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-installation-3-b-8-7c6"
+  },
+  "/docs/intro-61d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-intro-0-e-3-be1"
+  },
+  "/docs/use-magma-bench/overview-dab": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-bench-overview-4-ba-ea2"
+  },
+  "/docs/use-magma-gen/create-scenarios/overview-b28": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-create-scenarios-overview-316-118"
+  },
+  "/docs/use-magma-gen/installation-eee": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-installation-766-1d4"
+  },
+  "/docs/use-magma-gen/launch-first-generation-4b7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-launch-first-generation-6-aa-983"
+  },
+  "/docs/use-magma-gen/overview-c73": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-overviewaba-5d4"
+  },
+  "/-2e1": {
+    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "config": "config---magma-bench-5-e-9-578"
+  }
+}

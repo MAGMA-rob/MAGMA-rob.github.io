@@ -1,0 +1,23 @@
+{
+  "id": "customization/create-agent",
+  "title": "create-agent",
+  "description": "",
+  "source": "@site/docs/customization/create-agent.md",
+  "sourceDirName": "customization",
+  "slug": "/customization/create-agent",
+  "permalink": "/docs/customization/create-agent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Customization",
+    "permalink": "/docs/category/customization"
+  },
+  "next": {
+    "title": "create-backends",
+    "permalink": "/docs/customization/create-backends"
+  }
+}

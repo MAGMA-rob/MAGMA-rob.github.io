@@ -1,0 +1,8 @@
+{
+  "label": "Customization",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Following this documentation. You will learn how to setup your custom agent server, your custom backend and custom planner in MAGMA efficiently."
+  }
+}

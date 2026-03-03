@@ -1,0 +1,23 @@
+{
+  "id": "customization/create-planner copy",
+  "title": "create-planner copy",
+  "description": "",
+  "source": "@site/docs/customization/create-planner copy.md",
+  "sourceDirName": "customization",
+  "slug": "/customization/create-planner copy",
+  "permalink": "/docs/customization/create-planner copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "create-agent",
+    "permalink": "/docs/customization/create-agent"
+  },
+  "next": {
+    "title": "create-planner",
+    "permalink": "/docs/customization/create-planner"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mdx",
+  "permalink": "/projects/magma-bench",
+  "source": "@site/src/pages/projects/magma-bench.md",
+  "title": "MAGMA-Bench",
+  "description": "Paper companion page for MAGMA-Bench.",
+  "frontMatter": {
+    "title": "MAGMA-Bench",
+    "description": "Paper companion page for MAGMA-Bench."
+  },
+  "unlisted": false
+}

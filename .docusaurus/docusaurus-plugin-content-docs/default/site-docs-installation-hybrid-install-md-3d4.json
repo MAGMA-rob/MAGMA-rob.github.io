@@ -1,0 +1,26 @@
+{
+  "id": "installation/hybrid-install",
+  "title": "Recommended Install",
+  "description": "We recommand using Docker for server services and a conda env to execute the main process.",
+  "source": "@site/docs/installation/hybrid-install.md",
+  "sourceDirName": "installation",
+  "slug": "/installation/hybrid-install",
+  "permalink": "/docs/installation/hybrid-install",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Installation",
+    "permalink": "/docs/category/installation"
+  },
+  "next": {
+    "title": "Install only with virtual environment",
+    "permalink": "/docs/installation/conda-install"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mdx",
+  "permalink": "/projects/",
+  "source": "@site/src/pages/projects/index.md",
+  "title": "Projects",
+  "description": "Research projects in the MAGMA program.",
+  "frontMatter": {
+    "title": "Projects",
+    "description": "Research projects in the MAGMA program."
+  },
+  "unlisted": false
+}

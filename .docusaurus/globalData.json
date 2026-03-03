@@ -1,0 +1,98 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "customization/create-agent",
+              "path": "/docs/customization/create-agent",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "customization/create-backends",
+              "path": "/docs/customization/create-backends",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "customization/create-planner",
+              "path": "/docs/customization/create-planner",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "installation",
+              "path": "/docs/installation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-bench/overview",
+              "path": "/docs/use-magma-bench/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/create-scenarios/overview",
+              "path": "/docs/use-magma-gen/create-scenarios/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/installation",
+              "path": "/docs/use-magma-gen/installation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/launch-first-generation",
+              "path": "/docs/use-magma-gen/launch-first-generation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/overview",
+              "path": "/docs/use-magma-gen/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/magma-gen",
+              "path": "/docs/category/magma-gen",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/create-your-own-scenarios",
+              "path": "/docs/category/create-your-own-scenarios",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/magma-bench",
+              "path": "/docs/category/magma-bench",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/customization",
+              "path": "/docs/category/customization",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

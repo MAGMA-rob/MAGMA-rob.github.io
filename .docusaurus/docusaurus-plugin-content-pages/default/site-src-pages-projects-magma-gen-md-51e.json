@@ -1,0 +1,12 @@
+{
+  "type": "mdx",
+  "permalink": "/projects/magma-gen",
+  "source": "@site/src/pages/projects/magma-gen.md",
+  "title": "MAGMA-Gen",
+  "description": "Paper companion page for MAGMA-Gen.",
+  "frontMatter": {
+    "title": "MAGMA-Gen",
+    "description": "Paper companion page for MAGMA-Gen."
+  },
+  "unlisted": false
+}

@@ -1,0 +1,88 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4.6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3rem 1.2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.heroDescription {
+  max-width: 760px;
+  margin: 1.1rem auto 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.heroButtons {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroBadge {
+  display: inline-block;
+  margin: 0;
+  padding: 0.35rem 0.78rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  margin-top: 0.65rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.heroPrimaryButton {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #173b5e;
+}
+
+.heroPrimaryButton:hover {
+  background: #f2f7ff;
+  border-color: #f2f7ff;
+  color: #102c49;
+}
+
+.heroSecondaryButton {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  color: #ffffff;
+}
+
+.heroSecondaryButton:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+}
+
+.taskImg {
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}

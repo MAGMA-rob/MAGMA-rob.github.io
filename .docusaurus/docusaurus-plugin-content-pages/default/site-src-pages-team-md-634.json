@@ -1,0 +1,12 @@
+{
+  "type": "mdx",
+  "permalink": "/team",
+  "source": "@site/src/pages/team.md",
+  "title": "Team",
+  "description": "People and institutions behind MAGMA.",
+  "frontMatter": {
+    "title": "Team",
+    "description": "People and institutions behind MAGMA."
+  },
+  "unlisted": false
+}
