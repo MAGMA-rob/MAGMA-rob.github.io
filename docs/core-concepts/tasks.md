@@ -5,7 +5,7 @@ sidebar_position: 3
 # Tasks and Stages
 
 A task is the unit of work an agent must solve in MAGMA.
-It combines the goal of the interaction, the available [tools](./tools.md), the task-specific attributes, and the sequence of [stages](./tasks.md#what-a-stage-is) that determines how progress is measured.
+It combines the goal of the interaction, the available [tools](./tools.md), the [task-specific attributes](#️-task-attributes), and the sequence of [stages](./tasks.md#what-a-stage-is) that determines how progress is measured.
 
 If a [scenario](./scenarios.md) defines a domain, a task defines one concrete problem inside that domain.
 
@@ -19,9 +19,9 @@ A task usually specifies:
 - metadata used by the framework
 - an ordered sequence of stages
 
-This is the object that MAGMA-GEN executes during generation and that MAGMA-BENCH evaluates during benchmarking.
+This is the object that MAGMA-GEN executes during generation and that MAGMA-BENCH use as support during benchmarking.
 
-## 🪜 What a Stage Is {#what-a-stage-is}
+## 🪜 What a Stage Is
 
 A stage is the smallest progression unit inside a [task](./tasks.md).
 It describes one local objective that must be satisfied before the task can continue.
@@ -75,7 +75,7 @@ Examples include:
 Some tasks allow the agent to update parts of this state indirectly through [tool](./tools.md) calls or logged events.
 This is how MAGMA models interactions in which the agent learns, registers, or modifies working knowledge over time.
 
-## ⚙️ Task Presets {#task-presets}
+## ⚙️ Task Presets
 
 A task preset is a fixed or parameterized task instance.
 It explicitly selects the [stages](./tasks.md#what-a-stage-is), attributes, [tool API](./tools.md#tool-apis), and metadata that make up the task.
@@ -88,10 +88,10 @@ Use a preset when:
 
 Presets are the most direct way to define a task.
 
-## 📚 Task Definitions {#task-definitions}
+## 📚 Task Definitions
 
 A task definition is a higher-level specification used to generate many tasks from the same logic.
-It is primarily a MAGMA-GEN authoring abstraction.
+It is primarily a **MAGMA-GEN** authoring abstraction.
 
 Where a preset lists a concrete sequence of [stages](./tasks.md#what-a-stage-is), a definition describes how valid stage sequences should be created from reusable components.
 This lets MAGMA generate diverse tasks without hardcoding every interaction by hand.
@@ -160,7 +160,6 @@ Common randomized elements include:
 - task attribute values
 
 This semantic randomization helps reduce overfitting to one surface form and makes generated data more robust.
-It often complements [environment](./envs.md) variation rather than replacing it.
 
 ## 🧭 Design Principle
 

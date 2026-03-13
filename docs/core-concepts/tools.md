@@ -30,7 +30,7 @@ A tool usually corresponds to a meaningful capability such as:
 - opening or closing a container
 - registering a new workspace location
 
-From the agent's perspective, a tool is a structured callable function.
+From the agent's perspective, a tool is a structured callable function with arguments.
 From the system's perspective, a tool is the entry point into planners, policies, or robot services.
 
 ## 📝 Tool Contract
@@ -44,7 +44,7 @@ Every tool should define:
 - a verification mechanism
 
 The verification step is important.
-MAGMA is not only interested in whether a tool was called, but whether the call actually advanced the [task](./tasks.md) or completed the current [stage](./tasks.md#what-a-stage-is).
+MAGMA is not only interested in whether a tool was called, but whether the call actually completed the current [stage](./tasks.md#what-a-stage-is) or not.
 
 ## 🔄 Execution Lifecycle
 
@@ -88,6 +88,10 @@ A tool may call into:
 For generation and evaluation, MAGMA commonly relies on planner-driven execution.
 That is why the planner interface is an important customization point.
 
+:::note
+The official supports of policies for the generation and the evaluation is not yet available.
+:::
+
 If you need to integrate a custom execution backend, see [Custom planner integration](../customization/create-planner.md).
 
 ## 👀 Tools and Observations
@@ -124,9 +128,9 @@ Good MAGMA tools are:
 - semantically clear to the agent
 - narrow enough to be testable
 - broad enough to reflect a real capability
-- decoupled from task-specific heuristics when possible
+- decoupled from task-specific heuristics
 
-As a rule, tools should represent reusable capabilities, while [tasks](./tasks.md) and [stages](./tasks.md#what-a-stage-is) should represent objectives.
+As a rule, tools should represent reusable capabilities, while [stages](./tasks.md#what-a-stage-is) should represent objectives.
 
 ## 🚀 Next Step
 

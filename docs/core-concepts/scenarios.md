@@ -23,6 +23,10 @@ A scenario typically bundles:
 The purpose of the scenario abstraction is reuse.
 Instead of redefining tools, stages, and environment bindings for every experiment, you keep related components together in one domain package.
 
+:::danger
+We **highly recommend** to define the env outside of the scenario module. Allowing the reuse of the environment by different scenarios. You can define it in `magma_scenarios.envs`.
+:::
+
 ## 🌍 Why Scenarios Matter
 
 Scenarios make it possible to:
@@ -103,7 +107,7 @@ This separation is useful because many components are reused:
 
 - the same [tools](./tools.md) may support several [tasks](./tasks.md)
 - the same [stages](./tasks.md#what-a-stage-is) may appear in different task presets
-- the same requests and constraints may feed several task definitions
+- the same [requests](tasks.md#requests) and [constraints](./tasks.md#constraints) may feed several [task definitions](./tasks.md#-task-definitions)
 
 ## 🧪 Environment Placement
 

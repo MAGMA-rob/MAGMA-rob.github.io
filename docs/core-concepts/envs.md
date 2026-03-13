@@ -7,7 +7,7 @@ sidebar_position: 5
 The environment is the world in which MAGMA [tasks](./tasks.md) are executed.
 It provides the physical or simulated state that [tools](./tools.md) read from and modify.
 
-In MAGMA-GEN and current benchmarking workflows, environments are commonly built on top of [ManiSkill](https://maniskill.readthedocs.io/en/latest/), which in turn relies on simulation components such as SAPIEN and Gym-compatible interfaces.
+In MAGMA-GEN and MAGMA-BENCH, environments are commonly built on top of [ManiSkill](https://maniskill.readthedocs.io/en/latest/), which in turn relies on simulation components such as SAPIEN and Gym-compatible interfaces.
 
 ## 🌐 What an Environment Is Responsible For
 
@@ -28,12 +28,12 @@ The separation of concerns is:
 - the **[tool](./tools.md)** reads that state and produces an executable action
 - the **[task](./tasks.md)** decides which tools are available and what counts as progress
 
-This distinction matters because the same environment can often support multiple [tasks](./tasks.md), and the same task logic can sometimes be reused across several environment configurations.
+This distinction matters because the same environment can often support multiple [tasks](./tasks.md) and [tools API](./tools.md#-tool-apis-tool-apis), and the same task logic can sometimes be reused across several environment configurations.
 
 ## 👁️ Observation Flow
 
 For MAGMA, the most important environment output is the observation structure that [tools](./tools.md) can consume.
-In practice, this often includes an `extra` payload containing domain-specific state such as:
+In practice, we use the `extra` field of the observation dict, containing domain-specific state such as:
 
 - object poses
 - target locations
@@ -59,13 +59,16 @@ Environments can vary at several levels:
 - object positions
 - object identities
 - robot configuration
-- domain-specific state variables
 
 Some of this variation belongs to the environment itself, while semantic variation belongs to [task](./tasks.md) authoring.
 A clean MAGMA design keeps those two sources of variation conceptually separate:
 
 - environment variation changes the world
 - task variation changes the interaction logic or language surface
+
+:::note
+Note that to train a reasoning agent, environment randomization such as (random orientation, random objects) are not needed at this level. They can be usefull if you randomize object position in a manner that modify the valid sequence of action needed. 
+:::
 
 ## 🧭 Authoring Guidance
 
@@ -74,7 +77,7 @@ When designing a MAGMA-compatible environment, prioritize:
 - stable identifiers for objects and regions
 - observations that are easy for tools to interpret
 
-The environment should not encode [task](./tasks.md) logic that belongs in [stages](./tasks.md#what-a-stage-is), requests, or constraints.
+The environment should not encode [task](./tasks.md) completion logic (rewards, termination) that belongs in [stages](./tasks.md#what-a-stage-is), requests, or constraints.
 It should expose state and dynamics cleanly enough for those higher-level components to reason over.
 
 ## 🚀 Next Step
