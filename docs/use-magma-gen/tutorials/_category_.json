@@ -1,0 +1,8 @@
+{
+  "label": "Tutorials",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Authoring guides for building scenarios, tasks, stages, tools, and environments with MAGMA-GEN."
+  }
+}

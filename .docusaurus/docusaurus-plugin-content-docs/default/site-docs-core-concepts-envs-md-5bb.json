@@ -1,0 +1,26 @@
+{
+  "id": "core-concepts/envs",
+  "title": "Environments",
+  "description": "The environment is the world in which MAGMA tasks are executed.",
+  "source": "@site/docs/core-concepts/envs.md",
+  "sourceDirName": "core-concepts",
+  "slug": "/core-concepts/envs",
+  "permalink": "/docs/core-concepts/envs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tools",
+    "permalink": "/docs/core-concepts/tools"
+  },
+  "next": {
+    "title": "MAGMA-GEN",
+    "permalink": "/docs/category/magma-gen"
+  }
+}

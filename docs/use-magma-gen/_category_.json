@@ -1,6 +1,6 @@
 {
   "label": "MAGMA-GEN",
-  "position": 3,
+  "position": 4,
   "link": {
     "type": "generated-index",
     "description": "Following this documentation. You will learn how to use MAGMA-GEN and for advanced users, how to customize it for your own use cases. We will also provide some best practices and tips for using MAGMA-GEN effectively."

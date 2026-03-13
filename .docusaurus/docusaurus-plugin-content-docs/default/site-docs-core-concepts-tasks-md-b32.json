@@ -1,0 +1,26 @@
+{
+  "id": "core-concepts/tasks",
+  "title": "Tasks and Stages",
+  "description": "A task is the unit of work an agent must solve in MAGMA.",
+  "source": "@site/docs/core-concepts/tasks.md",
+  "sourceDirName": "core-concepts",
+  "slug": "/core-concepts/tasks",
+  "permalink": "/docs/core-concepts/tasks",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Scenarios",
+    "permalink": "/docs/core-concepts/scenarios"
+  },
+  "next": {
+    "title": "Tools",
+    "permalink": "/docs/core-concepts/tools"
+  }
+}

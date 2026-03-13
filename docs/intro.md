@@ -7,13 +7,26 @@ sidebar_position: 1
 Get started with **MAGMA** framework.
 
 ---
+
 ## 🌋 Welcome to the Documentation 🌋
----
+
+MAGMA is a framework for building, generating and evaluating
+long-horizon robotic tasks for language agents.
+
+It provides:
+- a unified task abstraction
+- tools APIs for robot interaction
+- a generation system (MAGMA-GEN)
+- a benchmark for evaluation (MAGMA-BENCH)
+
+If you want to learn more about what is MAGMA, take a look at the [home page](https://MAGMA-rob.github.io)
+
+## 🟧 Choose your workflow
 
 The documentation of MAGMA is divided depending on the different use possibility:
-- You want to **generate data, create your own task** to robustify your agents on long-horizon tasks? Start here : .
-- You want to **evaluate** your language agents on long-horizon multi-robot tasks under evolving constraint? Start here : .
-- You want to **create a custom ROS2 application** to deploy a magma model on your system? Start here : .
+- You want to **generate data, create your own task** to robustify your agents on long-horizon tasks? Start here : [**MAGMA-GEN** overview](./use-magma-gen/overview.md)
+- You want to **evaluate** your language agents on long-horizon multi-robot tasks under evolving constraint? Start here : [**MAGMA-BENCH** overview](./use-magma-bench/overview.md)
+<!-- - You want to **create a custom ROS2 application** to deploy a magma model on your system? Start here : . -->
 ---
 
 ## 🐋 Docker
@@ -28,6 +41,23 @@ MAGMA is divided into multiples repository. Repositories names are `magma-xxx`. 
 
 Here is a global presentation of all packages and their dependencies.
 
+```
++-------------+   +-------------+
+| magma_gen   |   | magma_bench |
++-------------+   +-------------+
+        \           /
+         \         /
+          v       v
+        +-----------------+
+        | magma_scenarios |
+        +-----------------+
+              |
+              v
+        +------------+
+        | magma_core |
+        +------------+
+```
+
 ### Generation and Evaluation Packages
 
 | Package           | Role                                                   | Internal Dependencies                  | Principal External Dependencies | Runtime Plugin Dependencies |
@@ -37,7 +67,7 @@ Here is a global presentation of all packages and their dependencies.
 | `magma_agent`     | Default policy / agent server implementation          | —                                      | `torch`                          | Must expose **Agent API**    |
 | `magma_planner`   | Default motion planning backend implementation        | —                                      | `torch`, `mplib`                 | Must expose **Planner API**  |
 | `magma_gen`       | Data generation and orchestration layer               | `magma_core`, `magma_scenarios`       | —                                | Agent API–compatible server, Planner API–compatible backend |
-
+| `magma_bench`     | Running the benchmark to evaluate your agent          | `magma_core`, `magma_scenarios`       | —                                | Planner API–compatible backend |
 
 #### 1. Hard Dependencies (Import-Level)
 

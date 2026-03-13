@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/tutorials/create-stages",
+  "title": "Create Stages",
+  "description": "This tutorial page is a placeholder.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-stages.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-stages",
+  "permalink": "/docs/use-magma-gen/tutorials/create-stages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Task",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tasks"
+  },
+  "next": {
+    "title": "Create Tools",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
+  }
+}

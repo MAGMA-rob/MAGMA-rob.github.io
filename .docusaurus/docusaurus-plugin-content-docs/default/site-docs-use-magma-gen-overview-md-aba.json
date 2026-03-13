@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/overview",
   "title": "Overview",
-  "description": "Learn about the main concept of the Generation process.",
+  "description": "MAGMA-GEN is a sophisticated system designed to enable AI agents to perform long-horizon manipulation tasks in simulated environments without relying on human annotations. It uses maniskill3 to simulate real motion and tasks.",
   "source": "@site/docs/use-magma-gen/overview.md",
   "sourceDirName": "use-magma-gen",
   "slug": "/use-magma-gen/overview",
@@ -20,7 +20,7 @@
     "permalink": "/docs/category/magma-gen"
   },
   "next": {
-    "title": "Setup",
-    "permalink": "/docs/use-magma-gen/installation"
+    "title": "Quickstart",
+    "permalink": "/docs/category/quickstart"
   }
 }

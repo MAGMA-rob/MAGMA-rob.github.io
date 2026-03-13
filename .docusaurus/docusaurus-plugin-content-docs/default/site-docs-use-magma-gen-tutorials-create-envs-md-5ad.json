@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/tutorials/create-envs",
+  "title": "Create an Environment",
+  "description": "This tutorial page is a placeholder.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-envs.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-envs",
+  "permalink": "/docs/use-magma-gen/tutorials/create-envs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create Tools",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
+  },
+  "next": {
+    "title": "MAGMA-BENCH",
+    "permalink": "/docs/category/magma-bench"
+  }
+}

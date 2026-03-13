@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/tutorials/overview",
+  "title": "Overview",
+  "description": "This section is the implementation counterpart to Core Concepts.",
+  "source": "@site/docs/use-magma-gen/tutorials/overview.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/overview",
+  "permalink": "/docs/use-magma-gen/tutorials/overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tutorials",
+    "permalink": "/docs/category/tutorials"
+  },
+  "next": {
+    "title": "Create a Scenario",
+    "permalink": "/docs/use-magma-gen/tutorials/create-scenarios"
+  }
+}

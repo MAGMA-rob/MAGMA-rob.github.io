@@ -12,7 +12,7 @@ MAGMA can be installed depending on your needs. We provide 3 installations mode:
 - Conda-only : If you do not want to install docker.
 - Docker-only : If you want to run all process in containers.
 
-## Quick Install
+## ⏱️ Quick Install
 
 <Tabs>
 
@@ -242,7 +242,7 @@ MAGMA can be installed depending on your needs. We provide 3 installations mode:
 
 ---
 
-## And now?
+## ✅ And now?
 
 If you want to evaluate your own agent on the MAGMA-BENCHMARK, you can start with the [**benchmark setup**](./use-magma-bench/overview.md).
 

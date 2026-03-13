@@ -11,6 +11,31 @@
           "mainDocId": "intro",
           "docs": [
             {
+              "id": "core-concepts/envs",
+              "path": "/docs/core-concepts/envs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "core-concepts/overview",
+              "path": "/docs/core-concepts/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "core-concepts/scenarios",
+              "path": "/docs/core-concepts/scenarios",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "core-concepts/tasks",
+              "path": "/docs/core-concepts/tasks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "core-concepts/tools",
+              "path": "/docs/core-concepts/tools",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "customization/create-agent",
               "path": "/docs/customization/create-agent",
               "sidebar": "tutorialSidebar"
@@ -41,23 +66,58 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/create-scenarios/overview",
-              "path": "/docs/use-magma-gen/create-scenarios/overview",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/installation",
-              "path": "/docs/use-magma-gen/installation",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/launch-first-generation",
-              "path": "/docs/use-magma-gen/launch-first-generation",
-              "sidebar": "tutorialSidebar"
-            },
-            {
               "id": "use-magma-gen/overview",
               "path": "/docs/use-magma-gen/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/quickstart/installation",
+              "path": "/docs/use-magma-gen/quickstart/installation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/quickstart/launch-first-generation",
+              "path": "/docs/use-magma-gen/quickstart/launch-first-generation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/running-generation/overview",
+              "path": "/docs/use-magma-gen/running-generation/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-envs",
+              "path": "/docs/use-magma-gen/tutorials/create-envs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-scenarios",
+              "path": "/docs/use-magma-gen/tutorials/create-scenarios",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-stages",
+              "path": "/docs/use-magma-gen/tutorials/create-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-tasks",
+              "path": "/docs/use-magma-gen/tutorials/create-tasks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-tools",
+              "path": "/docs/use-magma-gen/tutorials/create-tools",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/overview",
+              "path": "/docs/use-magma-gen/tutorials/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/core-concepts",
+              "path": "/docs/category/core-concepts",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -66,8 +126,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/create-your-own-scenarios",
-              "path": "/docs/category/create-your-own-scenarios",
+              "id": "/category/quickstart",
+              "path": "/docs/category/quickstart",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/how-to-build-a-dataset",
+              "path": "/docs/category/how-to-build-a-dataset",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/tutorials",
+              "path": "/docs/category/tutorials",
               "sidebar": "tutorialSidebar"
             },
             {

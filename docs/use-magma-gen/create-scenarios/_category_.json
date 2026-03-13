@@ -1,8 +1,0 @@
-{
-  "label": "Create your own scenarios",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Following this documentation. You will learn how to create your own scenarios/tasks for MAGMA-GEN and MAGMA-BENCH."
-  }
-}
