@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/create-tools",
-  "title": "Create Tools",
-  "description": "This tutorial page is a placeholder.",
+  "title": "Create a Tool",
+  "description": "Complete tutorial on how to declare, register, and implement MAGMA tools.",
   "source": "@site/docs/use-magma-gen/tutorials/create-tools.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/create-tools",
@@ -10,17 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 5,
+  "sidebarPosition": 3,
   "frontMatter": {
-    "sidebar_position": 5
+    "sidebar_position": 3,
+    "title": "Create a Tool",
+    "description": "Complete tutorial on how to declare, register, and implement MAGMA tools."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create Stages",
-    "permalink": "/docs/use-magma-gen/tutorials/create-stages"
-  },
-  "next": {
     "title": "Create an Environment",
     "permalink": "/docs/use-magma-gen/tutorials/create-envs"
+  },
+  "next": {
+    "title": "Create Stages",
+    "permalink": "/docs/use-magma-gen/tutorials/create-stages"
   }
 }

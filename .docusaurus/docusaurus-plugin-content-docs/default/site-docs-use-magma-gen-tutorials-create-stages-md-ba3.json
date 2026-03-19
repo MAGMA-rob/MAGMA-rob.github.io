@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/create-stages",
   "title": "Create Stages",
-  "description": "This tutorial page is a placeholder.",
+  "description": "Detailed tutorial on how to define MAGMA stages, situations, goals, predicates, and text-only verification.",
   "source": "@site/docs/use-magma-gen/tutorials/create-stages.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/create-stages",
@@ -12,15 +12,17 @@
   "version": "current",
   "sidebarPosition": 4,
   "frontMatter": {
-    "sidebar_position": 4
+    "sidebar_position": 4,
+    "title": "Create Stages",
+    "description": "Detailed tutorial on how to define MAGMA stages, situations, goals, predicates, and text-only verification."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create a Task",
-    "permalink": "/docs/use-magma-gen/tutorials/create-tasks"
+    "title": "Create a Tool",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
   },
   "next": {
-    "title": "Create Tools",
-    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
+    "title": "Create a Task Preset",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tasks"
   }
 }

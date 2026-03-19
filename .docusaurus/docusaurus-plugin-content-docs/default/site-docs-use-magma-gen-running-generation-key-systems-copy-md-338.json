@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/running-generation/key-systems copy",
+  "title": "Key Ideas",
+  "description": "Core Concept",
+  "source": "@site/docs/use-magma-gen/running-generation/key-systems copy.md",
+  "sourceDirName": "use-magma-gen/running-generation",
+  "slug": "/use-magma-gen/running-generation/key-systems copy",
+  "permalink": "/docs/use-magma-gen/running-generation/key-systems copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Understand the generation",
+    "permalink": "/docs/category/understand-the-generation"
+  },
+  "next": {
+    "title": "Key Ideas",
+    "permalink": "/docs/use-magma-gen/running-generation/key-systems"
+  }
+}

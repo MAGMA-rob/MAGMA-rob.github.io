@@ -77,17 +77,17 @@
     },
     "content": "content---team-634-649"
   },
-  "/docs-94a": {
+  "/docs-05b": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---docsaba-d7c"
     }
   },
-  "/docs-98d": {
+  "/docs-1cd": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "__props": "__props---docs-005-788"
   },
-  "/docs-c2d": {
+  "/docs-f5e": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/category/core-concepts-409": {
@@ -97,10 +97,6 @@
   "/docs/category/customization-7cd": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "__props": "__props---docs-category-customization-031-b8c"
-  },
-  "/docs/category/how-to-build-a-dataset-08d": {
-    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
-    "__props": "__props---docs-category-how-to-build-a-dataset-658-ab1"
   },
   "/docs/category/magma-bench-5f5": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
@@ -117,6 +113,10 @@
   "/docs/category/tutorials-aaa": {
     "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
     "__props": "__props---docs-category-tutorials-2-fc-0e4"
+  },
+  "/docs/category/understand-f8c": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-understandc-63-cc9"
   },
   "/docs/core-concepts/envs-537": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -174,9 +174,17 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-use-magma-gen-quickstart-launch-first-generation-35-e-f91"
   },
-  "/docs/use-magma-gen/running-generation/overview-13e": {
+  "/docs/use-magma-gen/running-generation/cli-argument-1ae": {
     "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---docs-use-magma-gen-running-generation-overview-4-f-4-2b8"
+    "content": "content---docs-use-magma-gen-running-generation-cli-argumentf-87-caa"
+  },
+  "/docs/use-magma-gen/running-generation/export-edc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-running-generation-export-3-d-7-c04"
+  },
+  "/docs/use-magma-gen/running-generation/key-systems-3e6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-running-generation-key-systems-039-e43"
   },
   "/docs/use-magma-gen/tutorials/create-envs-57a": {
     "__comp": "__comp---theme-doc-item-178-a40",
@@ -194,13 +202,13 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-use-magma-gen-tutorials-create-tasksc-94-961"
   },
+  "/docs/use-magma-gen/tutorials/create-tasks-definition-a95": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-create-tasks-definitione-36-1b3"
+  },
   "/docs/use-magma-gen/tutorials/create-tools-6b0": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-use-magma-gen-tutorials-create-tools-712-85d"
-  },
-  "/docs/use-magma-gen/tutorials/overview-58a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---docs-use-magma-gen-tutorials-overview-5-a-0-7b8"
   },
   "/-2e1": {
     "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",

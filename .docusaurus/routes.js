@@ -64,15 +64,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '94a'),
+    component: ComponentCreator('/docs', '05b'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '98d'),
+        component: ComponentCreator('/docs', '1cd'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'c2d'),
+            component: ComponentCreator('/docs', 'f5e'),
             routes: [
               {
                 path: '/docs/category/core-concepts',
@@ -83,12 +83,6 @@ export default [
               {
                 path: '/docs/category/customization',
                 component: ComponentCreator('/docs/category/customization', '7cd'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/docs/category/how-to-build-a-dataset',
-                component: ComponentCreator('/docs/category/how-to-build-a-dataset', '08d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -113,6 +107,12 @@ export default [
               {
                 path: '/docs/category/tutorials',
                 component: ComponentCreator('/docs/category/tutorials', 'aaa'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/category/understand',
+                component: ComponentCreator('/docs/category/understand', 'f8c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -201,8 +201,20 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/running-generation/overview',
-                component: ComponentCreator('/docs/use-magma-gen/running-generation/overview', '13e'),
+                path: '/docs/use-magma-gen/running-generation/cli-argument',
+                component: ComponentCreator('/docs/use-magma-gen/running-generation/cli-argument', '1ae'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/running-generation/export',
+                component: ComponentCreator('/docs/use-magma-gen/running-generation/export', 'edc'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/running-generation/key-systems',
+                component: ComponentCreator('/docs/use-magma-gen/running-generation/key-systems', '3e6'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -231,14 +243,14 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/create-tools',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tools', '6b0'),
+                path: '/docs/use-magma-gen/tutorials/create-tasks-definition',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tasks-definition', 'a95'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/overview',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/overview', '58a'),
+                path: '/docs/use-magma-gen/tutorials/create-tools',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tools', '6b0'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

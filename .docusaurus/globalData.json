@@ -81,8 +81,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/running-generation/overview",
-              "path": "/docs/use-magma-gen/running-generation/overview",
+              "id": "use-magma-gen/running-generation/cli-argument",
+              "path": "/docs/use-magma-gen/running-generation/cli-argument",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/running-generation/export",
+              "path": "/docs/use-magma-gen/running-generation/export",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/running-generation/key-systems",
+              "path": "/docs/use-magma-gen/running-generation/key-systems",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -106,13 +116,13 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-tools",
-              "path": "/docs/use-magma-gen/tutorials/create-tools",
+              "id": "use-magma-gen/tutorials/create-tasks-definition",
+              "path": "/docs/use-magma-gen/tutorials/create-tasks-definition",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/overview",
-              "path": "/docs/use-magma-gen/tutorials/overview",
+              "id": "use-magma-gen/tutorials/create-tools",
+              "path": "/docs/use-magma-gen/tutorials/create-tools",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -131,8 +141,8 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/how-to-build-a-dataset",
-              "path": "/docs/category/how-to-build-a-dataset",
+              "id": "/category/understand",
+              "path": "/docs/category/understand",
               "sidebar": "tutorialSidebar"
             },
             {

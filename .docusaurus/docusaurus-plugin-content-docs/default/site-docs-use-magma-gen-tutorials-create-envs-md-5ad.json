@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/create-envs",
   "title": "Create an Environment",
-  "description": "This tutorial page is a placeholder.",
+  "description": "Simple guide to creating MAGMA environments with DefaultEnv and DefaultMultiAgentEnv.",
   "source": "@site/docs/use-magma-gen/tutorials/create-envs.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/create-envs",
@@ -10,17 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 6,
+  "sidebarPosition": 2,
   "frontMatter": {
-    "sidebar_position": 6
+    "sidebar_position": 2,
+    "title": "Create an Environment",
+    "description": "Simple guide to creating MAGMA environments with DefaultEnv and DefaultMultiAgentEnv."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create Tools",
-    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
+    "title": "Create a Scenario",
+    "permalink": "/docs/use-magma-gen/tutorials/create-scenarios"
   },
   "next": {
-    "title": "MAGMA-BENCH",
-    "permalink": "/docs/category/magma-bench"
+    "title": "Create a Tool",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
   }
 }
