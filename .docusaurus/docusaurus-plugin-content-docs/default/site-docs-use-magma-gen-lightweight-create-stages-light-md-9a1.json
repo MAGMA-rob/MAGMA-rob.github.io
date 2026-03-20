@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/lightweight/create-stages-light",
+  "title": "Create a Stage (Lightweight)",
+  "description": "Minimal path to your first MAGMA stage.",
+  "source": "@site/docs/use-magma-gen/lightweight/create-stages-light.md",
+  "sourceDirName": "use-magma-gen/lightweight",
+  "slug": "/use-magma-gen/lightweight/create-stages-light",
+  "permalink": "/docs/use-magma-gen/lightweight/create-stages-light",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2.2,
+  "frontMatter": {
+    "sidebar_position": 2.2,
+    "title": "Create a Stage (Lightweight)",
+    "description": "Minimal path to your first MAGMA stage."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Tool (Lightweight)",
+    "permalink": "/docs/use-magma-gen/lightweight/create-tools-light"
+  },
+  "next": {
+    "title": "Create a Task Preset (Lightweight)",
+    "permalink": "/docs/use-magma-gen/lightweight/create-tasks-light"
+  }
+}

@@ -102,7 +102,11 @@ With MAGMA-GEN, you can:
 
 ## 🔗 Next Steps
 
-- Follow the [Quickstart](./quickstart.md) to run your first generation
+- Start with [Quickstart setup](./quickstart/installation.md)
+- Then [launch your first generation](./quickstart/launch-first-generation.md)
+- For the main authored workflow, start with [Create your custom scenario in 5 minutes](./tutorials/create-scenarios.md)
+- If you need more detail on one authoring step, use the [Scenario Building Blocks](./tutorials/building-blocks/create-envs.md)
+- Keep the [Generation CLI reference](./running-generation/cli-argument.md) nearby for runtime options
 - Explore [Key Systems](./running-generation/key-systems.md)
 - Understand [MAGMA concepts](../core-concepts/overview.md)
 - Dive into advanced pipelines in the *Deep Dive* section

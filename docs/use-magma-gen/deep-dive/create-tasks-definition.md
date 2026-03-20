@@ -406,7 +406,7 @@ So:
 
 If a request needs its own effect to already be visible inside its own stages, it must inject that logic explicitly during `create_stages(...)`. Like this it can sample random stage initialization and modify the state accordingly to this sampling.
 
-:::Danger
+:::danger
 You should **NEVER** modify the state outside of a **Constraint.apply()**. Otherwise, in case of task state recomputation, the modification won't persist.
 :::
 
@@ -570,7 +570,9 @@ Typical examples:
 
 #### Use constraints for state modification
 
-Always modify the state within `BaseConstraint`.
+:::danger
+Always modify the state within `BaseConstraint`. Otherwise it won't be saved on future stages.
+:::
 
 #### Return `force_state_recompute() == True` when attributes may invalidate old constraints
 

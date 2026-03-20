@@ -119,11 +119,92 @@ You can implement a custom reset strategy to place unused objects outside the ro
 
 
 ## Use with Task Definition
-In task-definition flows, requests such as `AddAreas` and `RemoveAreas` update the `TaskState` after stage creation.
+In task-definition flows, we provide a base [requests](../deep-dive/create-tasks-definition.md#requests-the-generation-time-building-blocks) class : `BaseAttributesModifRequest`. You also have more dedicated template in `magma_scnearios.template.requests`, allowing you to just define a simple request without coding the common logic. The logic is to fill `att_state` with the updated attributes in your custom Request.
 
-During generation, MAGMA also carries the `ADD` and `REMOVE` logs forward by applying the recorded attribute modifications to the next `Situation`.
+```python
+class BaseAttributesModifRequest(BaseRequest):
 
-That is what makes the next stage see the new area list.
+    att_state : Dict
+
+    def __init__(self, modifiable_task_attributes : Dict[str,Any]) -> None:
+        """
+        Pass the dict of attributes {name:list of values} that you want to modify
+        """
+        super().__init__()
+        self.attributes = modifiable_task_attributes
+        self.att_state = {}
+
+    def sampling_weight(self, state: TaskState) -> float:
+        for entity_name, entity_val in self.attributes.items():
+            if type(entity_val) == type(state.attributes[entity_name]):
+                return 1
+            else:
+                raise ValueError(f"Incompatible type between task_attributes {entity_val} and entities {state.attributes[entity_name]} from state")
+        return 0
+    
+    def apply_request(self, state: TaskState) -> TaskState:
+        c = AttributesModifConstraint(copy.deepcopy(self.att_state))
+        c.apply(state)
+        return super().apply_request(state)
+    
+    def force_state_recompute(self) -> bool:
+        return True
+```
+
+Similarly to [Constraints Requests](./constraint-cycle.md#use-with-task-definition), the idea is to create a `BaseConstraint` and to apply it to attributes. We also provide a base implementation for attributes modification. Like this, the attributes modification is correctly applied to the Task State and maintained even after state recompute.
+
+:::danger
+**NEVER MODIFY** the state directly inside requests. Only **Constraints** components must modify task state.
+:::
+
+```python title="Exemple with RemoveAreas from warehouse_sorting"
+class RemoveAreas(RemoveValueToListRequest):
+
+    def __init__(self, max_update : int = 2) -> None:
+        super().__init__(["target_areas"], max_update = max_update)
+    
+    def create_stages(self, state: TaskState) -> List[BaseTaskStage]:
+        
+        n = random.randint(1,self.max_update)
+
+        all_modif = []
+        self.att_state = deepcopy(state.attributes)
+
+        for _ in range(n):
+            out = self._get_random_key_value(["target_areas"], self.att_state)
+            if out is None:
+                break
+            self.att_state[out[0]].remove(out[1])
+            all_modif.append(out[1])
+
+        stages = []
+        if all_modif:
+            instruction = f"Please remove {' and '.join(all_modif)} from your knowledge base."
+            ins = UserInstruction(instruction)
+
+            for i, area in enumerate(all_modif):
+                stages.append(
+                    ModifAttributesBaseStage(
+                        mode = "REMOVE",
+                        instruction=ins,
+                        val_name=area,
+                        att_name="target_areas",
+                        memory=state.memory,
+                        preserved_memory_indices=state.preserved_memory_indices,
+                        attributes=state.attributes,
+                        flag_answer_to_user= i == len(all_modif)-1
+                    )
+                )
+                ins = EmptyInstruction()
+        
+        return stages
+```
+
+As you see here, **we do not modify directly state attributes**, instead we make our modification in `att_state`.
+
+:::tip
+Do not forget to test your requests with the [Request Tester](../deep-dive/create-tasks-definition.md#testing)
+:::
 
 ## More details
 

@@ -10,19 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 5,
+  "sidebarPosition": 2.2,
   "frontMatter": {
-    "sidebar_position": 5,
+    "sidebar_position": 2.2,
     "title": "Create a Stage (Lightweight)",
     "description": "Minimal path to your first MAGMA stage."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Define a Constraint Stage",
-    "permalink": "/docs/use-magma-gen/tutorials/constraint-cycle"
+    "title": "Create a Tool (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tools-light"
   },
   "next": {
-    "title": "Use log verification",
-    "permalink": "/docs/use-magma-gen/tutorials/log-verification"
+    "title": "Create a Task Preset (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tasks-light"
   }
 }

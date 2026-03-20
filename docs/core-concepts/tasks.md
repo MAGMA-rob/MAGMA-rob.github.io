@@ -5,7 +5,7 @@ sidebar_position: 3
 # Tasks and Stages
 
 A task is the unit of work an agent must solve in MAGMA.
-It combines the goal of the interaction, the available [tools](./tools.md), the [task-specific attributes](#️-task-attributes), and the sequence of [stages](./tasks.md#what-a-stage-is) that determines how progress is measured.
+It combines the goal of the interaction, the available [tools](./tools.md), the [task-specific attributes](#task-attributes), and the sequence of [stages](./tasks.md#what-a-stage-is) that determines how progress is measured.
 
 If a [scenario](./scenarios.md) defines a domain, a task defines one concrete problem inside that domain.
 
@@ -21,7 +21,7 @@ A task usually specifies:
 
 This is the object that MAGMA-GEN executes during generation and that MAGMA-BENCH use as support during benchmarking.
 
-## 🪜 What a Stage Is
+## What a Stage Is
 
 A stage is the smallest progression unit inside a [task](./tasks.md).
 It describes one local objective that must be satisfied before the task can continue.
@@ -59,7 +59,7 @@ Conceptually, the stage answers one question:
 
 > What must be true before the task is allowed to move forward?
 
-## 🏷️ Task Attributes
+## Task Attributes
 
 Task attributes are structured pieces of information exposed to the agent alongside the [tool](./tools.md) schema.
 They provide context that is not itself a tool.
@@ -75,7 +75,7 @@ Examples include:
 Some tasks allow the agent to update parts of this state indirectly through [tool](./tools.md) calls or logged events.
 This is how MAGMA models interactions in which the agent learns, registers, or modifies working knowledge over time.
 
-## ⚙️ Task Presets
+## Task Presets
 
 A task preset is a fixed or parameterized task instance.
 It explicitly selects the [stages](./tasks.md#what-a-stage-is), attributes, [tool API](./tools.md#tool-apis), and metadata that make up the task.
@@ -88,7 +88,7 @@ Use a preset when:
 
 Presets are the most direct way to define a task.
 
-## 📚 Task Definitions
+## Task Definitions
 
 A task definition is a higher-level specification used to generate many tasks from the same logic.
 It is primarily a **MAGMA-GEN** authoring abstraction.
@@ -107,7 +107,7 @@ Task definitions usually rely on three additional concepts:
 These objects are generation-time abstractions.
 They help MAGMA-GEN build coherent tasks that stay consistent with the evolving context.
 
-### Task state
+### Task State
 
 Task state tracks what is currently true from the task author's point of view.
 That can include:
@@ -176,5 +176,6 @@ Keeping those levels separate makes authoring cleaner and evaluation easier to r
 For implementation guidance in MAGMA-GEN, continue with:
 
 - [Create a Scenario](../use-magma-gen/tutorials/create-scenarios.md)
-- [Create a Stage (Lightweight)](../use-magma-gen/tutorials/create-stages-light.md)
-- [Create a Task Preset (Lightweight)](../use-magma-gen/tutorials/create-tasks-light.md)
+- [Create a Stage (Lightweight)](../use-magma-gen/tutorials/building-blocks/create-stages-light.md)
+- [Create a Task Preset (Lightweight)](../use-magma-gen/tutorials/building-blocks/create-tasks-light.md)
+- [Create a Task Definition (Detailed)](../use-magma-gen/deep-dive/create-tasks-definition.md)

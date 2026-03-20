@@ -7,13 +7,13 @@ description: Detailed tutorial on how to define MAGMA stages, situations, goals,
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create Stages (Detailed)
+# Create Stages
 
 This tutorial explain how to define action stages and text-only stages, specify success criteria, and compose stages into larger task flows.
 
 For the conceptual explanation, see [Tasks and Stages](../../core-concepts/tasks.md).
 
-If you want the shortest path first, start with [Create a Stage (Lightweight)](./create-stages-light.md).
+If you want the shortest path first, start with [Create a Stage (Lightweight)](../tutorials/building-blocks/create-stages-light.md).
 This page keeps the full stage model, verification paths, and advanced patterns.
 
 After defining your tools API, the next step is to define your stages. This is a very important distinction in MAGMA:

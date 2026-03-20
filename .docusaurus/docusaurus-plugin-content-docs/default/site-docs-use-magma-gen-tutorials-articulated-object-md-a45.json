@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/articulated-object",
+  "title": "Integrate Articulated Objects",
+  "description": "Learn how to add realistic objects inside your environments",
+  "source": "@site/docs/use-magma-gen/tutorials/articulated-object.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/articulated-object",
+  "permalink": "/docs/use-magma-gen/tutorials/articulated-object",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "title": "Integrate Articulated Objects",
+    "description": "Learn how to add realistic objects inside your environments"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Randomize Tasks",
+    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+  },
+  "next": {
+    "title": "Agents Asking for Clarification",
+    "permalink": "/docs/use-magma-gen/tutorials/lack-information"
+  }
+}

@@ -9,21 +9,14 @@ import TabItem from '@theme/TabItem';
 
 Learn how to convert a generated MAGMA-GEN run into training files.
 
-:::warning
-This workflow is still experimental. A complete reference training repository is not wired here yet.
-:::
-
 ## What export reads
 
-When you run generation, each run folder contains:
+The export step uses two different sources of information:
 
-- `commander_datas/`
-- `memorizer_datas/`
-- `config.json`
+- the generated run folder, which contains `config.json`, `commander_datas/`, and optionally `memorizer_datas/`
+- a MAGMA config file, which defines the available backends used at export time for scoring and selection
 
-`config.json` stores the task description, tool schema, export mode, and the source folders that the export step needs.
-
-The export command reads those generated folders and writes new dataset files in the same run folder.
+This is an important change from the previous workflow: backend workers are no longer created from old instance IDs. They are now created from the active backend configs loaded through `MAGMAConfig`.
 
 ## Entry point
 
@@ -52,18 +45,63 @@ Example:
 python -m magma_gen.launch_export output/smoke_test SFT
 ```
 
-## Folder discovery
-
 The exporter recursively searches for folders containing `config.json`.
 
 That means you can point it to:
-
 - one specific run folder
 - or a higher-level directory containing multiple runs
 
 :::tip
 If you pass a parent directory, every nested run folder containing `config.json` will be processed.
 :::
+
+## Config loading
+
+At launch time, the exporter loads a `MAGMAConfig` with the following precedence:
+
+1. `--config_path / -c`
+2. `./config.yaml`
+3. the package default config
+
+The generated run's `config.json` is still used to locate the exported graph files and task metadata, but it does not define the runtime backends for export.
+
+## Active backends
+
+Export-time workers are created from the active backends in the loaded config.
+
+Internally, the builder now creates workers like this:
+
+```python
+worker = LMWorker(config.backends[k])
+```
+
+That means:
+
+- you must have at least one backend defined in your config
+- the selected backend names must exist in the config file
+- one worker is created per active backend
+
+You can restrict which configured backends are used with `--backends_instance`.
+
+Examples:
+
+```bash
+python -m magma_gen.launch_export output/run_a SFT \
+  -c config.yaml \
+  -bi local_ollama
+```
+
+```bash
+python -m magma_gen.launch_export output/run_a SFT \
+  -c config.yaml \
+  -bi local_ollama remote_vllm
+```
+
+```bash
+python -m magma_gen.launch_export output/run_a SFT \
+  -c config.yaml \
+  -bi local_ollama,remote_vllm
+```
 
 ## What export writes
 
@@ -83,7 +121,9 @@ The exact outputs depend on the builder you selected:
   <TabItem value="single-sft" label="Single SFT">
 
 ```bash
-python -m magma_gen.launch_export output/smoke_test SFT
+python -m magma_gen.launch_export output/smoke_test SFT \
+  -c config.yaml \
+  -bi local_ollama
 ```
 
 This uses the single-agent SFT builder when `--memorizer_mode` stays at its default `none`.
@@ -92,7 +132,9 @@ This uses the single-agent SFT builder when `--memorizer_mode` stays at its defa
   <TabItem value="single-dpo" label="Single DPO">
 
 ```bash
-python -m magma_gen.launch_export output/smoke_test DPO
+python -m magma_gen.launch_export output/smoke_test DPO \
+  -c config.yaml \
+  -bi local_ollama
 ```
 
 This uses the single-agent DPO builder when `--memorizer_mode` stays at its default `none`.
@@ -102,6 +144,8 @@ This uses the single-agent DPO builder when `--memorizer_mode` stays at its defa
 
 ```bash
 python -m magma_gen.launch_export output/dual_run SFT \
+  -c config.yaml \
+  -bi local_ollama remote_ollama \
   --memorizer_mode base
 ```
 
@@ -118,11 +162,11 @@ Use a non-`none` memorizer mode to activate the dual builder.
 | --- | --- | --- | --- |
 | `folder_name` | n/a | yes | Folder to scan for generated run folders |
 | `export_type` | n/a | yes | Dataset type: `SFT` or `DPO` |
-| `--ollama_instances` | `-oi` | no | Export-time worker instances used for scoring |
+| `--config_path` | `-c` | no | Config file used to load runtime backends |
+| `--backends_instance` | `-bi` | no | Names of active backends to keep from the loaded config |
 | `--nb_of_augment` | `-n` | no | Number of randomized data variants generated per selected sample |
 | `--commander_mode` | `-cm` | no | Commander scoring mode |
 | `--memorizer_mode` | `-mm` | no | Memorizer scoring mode / builder switch |
-| `--no_log` | n/a | no | Parsed by CLI, but currently unused in the source |
 
 ## How builder selection works
 
@@ -130,36 +174,45 @@ The export entrypoint chooses a builder from `export_type` and `memorizer_mode`.
 
 ### `SFT`
 
-- `--memorizer_mode none` → `SFT_SA_Builder`
-- `--memorizer_mode base` → `SFT_DUAL_Builder`
-- `--memorizer_mode no` → `SFT_DUAL_Builder` without memorizer scoring
+- `--memorizer_mode none` -> `SFT_SA_Builder`
+- `--memorizer_mode base` -> `SFT_DUAL_Builder`
+- `--memorizer_mode no` -> `SFT_DUAL_Builder` without memorizer scoring
 
 ### `DPO`
 
-- `--memorizer_mode none` → `DPO_SA_Builder`
-- any other memorizer mode → not implemented
+- `--memorizer_mode none` -> `DPO_SA_Builder`
+- any other memorizer mode -> not implemented
 
 :::info
 There is an important distinction between `none` and `no`.
 
-- `none` means “use the single-agent builder”
-- `no` means “use the dual builder, but skip memorizer scoring”
+- `none` means "use the single-agent builder"
+- `no` means "use the dual builder, but skip memorizer scoring"
 :::
 
 ## What each argument changes
 
-### `--ollama_instances`
+### `--config_path`
 
-This selects the worker instance IDs used during export-time scoring.
+This selects which MAGMA config file is used to resolve the export-time backends.
 
-Examples:
+Use it when:
 
-```bash
---ollama_instances 0
---ollama_instances 0 1 2
-```
+- your backends are not defined in `./config.yaml`
+- you want to export with a dedicated config
+- you need to switch between backend setups
 
-Use multiple instances if you want to parallelize the scoring/evaluation work done during export.
+### `--backends_instance`
+
+This filters the loaded backend map and keeps only the selected backend names as active.
+
+Accepted forms:
+
+- `-bi backend_a`
+- `-bi backend_a backend_b`
+- `-bi backend_a,backend_b`
+
+Use multiple backends if you want multiple export workers running in parallel.
 
 ### `--nb_of_augment`
 
@@ -196,23 +249,21 @@ Use:
 - `base` for dual export with memorizer scoring
 - `no` for dual export without memorizer scoring
 
-### `--no_log`
-
-This flag is parsed, but it is not currently used in `launch_export.py`.
-
 ## How export works internally
 
 At a high level:
 
 1. parse CLI arguments
-2. pick a dataset builder
-3. recursively find all folders containing `config.json`
-4. load each folder's `config.json`
-5. traverse the exported graph files referenced by that config
-6. score/select good commander trajectories
-7. optionally score/select memorizer updates
-8. apply augmentation
-9. write final JSON dataset files
+2. load `MAGMAConfig`
+3. optionally filter active backends with `--backends_instance`
+4. build one export worker per active backend
+5. recursively find all folders containing `config.json`
+6. load each folder's `config.json`
+7. traverse the exported graph files referenced by that config
+8. score/select good commander trajectories
+9. optionally score/select memorizer updates
+10. apply augmentation
+11. write final JSON dataset files
 
 ## Input data model
 
@@ -261,27 +312,34 @@ The memorizer output is serialized into the `ADD ...` / `REMOVE ...` textual for
 ### Export one single-agent run as SFT
 
 ```bash
-python -m magma_gen.launch_export output/run_a SFT
+python -m magma_gen.launch_export output/run_a SFT \
+  -c config.yaml \
+  -bi local_ollama
 ```
 
 ### Export one single-agent run as DPO
 
 ```bash
-python -m magma_gen.launch_export output/run_a DPO
+python -m magma_gen.launch_export output/run_a DPO \
+  -c config.yaml \
+  -bi local_ollama
 ```
 
 ### Export one dual-agent run with memorizer scoring
 
 ```bash
 python -m magma_gen.launch_export output/run_dual SFT \
-  --memorizer_mode base \
-  --ollama_instances 0 1
+  -c config.yaml \
+  -bi local_ollama remote_ollama \
+  --memorizer_mode base
 ```
 
 ### Export every run under `output/`
 
 ```bash
-python -m magma_gen.launch_export output SFT
+python -m magma_gen.launch_export output SFT \
+  -c config.yaml \
+  -bi local_ollama
 ```
 
 ## Current limitations
@@ -308,9 +366,9 @@ This is easy to miss:
 
 If you export a dual-generation run with `--memorizer_mode none`, the single-agent builder will be selected and will reject the folder.
 
-### `--no_log` is currently ineffective
+### At least one active backend is required
 
-It exists in the parser, but the source does not use it.
+If the loaded config contains no backend, or if `--backends_instance` filters them all out, export fails before processing folders.
 
 ## Troubleshooting
 
@@ -333,6 +391,18 @@ Cause:
 Fix:
 
 - point the command at a generation run folder, not only at `commander_datas/` or `memorizer_datas/`
+
+### Error: no active backend specified
+
+Cause:
+
+- your loaded config has no backend definitions
+- or `--backends_instance` removed every backend
+
+Fix:
+
+- pass a valid config with backends
+- check the backend names passed to `-bi`
 
 ### Error: reading a dual folder with a single-agent builder
 
@@ -357,7 +427,8 @@ Fix:
 ## Recommended usage
 
 - Use `SFT` first, especially for dual-agent runs.
+- Use `--config_path` explicitly in scripts and automation.
 - Use `--memorizer_mode base` when you want commander and memorizer data from dual generation.
 - Use `--memorizer_mode no` if you want the dual builder path without memorizer scoring.
 - Keep `--nb_of_augment` small at first, then scale it once you like the exported format.
-
+- Use `-bi` to keep export focused on the backend instances you actually want to score with.

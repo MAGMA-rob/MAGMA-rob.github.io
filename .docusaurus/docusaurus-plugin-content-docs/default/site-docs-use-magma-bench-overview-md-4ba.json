@@ -1,7 +1,7 @@
 {
   "id": "use-magma-bench/overview",
-  "title": "Overview",
-  "description": "",
+  "title": "Come in september 2026",
+  "description": "Learn how to use MAGMA-GEN",
   "source": "@site/docs/use-magma-bench/overview.md",
   "sourceDirName": "use-magma-bench",
   "slug": "/use-magma-bench/overview",
@@ -12,7 +12,9 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 1
+    "sidebar_position": 1,
+    "title": "Come in september 2026",
+    "description": "Learn how to use MAGMA-GEN"
   },
   "sidebar": "tutorialSidebar",
   "previous": {

@@ -11,7 +11,7 @@ This page explains how to create a MAGMA task preset. For the conceptual explana
 It only covers preset tasks based on `BaseTask`.
 For task definitions, request systems, task state builders, or constraint-generation pipelines, check the advanced-only [**Task Definitions**](create-tasks-definition.md).
 
-If you want the shortest path first, start with [Create a Task Preset (Lightweight)](./create-tasks-light.md).
+If you want the shortest path first, start with [Create a Task Preset (Lightweight)](../tutorials/building-blocks/create-tasks-light.md).
 This page keeps the fuller assembly model and optional task fields.
 
 If you already have:

@@ -22,20 +22,21 @@ The most valuable data generated are **positive outcomes emerging from negative 
 
 ### Scaling
 
-With MAGMA-GEN, you are able to generate 5000+ data in 30 minutes, all of them are viable, robust, different and unique.
+With MAGMA-GEN, you are able to generate 5000+ data in 1 hours, all of them are viable, robust and unique.
 
 :::info
-For more theorical details, please read the associated [**paper**]().
+For more theorical details, see the [Publications](/publications) page.
 :::
 
 
-## Three-Pillar Architecture
+## Five-Pillar Architecture
 
 ### 1. **Dynamic Environment Management**
 - **Parallel Execution**: Multiple environments run simultaneously with dynamic allocation
 - **State Preservation**: Environment states are saved and restored between tool executions
 - **Efficient Resource Use**: Free environments are immediately reassigned to new tasks
 - **Multi-Agent Support**: Handles complex scenarios with multiple interacting agents
+- **Autonomous Randomization**: Interface Randomization without coding
 
 ### 2. **Dual-Agent System**
 - **Commander Agent**: Makes high-level decisions (what action to take)
@@ -48,10 +49,22 @@ The pipeline support also single agent architecture.
 :::
 
 ### 3. **Intelligent Coaching**
-- **External Model Integration**: Uses separate LLM backends for coaching and user simulation
+- **External Model Integration**: Uses separate LLM backends for coaching.
 - **Asynchronous Processing**: Coaching requests are queued and processed independently
 - **Error Recovery**: Provides guidance when agents make mistakes
 - **Context-Aware**: Coaching adapts based on current task state and agent performance
+
+### 4. **Simulated User**
+- **External Model Integration**: Uses separate LLM backends for user simulation
+- **Semantic Randomization**: AUtonomous randomization of instruction to ensure more variety in language.
+- **Task Interuption**: Provide system to simulate task interuption and continuation.
+- **Runtime Instruction Generation**: Generate instruction from template at runtime.
+
+### 5. **Curriculum Task Building**
+- **Task Generator**: Possibility to define Task Definition and generate unbound set of tasks from it.
+- **Preset Parametrization**: Possibility to parametrize presets to change at launch the task objectives.
+- **Difficulty-Aware**: Autonomous curriculum system adapting task difficulty to ensure good dataset distribution.
+- *open sourced in summer 2026*
 
 ## Generation Workflow
 
@@ -84,10 +97,13 @@ To take advantage of the high parrallelism of Maniskill, we develop a dynamic al
 
 Agent generate multiple answer from each state leading to different trajectories that we explore through a tree of trajectories. Leading to the possibility to build Preference Dataset from MAGMA-GEN, as well as classic positive dataset for Supervised Fine Tuning. The agent run inside a **magma-agent** compatible service. The default provided implementation, relies on the *transformers* librairy from Hugging Face. It allows to batch the state and recolt multiple answer in parrallel. 
 
-### Coaching Integration
+### System Integration
 
-**Coaching** and **User Simulation** are handled by an external model. This model use one of the **backend** that you define in the config (see [Setup](../quickstart/installation.md#backends)). It uses a payload system, where each request is put in a queue and treated asynchronously. To learn more about how to define your own backend, your own client system, check [this](../../customization/create-backends.md).
+**Coaching** and **User Simulation** are handled by an external model. This model use one of the **backend** that you define in the config (see [Setup](../quickstart/installation.md#backends)). It uses a payload system, where each request is put in a queue and treated asynchronously. To learn more about how to define your own backend or client system, check [Create your own backend](../../customization/create-backends.md).
 
+### Dynamic Task building
+
+While the curriculum building is not yet avalaible in the open-source version of **MAGMA-GEN**, we release a sampling task generator capable of building task from a **Task Definiton**.
 
 ## Configuration Options
 

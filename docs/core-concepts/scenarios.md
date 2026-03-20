@@ -107,7 +107,7 @@ This separation is useful because many components are reused:
 
 - the same [tools](./tools.md) may support several [tasks](./tasks.md)
 - the same [stages](./tasks.md#what-a-stage-is) may appear in different task presets
-- the same [requests](tasks.md#requests) and [constraints](./tasks.md#constraints) may feed several [task definitions](./tasks.md#-task-definitions)
+- the same [requests](./tasks.md#requests) and [constraints](./tasks.md#constraints) may feed several [task definitions](./tasks.md#task-definitions)
 
 ## 🧪 Environment Placement
 

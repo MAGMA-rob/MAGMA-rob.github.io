@@ -1,0 +1,23 @@
+{
+  "id": "use-magma-gen/templates/stages copy",
+  "title": "stages copy",
+  "description": "",
+  "source": "@site/docs/use-magma-gen/templates/stages copy.md",
+  "sourceDirName": "use-magma-gen/templates",
+  "slug": "/use-magma-gen/templates/stages copy",
+  "permalink": "/docs/use-magma-gen/templates/stages copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Template you can use",
+    "permalink": "/docs/category/template-you-can-use"
+  },
+  "next": {
+    "title": "stages-template",
+    "permalink": "/docs/use-magma-gen/templates/stages-template"
+  }
+}

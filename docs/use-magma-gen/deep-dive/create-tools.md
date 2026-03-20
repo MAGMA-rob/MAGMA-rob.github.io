@@ -17,7 +17,7 @@ This tutorial explains how to create MAGMA tools. The goal is to understand:
 - how to use `verifier`, `redo`, and `Log`
 - how the registry is built automatically
 
-If you want the shortest path first, start with [Create a Tool (Lightweight)](./create-tools-light.md).
+If you want the shortest path first, start with [Create a Tool (Lightweight)](../tutorials/building-blocks/create-tools-light.md).
 This page keeps the fuller execution model and advanced authoring details.
 
 ## Overview

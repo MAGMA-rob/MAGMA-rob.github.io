@@ -61,7 +61,7 @@ Conceptually, a tool call follows this lifecycle:
 This makes tools more than simple wrappers.
 They are the operational contract between reasoning and embodiment.
 
-## 🧰 Tool APIs {#tool-apis}
+## Tool APIs
 
 A tool API is a class that groups related tools together.
 [Tasks](./tasks.md) usually expose one tool API, or one variant of a shared API, depending on the interaction setting.
@@ -135,4 +135,6 @@ As a rule, tools should represent reusable capabilities, while [stages](./tasks.
 ## 🚀 Next Step
 
 This page explains the role of tools.
-If you want to implement them in MAGMA-GEN, continue with [Create a Tool (Lightweight)](../use-magma-gen/tutorials/create-tools-light.md).
+If you want to implement them in MAGMA-GEN, continue with [Create a Tool (Lightweight)](../use-magma-gen/tutorials/building-blocks/create-tools-light.md).
+
+If you need the full execution model, continue with [Create a Tool (Detailed)](../use-magma-gen/deep-dive/create-tools.md).

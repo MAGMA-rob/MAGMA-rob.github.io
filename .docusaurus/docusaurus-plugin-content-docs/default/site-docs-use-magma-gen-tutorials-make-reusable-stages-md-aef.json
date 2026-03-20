@@ -18,8 +18,8 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create an Environment",
-    "permalink": "/docs/use-magma-gen/tutorials/create-envs"
+    "title": "Create a Task Preset (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light"
   },
   "next": {
     "title": "Define a Constraint Stage",

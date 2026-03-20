@@ -116,6 +116,56 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "use-magma-gen/templates-to-use/constraints-template",
+              "path": "/docs/use-magma-gen/templates-to-use/constraints-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/templates-to-use/goals-template",
+              "path": "/docs/use-magma-gen/templates-to-use/goals-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/templates-to-use/requests-template",
+              "path": "/docs/use-magma-gen/templates-to-use/requests-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/templates-to-use/stages-template",
+              "path": "/docs/use-magma-gen/templates-to-use/stages-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/articulated-object",
+              "path": "/docs/use-magma-gen/tutorials/articulated-object",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/asking-request",
+              "path": "/docs/use-magma-gen/tutorials/asking-request",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/building-blocks/create-envs",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-envs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/building-blocks/create-stages-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/building-blocks/create-tasks-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/building-blocks/create-tools-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "use-magma-gen/tutorials/constraint-cycle",
               "path": "/docs/use-magma-gen/tutorials/constraint-cycle",
               "sidebar": "tutorialSidebar"
@@ -126,11 +176,6 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-envs",
-              "path": "/docs/use-magma-gen/tutorials/create-envs",
-              "sidebar": "tutorialSidebar"
-            },
-            {
               "id": "use-magma-gen/tutorials/create-scenarios",
               "path": "/docs/use-magma-gen/tutorials/create-scenarios",
               "sidebar": "tutorialSidebar"
@@ -138,6 +183,11 @@
             {
               "id": "use-magma-gen/tutorials/interuption",
               "path": "/docs/use-magma-gen/tutorials/interuption",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/lack-information",
+              "path": "/docs/use-magma-gen/tutorials/lack-information",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -158,11 +208,6 @@
             {
               "id": "use-magma-gen/tutorials/multi-stages",
               "path": "/docs/use-magma-gen/tutorials/multi-stages",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/task-definition",
-              "path": "/docs/use-magma-gen/tutorials/task-definition",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -191,8 +236,18 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "/category/template-you-can-use",
+              "path": "/docs/category/template-you-can-use",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "/category/tutorials",
               "path": "/docs/category/tutorials",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/scenario-building-blocks",
+              "path": "/docs/category/scenario-building-blocks",
               "sidebar": "tutorialSidebar"
             },
             {

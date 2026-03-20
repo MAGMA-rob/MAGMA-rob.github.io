@@ -1,7 +1,7 @@
 {
   "id": "customization/create-planner",
-  "title": "create-planner",
-  "description": "",
+  "title": "Use your own planner",
+  "description": "Learn how to use your own planner to generate trajectory",
   "source": "@site/docs/customization/create-planner.md",
   "sourceDirName": "customization",
   "slug": "/customization/create-planner",
@@ -10,10 +10,15 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Use your own planner",
+    "description": "Learn how to use your own planner to generate trajectory"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "create-backends",
+    "title": "Use your own Backends",
     "permalink": "/docs/customization/create-backends"
   }
 }

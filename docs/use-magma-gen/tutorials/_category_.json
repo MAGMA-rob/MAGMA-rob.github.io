@@ -1,8 +1,8 @@
 {
   "label": "Tutorials",
-  "position": 4,
+  "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "Authoring guides for building scenarios, tasks, stages, tools, and environments with MAGMA-GEN, with both lightweight and detailed paths."
+    "description": "End-to-end authoring guides and companion tutorials for building scenarios, environments, reusable patterns, and advanced task behaviors with MAGMA-GEN."
   }
 }

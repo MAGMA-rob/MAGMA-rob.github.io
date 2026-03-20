@@ -35,7 +35,7 @@ In practise the first stage have a real `UserInstruction` and following have `Em
 
 This is the standard continuation pattern in task presets.
 
-## Minimal pattern
+## Use with Task Preset
 
 Here is an exemple:
 
@@ -65,7 +65,7 @@ self.stages = [
 
 The first stage starts the interaction. The second stage continues it without a new user message, and only the last stage is responsible for the final answer.
 
-### Advanced use in Task Preset
+### Advanced use
 
 ```python
 ins = UserInstruction(content)
@@ -82,6 +82,50 @@ for j, area in enumerate(tupl[2]):
 ```
 
 Here you have a **simple code snippet** that allow to build multiple stages depending on the number of area to add. The flag is set to `True` only at the last, and the `ins` is overriden by an `EmptyInstruction` directly after the first stage.
+
+## Use with Task Definition
+
+**Task definition** offers a way to generalize task generation. It uses [**Requests**](../deep-dive/create-tasks-definition.md#requests-the-generation-time-building-blocks) to build random stages sequence depending on the [**Task State**](../deep-dive/create-tasks-definition.md#the-latent-state-taskstate). More details in the dedicated [Deep Dive page](../deep-dive/create-tasks-definition.md).
+
+Therefore, we can build a custom logic inside a request to create specific stages. Let's take an exemple.
+
+```python
+class MoveObjectSequenceRequest(BaseRequest):
+
+    def __init__(self, max_nb : int = 2) -> None:
+        super().__init__()
+        self.max_nb = max_nb
+
+    def create_stages(self, state: TaskState) -> List[BaseTaskStage]:        
+        all_objects = state.attributes.get("objects", []).copy()
+        all_areas = state.attributes.get("target_areas", [])
+
+        if len(all_objects) <= 0 or len(all_areas) <=0:
+            raise RuntimeError(f"Failed to build the stage from {self.__class__.__name__} due to empty objects or areas")
+        
+        n = random.randint(1,min(self.max_nb,len(all_objects)))
+
+        random.shuffle(all_objects)
+        area = random.choice(all_areas)
+
+        self.stages = []
+        ins = UserInstruction(f"Can you sort in this exact order: {' and '.join(all_objects[:n])} to {area}")
+        for i, obj in enumerate(all_objects[:n]):
+            self.stages.append(
+                ObjectToZone(
+                    {obj: area},
+                    all_objects,
+                    ins,
+                    flag_answer_to_user=i==n-1
+                )
+            )
+            ins = EmptyInstruction()
+        return stages
+```
+
+:::info
+Putting multiple stage in a row in requests follow the same principe than Task Preset: `flag_answer_to_user` must be set to false excepts for the last stages, and `instruction` must be empty execpts for the first.
+:::
 
 ## The rule to remember
 

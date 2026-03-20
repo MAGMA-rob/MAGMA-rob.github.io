@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/templates/requests-template",
+  "title": "Request Templates",
+  "description": "Request templates exemple",
+  "source": "@site/docs/use-magma-gen/templates/requests-template.md",
+  "sourceDirName": "use-magma-gen/templates",
+  "slug": "/use-magma-gen/templates/requests-template",
+  "permalink": "/docs/use-magma-gen/templates/requests-template",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "title": "Request Templates",
+    "description": "Request templates exemple"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Goal Templates",
+    "permalink": "/docs/use-magma-gen/templates/goals-template"
+  },
+  "next": {
+    "title": "Stage Templates",
+    "permalink": "/docs/use-magma-gen/templates/stages-template"
+  }
+}

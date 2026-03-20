@@ -11,7 +11,7 @@ You need to have **three** terminal open and have **defined your config** as exp
 
 ## 1. Get a default agent
 
-By default we provide a default agent to use with magma-agent service. You can download it from here:
+By default we provide a reference agent setup to use with `magma-agent` service. *soon*
 
 We recommend creating a folder `models` in `magma-agent/`, and unzip the model inside.
 
@@ -52,3 +52,9 @@ python3 -m magma_gen.launch test --preset warehouse_sorting.NoManuPreset
 ```
 
 It will create a folder named `test` in the `output` folder. At the end of the generation procedure it will save all .json containing interaction data and a config.json.
+
+## Related Pages
+
+- For all launch options, see [MAGMA-GEN Generation CLI](../running-generation/cli-argument.md)
+- To understand what the pipeline is doing, see [Key Ideas](../running-generation/key-systems.md)
+- To convert runs into datasets, see [How to export data from MAGMA-GEN](../running-generation/export.md)

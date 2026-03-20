@@ -10,19 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 7,
+  "sidebarPosition": 2.3,
   "frontMatter": {
-    "sidebar_position": 7,
+    "sidebar_position": 2.3,
     "title": "Create a Task Preset (Lightweight)",
     "description": "Minimal path to your first runnable MAGMA task preset."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Allow dynamic attribute updates",
-    "permalink": "/docs/use-magma-gen/tutorials/modify-attributes"
+    "title": "Create a Stage (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-stages-light"
   },
   "next": {
-    "title": "constraint-stage",
-    "permalink": "/docs/use-magma-gen/tutorials/constraint-stage"
+    "title": "Define reusable stages",
+    "permalink": "/docs/use-magma-gen/tutorials/make-reusable-stages"
   }
 }

@@ -10,9 +10,9 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 3,
+  "sidebarPosition": 2.1,
   "frontMatter": {
-    "sidebar_position": 3,
+    "sidebar_position": 2.1,
     "title": "Create a Tool (Lightweight)",
     "description": "Minimal path to your first MAGMA tool."
   },
@@ -22,7 +22,7 @@
     "permalink": "/docs/use-magma-gen/tutorials/create-envs"
   },
   "next": {
-    "title": "Define reusable stages",
-    "permalink": "/docs/use-magma-gen/tutorials/make-reusable-stages"
+    "title": "Create a Stage (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-stages-light"
   }
 }

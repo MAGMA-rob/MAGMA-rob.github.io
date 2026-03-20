@@ -28,7 +28,7 @@ The separation of concerns is:
 - the **[tool](./tools.md)** reads that state and produces an executable action
 - the **[task](./tasks.md)** decides which tools are available and what counts as progress
 
-This distinction matters because the same environment can often support multiple [tasks](./tasks.md) and [tools API](./tools.md#-tool-apis-tool-apis), and the same task logic can sometimes be reused across several environment configurations.
+This distinction matters because the same environment can often support multiple [tasks](./tasks.md) and [tools API](./tools.md#tool-apis), and the same task logic can sometimes be reused across several environment configurations.
 
 ## 👁️ Observation Flow
 
@@ -83,4 +83,4 @@ It should expose state and dynamics cleanly enough for those higher-level compon
 ## 🚀 Next Step
 
 This page explains the role of environments.
-If you want to implement one for MAGMA-GEN, continue with [Create an Environment](../use-magma-gen/tutorials/create-envs.md).
+If you want to implement one for MAGMA-GEN, continue with [Create an Environment](../use-magma-gen/tutorials/building-blocks/create-envs.md).

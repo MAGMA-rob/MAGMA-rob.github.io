@@ -1,0 +1,8 @@
+{
+  "label": "Template you can use",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Quick Description of available templates to use to define your custom logic on top of them"
+  }
+}

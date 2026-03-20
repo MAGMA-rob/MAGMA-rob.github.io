@@ -1,0 +1,26 @@
+{
+  "id": "use-magma-gen/templates/export",
+  "title": "How to export data from MAGMA-GEN",
+  "description": "Learn how to convert a generated MAGMA-GEN run into training files.",
+  "source": "@site/docs/use-magma-gen/templates/export.md",
+  "sourceDirName": "use-magma-gen/templates",
+  "slug": "/use-magma-gen/templates/export",
+  "permalink": "/docs/use-magma-gen/templates/export",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "MAGMA-GEN Generation CLI",
+    "permalink": "/docs/use-magma-gen/templates/cli-argument"
+  },
+  "next": {
+    "title": "Tutorials",
+    "permalink": "/docs/category/tutorials"
+  }
+}

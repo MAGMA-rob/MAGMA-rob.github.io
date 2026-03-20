@@ -1,7 +1,7 @@
 {
   "id": "customization/create-agent",
-  "title": "create-agent",
-  "description": "",
+  "title": "Use your own Agent",
+  "description": "Learn how to use your own agent in MAGMA-GEN / MAGMA-BENCH",
   "source": "@site/docs/customization/create-agent.md",
   "sourceDirName": "customization",
   "slug": "/customization/create-agent",
@@ -10,14 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Use your own Agent",
+    "description": "Learn how to use your own agent in MAGMA-GEN / MAGMA-BENCH"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Customization",
     "permalink": "/docs/category/customization"
   },
   "next": {
-    "title": "create-backends",
+    "title": "Use your own Backends",
     "permalink": "/docs/customization/create-backends"
   }
 }

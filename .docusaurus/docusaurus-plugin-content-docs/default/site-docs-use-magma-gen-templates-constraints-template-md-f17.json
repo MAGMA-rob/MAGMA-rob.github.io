@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/templates/constraints-template",
+  "title": "Constraint Templates",
+  "description": "Constraint templates exemple",
+  "source": "@site/docs/use-magma-gen/templates/constraints-template.md",
+  "sourceDirName": "use-magma-gen/templates",
+  "slug": "/use-magma-gen/templates/constraints-template",
+  "permalink": "/docs/use-magma-gen/templates/constraints-template",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "sidebar_position": 10,
+    "title": "Constraint Templates",
+    "description": "Constraint templates exemple"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Template you can use",
+    "permalink": "/docs/category/template-you-can-use"
+  },
+  "next": {
+    "title": "Goal Templates",
+    "permalink": "/docs/use-magma-gen/templates/goals-template"
+  }
+}

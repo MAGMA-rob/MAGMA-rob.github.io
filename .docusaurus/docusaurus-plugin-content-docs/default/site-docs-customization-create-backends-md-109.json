@@ -1,7 +1,7 @@
 {
   "id": "customization/create-backends",
-  "title": "create-backends",
-  "description": "",
+  "title": "Use your own Backends",
+  "description": "Learn how to use your own backends (other than ollama)",
   "source": "@site/docs/customization/create-backends.md",
   "sourceDirName": "customization",
   "slug": "/customization/create-backends",
@@ -10,14 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Use your own Backends",
+    "description": "Learn how to use your own backends (other than ollama)"
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "create-agent",
+    "title": "Use your own Agent",
     "permalink": "/docs/customization/create-agent"
   },
   "next": {
-    "title": "create-planner",
+    "title": "Use your own planner",
     "permalink": "/docs/customization/create-planner"
   }
 }

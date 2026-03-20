@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/request copy",
+  "title": "Define Custom Requests",
+  "description": "Learn how to define requests for Task Definition.",
+  "source": "@site/docs/use-magma-gen/tutorials/request copy.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/request copy",
+  "permalink": "/docs/use-magma-gen/tutorials/request copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 11,
+  "frontMatter": {
+    "sidebar_position": 11,
+    "title": "Define Custom Requests",
+    "description": "Learn how to define requests for Task Definition."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Integrate Articulated Objects",
+    "permalink": "/docs/use-magma-gen/tutorials/articulated-object"
+  },
+  "next": {
+    "title": "Define Custom Requests",
+    "permalink": "/docs/use-magma-gen/tutorials/request"
+  }
+}

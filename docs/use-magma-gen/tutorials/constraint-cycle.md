@@ -168,16 +168,87 @@ In that case, you can pass the difficulty argument directly through CLI when lau
 
 Task definition allows you to avoid defining by hand these **Preset**: it samples every stage (constraints and cycle) randomly and auto apply constraints to them. 
 :::tip
-To learn how to [define Task Definition](./task-definition.md)
+To learn about [Requests](../deep-dive/create-tasks-definition.md#requests-the-generation-time-building-blocks) and [Task State](../deep-dive/create-tasks-definition.md#the-latent-state-taskstate) check [Deep-Dive Task Definition](../deep-dive/create-tasks-definition.md)
 :::
 
-## Why this split is useful
+You can create a request inehrited form `BaseConstraintRequest`. This class implement base logic common to all constraint requests (stage creation and constraint apply). In your custom request, you just have to initialize the different [**Constraints**](../deep-dive/create-tasks-definition.md#constraints--dynamic-state-influence).
 
-- the rule is verified independently from the robot action
-- the cycle stage stays simple and objective-based
-- you can reuse the same `Cycle` template with different assignments
+Let's take a look here:
+```python title="Template to create a constraint request"
+class GiveObjectCategoryRequest(BaseConstraintRequest):
 
-For more details, see:
+    categories : List[str]
+
+    def __init__(self, available_categories : List[str], max_object_assignment : int = 2):
+        super().__init__()
+        if len(available_categories) < 2:
+            raise ValueError("It must have at least 2 caegories")
+        self.categories = available_categories
+        self.max_obj = max_object_assignment
+
+    def sampling_weight(self, state: TaskState) -> float:
+        if len(state.relations.get("object_type",{})) < 1:
+            return 3 # if no assignment, probability to sample this request increase.
+        return 1
+
+    def initialize_constraints(self, state: TaskState):
+        self.constraints = []
+        all_objects = state.attributes.get("objects", []).copy()
+
+        if len(all_objects) <=0:
+            raise RuntimeError(f"Failed to build the stage from {self.__class__.__name__} due to empty objects")
+        
+        random.shuffle(all_objects)
+        nb_update = random.randint(1,min(self.max_obj, len(all_objects)))
+
+        assignment = defaultdict(list)
+        for i in range(nb_update):
+            cur_t = state.relations["object_type"].get(all_objects[i],None)
+            t = random.choice(self.categories)
+            if cur_t != t:
+                assignment[t].append(all_objects[i])
+                self.constraints.append(ObjectCategoryConstraint(
+                    all_objects[i], t
+                ))
+        
+        self.constraint_msg = "Hello,"
+        for t, objs in assignment.items():
+            obj_str = " and ".join(objs)
+            self.constraint_msg += f" {obj_str} are now {t},"
+        self.constraint_msg += "."
+```
+We define the `initialize_constraints` function to generate random object-category association. We also define a custom `sampling_weight` to increase the sampling weight when there is no assignment.
+
+And for the constraint class
+```python title="Exemple of constraint class"
+class ObjectCategoryConstraint(BaseConstraint):
+
+    def __init__(self, object : str, category : str) -> None:
+        super().__init__()
+        self.obj = object
+        self.category = category
+
+    def apply(self, state: TaskState):
+        super().apply(state) # important for register the constraint in the state list.
+        all_obj = state.attributes.get("objects", [])
+        if not "object_type" in state.relations:
+            state.relations["object_type"] = {}
+        if not self.obj in all_obj:
+            raise RuntimeError(f"The {self.__class__.__name__} failed to be applied")
+        state.relations["object_type"][self.obj] = self.category
+
+    def outdated(self, state: TaskState) -> bool:
+        if not self.obj in state.attributes.get("objects",[]):
+            return True
+        return False
+```
+You define the function `apply` that apply the constraint to the Task State. And the function `outdated` to ensure that the constraint is deleted if it can not be applied anymore (in this case, the object has been removed).
+
+:::tip
+Unlike Task Preset, the handling of constraint and their lifecycle is automaticly done by the **Task Generator** but it requires more code. So use the different **Templates** to go faster!
+:::
+
+## More details
 
 - [Text-only stages in more detail](../deep-dive/create-stages.md#text-only-stages-in-more-detail)
 - [Goal predicates: objective verification for action stages](../deep-dive/create-stages.md#goal-predicates-objective-verification-for-action-stages)

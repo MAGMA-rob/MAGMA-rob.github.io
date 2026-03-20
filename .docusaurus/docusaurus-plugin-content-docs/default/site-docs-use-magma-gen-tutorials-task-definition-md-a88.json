@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/task-definition",
-  "title": "task-definition",
-  "description": "",
+  "title": "Define Custom Requests",
+  "description": "Learn how to define requests for Task Definition.",
   "source": "@site/docs/use-magma-gen/tutorials/task-definition.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/task-definition",
@@ -10,11 +10,16 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "frontMatter": {},
+  "sidebarPosition": 11,
+  "frontMatter": {
+    "sidebar_position": 11,
+    "title": "Define Custom Requests",
+    "description": "Learn how to define requests for Task Definition."
+  },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Randomize Tasks",
-    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+    "title": "Integrate Articulated Objects",
+    "permalink": "/docs/use-magma-gen/tutorials/articulated-object"
   },
   "next": {
     "title": "Deep Dive",

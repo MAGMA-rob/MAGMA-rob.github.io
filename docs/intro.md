@@ -9,7 +9,7 @@ Get started with **MAGMA** framework.
 ---
 
 :::warning
-🏗 This documentation is in writing 🏗
+🏗 Some pages are not yet complete 🏗 (This warning will be put on partially completed pages)
 :::
 ---
 
@@ -37,7 +37,7 @@ The documentation of MAGMA is divided depending on the different use possibility
 
 ## 🎯 Targeted Task Class
 
-MAGMA-GEN focuses on a category of problems that are still largely underexplored:
+MAGMA focuses on a category of problems that are still largely underexplored:
 
 ### Long-horizon, stateful, and interruptible tasks
 

@@ -13,6 +13,11 @@ This page shows the smallest useful MAGMA scenario:
 - one stage that checks whether the cube is inside the area
 - one preset that exposes the stage
 
+:::tip
+This is the main end-to-end authoring tutorial for custom MAGMA scenarios.
+If you want more detail on one step, use the companion pages in [Scenario Building Blocks](./building-blocks/create-envs.md).
+:::
+
 At the end, you will be able to launch:
 
 ```bash
@@ -157,7 +162,7 @@ Also make sure the env module is imported by `magma_scenarios/envs/__init__.py`:
 from .simple_sorting_env import *
 ```
 
-> If you want more details on the process of env creation, refer to [How to create an Environment](./create-envs.md)
+> If you want more details on the process of env creation, refer to [How to create an Environment](./building-blocks/create-envs.md)
 
 :::note
 This tutorial uses `build_a_zone(...)` because it is the simplest target representation.
@@ -267,7 +272,7 @@ class SimpleSortingTools(BaseToolsAPI):
 ```
 
 :::info
-If you want more details, check: [Tool Concept](../../core-concepts/tools.md) or [Tool DeepDive](../deep-dive/create-tools.md)
+If you want more details on the tool step, check [Create a Tool (Lightweight)](./building-blocks/create-tools-light.md), [Tool Concept](../../core-concepts/tools.md), or [Tool DeepDive](../deep-dive/create-tools.md)
 :::
 
 ## 4. Create the stage
@@ -308,7 +313,7 @@ class PutCubeInTarget(BaseTaskStage):
 ```
 
 :::info
-If you want more details, check: [Stage Concept](../../core-concepts/tasks.md#-what-a-stage-is) or [Stage DeepDive](../deep-dive/create-stages.md)
+If you want more details on the stage step, check [Create a Stage (Lightweight)](./building-blocks/create-stages-light.md), [Stage Concept](../../core-concepts/tasks.md#what-a-stage-is), or [Stage DeepDive](../deep-dive/create-stages.md)
 :::
 
 ## 5. Create the preset
@@ -344,7 +349,7 @@ class SimpleSortingPreset(BaseTask):
 ```
 
 :::info
-To learn more on Task Preset : [Deep Dive Tasks](../deep-dive/create-tasks.md)
+To learn more on the preset step, check [Create a Task Preset (Lightweight)](./building-blocks/create-tasks-light.md) or [Deep Dive Tasks](../deep-dive/create-tasks.md)
 :::
 
 ## 6. Test it
@@ -368,4 +373,6 @@ python -m magma_gen.launch smoke_simple_sort \
   --no_coaching \
   -nr
 ```
-At the end of the run you will have a `output/smoke_simple_sort` folder with data inside `commander_data`.
+At the end of the run you will have an `output/smoke_simple_sort` folder with generation data inside `commander_datas/`.
+
+If you want to convert that run into training files, continue with [How to export data from MAGMA-GEN](../running-generation/export.md).

@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/request",
+  "title": "Define Custom Requests",
+  "description": "Learn how to define requests for Task Definition.",
+  "source": "@site/docs/use-magma-gen/tutorials/request.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/request",
+  "permalink": "/docs/use-magma-gen/tutorials/request",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 11,
+  "frontMatter": {
+    "sidebar_position": 11,
+    "title": "Define Custom Requests",
+    "description": "Learn how to define requests for Task Definition."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Define Constrained Requests",
+    "permalink": "/docs/use-magma-gen/tutorials/constraint-request"
+  },
+  "next": {
+    "title": "Deep Dive",
+    "permalink": "/docs/category/deep-dive"
+  }
+}

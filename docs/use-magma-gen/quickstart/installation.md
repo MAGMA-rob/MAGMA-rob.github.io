@@ -57,8 +57,8 @@ backends: {}
 The `backends` section defines the list of language model backends available to MAGMA.
 
 These backends are used by:
-- Coaching
-- User Simulation
+- [Coaching](../running-generation/key-systems.md#3-intelligent-coaching)
+- [User Simulation](../running-generation/key-systems.md#s)
 - Curriculum systems
 - Any component requiring LLM interaction
 
@@ -153,4 +153,8 @@ When launching the pipeline, you can also overidde some of the MAGMA-GEN paramet
 Be aware that using the **docker-only** procedure, you will need to mount this `config.yaml` to the home of the container `/home/magma` **OR** modify directly the `magma-core/src/magma_core/configs/default-config.yaml`.
 :::
 
-**Now let's launch your first generation!**
+## Next Step
+
+Once your config is ready, continue with [Launch the first generation](./launch-first-generation.md).
+
+If you want the full runtime reference, see [MAGMA-GEN Generation CLI](../running-generation/cli-argument.md).
