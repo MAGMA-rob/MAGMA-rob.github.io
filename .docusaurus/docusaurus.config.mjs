@@ -30,6 +30,7 @@ export default {
   },
   "url": "https://MAGMA-rob.github.io",
   "baseUrl": "/",
+  "trailingSlash": false,
   "organizationName": "MAGMA-rob",
   "projectName": "MAGMA-rob.github.io",
   "onBrokenLinks": "throw",
