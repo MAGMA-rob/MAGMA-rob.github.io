@@ -3,41 +3,6 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/__docusaurus/debug',
-    component: ComponentCreator('/__docusaurus/debug', '5ff'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/config',
-    component: ComponentCreator('/__docusaurus/debug/config', '5ba'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/content',
-    component: ComponentCreator('/__docusaurus/debug/content', 'a2b'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/globalData',
-    component: ComponentCreator('/__docusaurus/debug/globalData', 'c3c'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/metadata',
-    component: ComponentCreator('/__docusaurus/debug/metadata', '156'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/registry',
-    component: ComponentCreator('/__docusaurus/debug/registry', '88c'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/routes',
-    component: ComponentCreator('/__docusaurus/debug/routes', '000'),
-    exact: true
-  },
-  {
     path: '/magma-bench',
     component: ComponentCreator('/magma-bench', '099'),
     exact: true
@@ -64,15 +29,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '05b'),
+    component: ComponentCreator('/docs', '53c'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '1cd'),
+        component: ComponentCreator('/docs', '84f'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', 'f5e'),
+            component: ComponentCreator('/docs', '57e'),
             routes: [
               {
                 path: '/docs/category/core-concepts',
@@ -83,6 +48,12 @@ export default [
               {
                 path: '/docs/category/customization',
                 component: ComponentCreator('/docs/category/customization', '7cd'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/category/deep-dive',
+                component: ComponentCreator('/docs/category/deep-dive', '47b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
@@ -183,6 +154,30 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/docs/use-magma-gen/deep-dive/create-stages',
+                component: ComponentCreator('/docs/use-magma-gen/deep-dive/create-stages', 'a17'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/deep-dive/create-tasks',
+                component: ComponentCreator('/docs/use-magma-gen/deep-dive/create-tasks', 'c16'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/deep-dive/create-tasks-definition',
+                component: ComponentCreator('/docs/use-magma-gen/deep-dive/create-tasks-definition', 'e55'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/deep-dive/create-tools',
+                component: ComponentCreator('/docs/use-magma-gen/deep-dive/create-tools', 'dbb'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/docs/use-magma-gen/overview',
                 component: ComponentCreator('/docs/use-magma-gen/overview', 'c73'),
                 exact: true,
@@ -219,6 +214,18 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
+                path: '/docs/use-magma-gen/tutorials/constraint-cycle',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/constraint-cycle', '661'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/tutorials/create-cycle',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-cycle', '07b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
                 path: '/docs/use-magma-gen/tutorials/create-envs',
                 component: ComponentCreator('/docs/use-magma-gen/tutorials/create-envs', '57a'),
                 exact: true,
@@ -231,26 +238,44 @@ export default [
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/create-stages',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-stages', '085'),
+                path: '/docs/use-magma-gen/tutorials/interuption',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/interuption', 'f54'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/create-tasks',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tasks', 'bb6'),
+                path: '/docs/use-magma-gen/tutorials/log-verification',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/log-verification', '9e5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/create-tasks-definition',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tasks-definition', 'a95'),
+                path: '/docs/use-magma-gen/tutorials/make-reusable-stages',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/make-reusable-stages', '32f'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/docs/use-magma-gen/tutorials/create-tools',
-                component: ComponentCreator('/docs/use-magma-gen/tutorials/create-tools', '6b0'),
+                path: '/docs/use-magma-gen/tutorials/modify-attributes',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/modify-attributes', '22c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/tutorials/multi-stages',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/multi-stages', '3af'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/tutorials/task-definition',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/task-definition', 'f0d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/use-magma-gen/tutorials/task-randomization',
+                component: ComponentCreator('/docs/use-magma-gen/tutorials/task-randomization', '19a'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }

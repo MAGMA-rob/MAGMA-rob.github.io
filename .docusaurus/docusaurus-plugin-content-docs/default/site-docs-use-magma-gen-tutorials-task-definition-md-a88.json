@@ -1,0 +1,23 @@
+{
+  "id": "use-magma-gen/tutorials/task-definition",
+  "title": "task-definition",
+  "description": "",
+  "source": "@site/docs/use-magma-gen/tutorials/task-definition.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/task-definition",
+  "permalink": "/docs/use-magma-gen/tutorials/task-definition",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Randomize Tasks",
+    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+  },
+  "next": {
+    "title": "Deep Dive",
+    "permalink": "/docs/category/deep-dive"
+  }
+}

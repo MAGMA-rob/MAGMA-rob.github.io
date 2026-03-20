@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/create-tasks-definition",
-  "title": "Create a Task Definition",
-  "description": "This tutorial page is a placeholder.",
+  "title": "Create a Task Definition (Detailed)",
+  "description": "Advanced-only placeholder for MAGMA task-definition authoring.",
   "source": "@site/docs/use-magma-gen/tutorials/create-tasks-definition.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/create-tasks-definition",
@@ -10,14 +10,16 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 6,
+  "sidebarPosition": 9,
   "frontMatter": {
-    "sidebar_position": 6
+    "sidebar_position": 9,
+    "title": "Create a Task Definition (Detailed)",
+    "description": "Advanced-only placeholder for MAGMA task-definition authoring."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create a Task Preset",
-    "permalink": "/docs/use-magma-gen/tutorials/create-tasks"
+    "title": "Create a Task Preset (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tasks-light"
   },
   "next": {
     "title": "MAGMA-BENCH",

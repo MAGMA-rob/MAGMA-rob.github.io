@@ -48,7 +48,7 @@ If you have your own model, check [**How to use your own agent**](../../customiz
 
 Inside your working terminal:
 ```bash
-python3 -m magma_gen.launch test --task WarehouseSortingSimp
+python3 -m magma_gen.launch test --preset warehouse_sorting.NoManuPreset
 ```
 
 It will create a folder named `test` in the `output` folder. At the end of the generation procedure it will save all .json containing interaction data and a config.json.

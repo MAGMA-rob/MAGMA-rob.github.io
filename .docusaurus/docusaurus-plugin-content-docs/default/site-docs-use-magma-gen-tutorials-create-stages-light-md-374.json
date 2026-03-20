@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/create-stages-light",
+  "title": "Create a Stage (Lightweight)",
+  "description": "Minimal path to your first MAGMA stage.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-stages-light.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-stages-light",
+  "permalink": "/docs/use-magma-gen/tutorials/create-stages-light",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "Create a Stage (Lightweight)",
+    "description": "Minimal path to your first MAGMA stage."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Define a Constraint Stage",
+    "permalink": "/docs/use-magma-gen/tutorials/constraint-cycle"
+  },
+  "next": {
+    "title": "Use log verification",
+    "permalink": "/docs/use-magma-gen/tutorials/log-verification"
+  }
+}

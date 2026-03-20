@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/interuption",
+  "title": "Simulate User Interruption",
+  "description": "Learn how to simulate realistic User Simulation.",
+  "source": "@site/docs/use-magma-gen/tutorials/interuption.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/interuption",
+  "permalink": "/docs/use-magma-gen/tutorials/interuption",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "sidebar_position": 9,
+    "title": "Simulate User Interruption",
+    "description": "Learn how to simulate realistic User Simulation."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "How to Build multi-stage instruction",
+    "permalink": "/docs/use-magma-gen/tutorials/multi-stages"
+  },
+  "next": {
+    "title": "Randomize Tasks",
+    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+  }
+}

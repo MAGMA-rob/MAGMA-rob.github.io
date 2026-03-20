@@ -66,6 +66,26 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "use-magma-gen/deep-dive/create-stages",
+              "path": "/docs/use-magma-gen/deep-dive/create-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/deep-dive/create-tasks",
+              "path": "/docs/use-magma-gen/deep-dive/create-tasks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/deep-dive/create-tasks-definition",
+              "path": "/docs/use-magma-gen/deep-dive/create-tasks-definition",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/deep-dive/create-tools",
+              "path": "/docs/use-magma-gen/deep-dive/create-tools",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "use-magma-gen/overview",
               "path": "/docs/use-magma-gen/overview",
               "sidebar": "tutorialSidebar"
@@ -96,6 +116,16 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "use-magma-gen/tutorials/constraint-cycle",
+              "path": "/docs/use-magma-gen/tutorials/constraint-cycle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/create-cycle",
+              "path": "/docs/use-magma-gen/tutorials/create-cycle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "use-magma-gen/tutorials/create-envs",
               "path": "/docs/use-magma-gen/tutorials/create-envs",
               "sidebar": "tutorialSidebar"
@@ -106,23 +136,38 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-stages",
-              "path": "/docs/use-magma-gen/tutorials/create-stages",
+              "id": "use-magma-gen/tutorials/interuption",
+              "path": "/docs/use-magma-gen/tutorials/interuption",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-tasks",
-              "path": "/docs/use-magma-gen/tutorials/create-tasks",
+              "id": "use-magma-gen/tutorials/log-verification",
+              "path": "/docs/use-magma-gen/tutorials/log-verification",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-tasks-definition",
-              "path": "/docs/use-magma-gen/tutorials/create-tasks-definition",
+              "id": "use-magma-gen/tutorials/make-reusable-stages",
+              "path": "/docs/use-magma-gen/tutorials/make-reusable-stages",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-tools",
-              "path": "/docs/use-magma-gen/tutorials/create-tools",
+              "id": "use-magma-gen/tutorials/modify-attributes",
+              "path": "/docs/use-magma-gen/tutorials/modify-attributes",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/multi-stages",
+              "path": "/docs/use-magma-gen/tutorials/multi-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/task-definition",
+              "path": "/docs/use-magma-gen/tutorials/task-definition",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "use-magma-gen/tutorials/task-randomization",
+              "path": "/docs/use-magma-gen/tutorials/task-randomization",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -148,6 +193,11 @@
             {
               "id": "/category/tutorials",
               "path": "/docs/category/tutorials",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/deep-dive",
+              "path": "/docs/category/deep-dive",
               "sidebar": "tutorialSidebar"
             },
             {

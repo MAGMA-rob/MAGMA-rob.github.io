@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/create-cycle copy",
+  "title": "Create a Cycle Tool",
+  "description": "Learn how to use `redo` to build one tool that can execute several pick-and-place steps.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-cycle copy.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-cycle copy",
+  "permalink": "/docs/use-magma-gen/tutorials/create-cycle copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "sidebar_position": 7,
+    "title": "Create a Cycle Tool",
+    "description": "Learn how to use `redo` to build one tool that can execute several pick-and-place steps."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Allow dynamic attribute updates",
+    "permalink": "/docs/use-magma-gen/tutorials/modify-attributes"
+  },
+  "next": {
+    "title": "Use redo in Tools",
+    "permalink": "/docs/use-magma-gen/tutorials/create-cycle"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "id": "use-magma-gen/tutorials/create-tasks",
-  "title": "Create a Task Preset",
-  "description": "Simple guide to defining and registering MAGMA task presets with BaseTask.",
+  "title": "Create a Task Preset (Detailed)",
+  "description": "Detailed guide to defining and registering MAGMA task presets with BaseTask.",
   "source": "@site/docs/use-magma-gen/tutorials/create-tasks.md",
   "sourceDirName": "use-magma-gen/tutorials",
   "slug": "/use-magma-gen/tutorials/create-tasks",
@@ -10,19 +10,19 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 5,
+  "sidebarPosition": 8,
   "frontMatter": {
-    "sidebar_position": 5,
-    "title": "Create a Task Preset",
-    "description": "Simple guide to defining and registering MAGMA task presets with BaseTask."
+    "sidebar_position": 8,
+    "title": "Create a Task Preset (Detailed)",
+    "description": "Detailed guide to defining and registering MAGMA task presets with BaseTask."
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create Stages",
-    "permalink": "/docs/use-magma-gen/tutorials/create-stages"
+    "title": "Create a Task Preset (Lightweight)",
+    "permalink": "/docs/use-magma-gen/tutorials/create-tasks-light"
   },
   "next": {
-    "title": "Create a Task Definition",
+    "title": "Create a Task Definition (Detailed)",
     "permalink": "/docs/use-magma-gen/tutorials/create-tasks-definition"
   }
 }

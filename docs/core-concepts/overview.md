@@ -104,6 +104,6 @@ If you are new to MAGMA, read the pages in this order:
 
 If you already understand the concepts and want implementation guidance, continue with:
 
-- [MAGMA-GEN tutorials overview](../use-magma-gen/tutorials/overview.md)
+- [Create a Scenario](../use-magma-gen/tutorials/create-scenarios.md)
 - [MAGMA-GEN overview](../use-magma-gen/overview.md)
 - [Custom planner integration](../customization/create-planner.md)

@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/multi-stages",
+  "title": "How to Build multi-stage instruction",
+  "description": "Learn how to chain several stages inside one task with `flag_answer_to_user` and `EmptyInstruction()`.",
+  "source": "@site/docs/use-magma-gen/tutorials/multi-stages.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/multi-stages",
+  "permalink": "/docs/use-magma-gen/tutorials/multi-stages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "sidebar_position": 8,
+    "title": "How to Build multi-stage instruction",
+    "description": "Learn how to chain several stages inside one task with `flag_answer_to_user` and `EmptyInstruction()`."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Cycle Tool",
+    "permalink": "/docs/use-magma-gen/tutorials/create-cycle"
+  },
+  "next": {
+    "title": "Simulate User Interruption",
+    "permalink": "/docs/use-magma-gen/tutorials/interuption"
+  }
+}

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Scenarios | MAGMA</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://MAGMA-rob.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://MAGMA-rob.github.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://MAGMA-rob.github.io/docs/core-concepts/scenarios"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Scenarios | MAGMA"><meta data-rh="true" name="description" content="A scenario is the top-level package used to describe one application domain in MAGMA."><meta data-rh="true" property="og:description" content="A scenario is the top-level package used to describe one application domain in MAGMA."><link data-rh="true" rel="icon" href="/img/magma_logo.ico"><link data-rh="true" rel="canonical" href="https://MAGMA-rob.github.io/docs/core-concepts/scenarios"><link data-rh="true" rel="alternate" href="https://MAGMA-rob.github.io/docs/core-concepts/scenarios" hreflang="en"><link data-rh="true" rel="alternate" href="https://MAGMA-rob.github.io/docs/core-concepts/scenarios" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Core Concepts","item":"https://MAGMA-rob.github.io/docs/category/core-concepts"},{"@type":"ListItem","position":2,"name":"Scenarios","item":"https://MAGMA-rob.github.io/docs/core-concepts/scenarios"}]}</script><link rel="stylesheet" href="/assets/css/styles.b0cf501d.css">
-<script src="/assets/js/runtime~main.0cb18978.js" defer="defer"></script>
-<script src="/assets/js/main.c20e03b2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0171dbeb.js" defer="defer"></script>
+<script src="/assets/js/main.f0cddcf2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -27,6 +27,7 @@ It groups together the components needed to generate or evaluate <a class="" hre
 </ul>
 <p>The purpose of the scenario abstraction is reuse.
 Instead of redefining tools, stages, and environment bindings for every experiment, you keep related components together in one domain package.</p>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>danger</div><div class="admonitionContent_BuS1"><p>We <strong>highly recommend</strong> to define the env outside of the scenario module. Allowing the reuse of the environment by different scenarios. You can define it in <code>magma_scenarios.envs</code>.</p></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-why-scenarios-matter">🌍 Why Scenarios Matter<a href="#-why-scenarios-matter" class="hash-link" aria-label="Direct link to 🌍 Why Scenarios Matter" title="Direct link to 🌍 Why Scenarios Matter" translate="no">​</a></h2>
 <p>Scenarios make it possible to:</p>
 <ul>
@@ -61,7 +62,7 @@ A common structure is:</p>
 <ul>
 <li class="">the same <a class="" href="/docs/core-concepts/tools">tools</a> may support several <a class="" href="/docs/core-concepts/tasks">tasks</a></li>
 <li class="">the same <a class="" href="/docs/core-concepts/tasks#what-a-stage-is">stages</a> may appear in different task presets</li>
-<li class="">the same requests and constraints may feed several task definitions</li>
+<li class="">the same <a class="" href="/docs/core-concepts/tasks#requests">requests</a> and <a class="" href="/docs/core-concepts/tasks#constraints">constraints</a> may feed several <a class="" href="/docs/core-concepts/tasks#-task-definitions">task definitions</a></li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-environment-placement">🧪 Environment Placement<a href="#-environment-placement" class="hash-link" aria-label="Direct link to 🧪 Environment Placement" title="Direct link to 🧪 Environment Placement" translate="no">​</a></h2>
 <p>Environments are often shared across scenarios or reused broadly enough that they should live in a dedicated env module namespace.

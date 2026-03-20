@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/deep-dive/create-tools",
+  "title": "Create a Tool",
+  "description": "Detailed tutorial on how to declare, register, and implement MAGMA tools.",
+  "source": "@site/docs/use-magma-gen/deep-dive/create-tools.md",
+  "sourceDirName": "use-magma-gen/deep-dive",
+  "slug": "/use-magma-gen/deep-dive/create-tools",
+  "permalink": "/docs/use-magma-gen/deep-dive/create-tools",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "title": "Create a Tool",
+    "description": "Detailed tutorial on how to declare, register, and implement MAGMA tools."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Deep Dive",
+    "permalink": "/docs/category/deep-dive"
+  },
+  "next": {
+    "title": "Create Stages",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-stages"
+  }
+}

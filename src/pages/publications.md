@@ -10,6 +10,4 @@ description: Publications and preprints from the MAGMA project.
 
 *conference*: under review at RSS 2026. [HAL](https://hal.science/hal-05514580v1)
 
-# Planned / Future Works
 
-- Additional papers and technical reports will be listed here as they are released.

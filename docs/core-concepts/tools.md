@@ -135,4 +135,4 @@ As a rule, tools should represent reusable capabilities, while [stages](./tasks.
 ## 🚀 Next Step
 
 This page explains the role of tools.
-If you want to implement them in MAGMA-GEN, continue with [Create Tools](../use-magma-gen/tutorials/create-tools.md).
+If you want to implement them in MAGMA-GEN, continue with [Create a Tool (Lightweight)](../use-magma-gen/tutorials/create-tools-light.md).

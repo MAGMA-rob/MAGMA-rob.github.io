@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/make-reusable-stages",
+  "title": "Define reusable stages",
+  "description": "Learn the simplest MAGMA pattern for writing reusable stages without hardcoding objects or areas.",
+  "source": "@site/docs/use-magma-gen/tutorials/make-reusable-stages.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/make-reusable-stages",
+  "permalink": "/docs/use-magma-gen/tutorials/make-reusable-stages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Define reusable stages",
+    "description": "Learn the simplest MAGMA pattern for writing reusable stages without hardcoding objects or areas."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create an Environment",
+    "permalink": "/docs/use-magma-gen/tutorials/create-envs"
+  },
+  "next": {
+    "title": "Define a Constraint Stage",
+    "permalink": "/docs/use-magma-gen/tutorials/constraint-cycle"
+  }
+}

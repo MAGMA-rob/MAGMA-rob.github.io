@@ -8,6 +8,11 @@ Get started with **MAGMA** framework.
 
 ---
 
+:::warning
+🏗 This documentation is in writing 🏗
+:::
+---
+
 ## 🌋 Welcome to the Documentation 🌋
 
 MAGMA is a framework for building, generating and evaluating
@@ -27,6 +32,73 @@ The documentation of MAGMA is divided depending on the different use possibility
 - You want to **generate data, create your own task** to robustify your agents on long-horizon tasks? Start here : [**MAGMA-GEN** overview](./use-magma-gen/overview.md)
 - You want to **evaluate** your language agents on long-horizon multi-robot tasks under evolving constraint? Start here : [**MAGMA-BENCH** overview](./use-magma-bench/overview.md)
 <!-- - You want to **create a custom ROS2 application** to deploy a magma model on your system? Start here : . -->
+
+---
+
+## 🎯 Targeted Task Class
+
+MAGMA-GEN focuses on a category of problems that are still largely underexplored:
+
+### Long-horizon, stateful, and interruptible tasks
+
+These tasks require agents to:
+
+- Maintain **persistent memory** across time  
+- Handle **dynamic updates of goals and constraints**  
+- React to **external instructions during execution**  
+- Resume partially completed plans  
+- Ground reasoning into **physical actions**
+
+
+## 🧠 Example Task Patterns
+
+### 1. Rule-based object manipulation
+
+> “Object X must go to zone A, object Z must go to zone B.”
+
+Then later:
+
+- “Sort X and Z”
+- “Which zone is associated with X?”
+- “Update the rule: X now goes to C”
+
+👉 Requires:
+- Memory
+- Symbol grounding
+- Rule updating
+
+
+### 2. Interruptible execution
+
+> “Start sorting objects…”
+>
+> “Stop. Go help workers in Hall 4.”
+>
+> “Resume previous task.”
+
+👉 Requires:
+- Task suspension
+- Context recovery
+- Plan continuity
+
+### 3. Conditional and deferred actions
+
+> “When you finish packaging this crate, go restock the workstation B.”
+
+👉 Requires:
+- Event-based reasoning
+- Delayed execution
+- Dependency tracking
+
+### 4. Long-horizon structured plans
+
+> “Pick object A, place it in zone B, repeat twice, then send a notification to client@client.fr.”
+
+👉 Requires:
+- Multi-step planning
+- Loop execution
+- Task completion tracking
+
 ---
 
 ## 🐋 Docker

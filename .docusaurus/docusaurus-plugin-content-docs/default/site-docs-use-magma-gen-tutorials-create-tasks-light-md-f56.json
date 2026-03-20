@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/create-tasks-light",
+  "title": "Create a Task Preset (Lightweight)",
+  "description": "Minimal path to your first runnable MAGMA task preset.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-tasks-light.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-tasks-light",
+  "permalink": "/docs/use-magma-gen/tutorials/create-tasks-light",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "sidebar_position": 7,
+    "title": "Create a Task Preset (Lightweight)",
+    "description": "Minimal path to your first runnable MAGMA task preset."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Allow dynamic attribute updates",
+    "permalink": "/docs/use-magma-gen/tutorials/modify-attributes"
+  },
+  "next": {
+    "title": "constraint-stage",
+    "permalink": "/docs/use-magma-gen/tutorials/constraint-stage"
+  }
+}

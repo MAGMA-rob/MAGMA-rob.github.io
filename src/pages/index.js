@@ -37,7 +37,7 @@ function HomepageHeader() {
           <Link
             className={`button button--lg ${styles.heroSecondaryButton}`}
             to="/magma-gen">
-            Explore Projects
+            Explore Tasks
           </Link>
         </div>
       </div>
@@ -86,6 +86,149 @@ function WhySection() {
   );
 }
 
+function InteractiveDemoSection() {
+  return (
+    <section className="padding-vert--xl background--light">
+      <div className="container">
+        <Heading as="h2" className="text--center margin-bottom--lg">
+          Interactive Long-Horizon Execution
+        </Heading>
+
+        <div className="row">
+          {/* LEFT: VIDEO / SIM */}
+          <div className="col col--6">
+            <div style={{
+              width: "100%",
+              height: "320px",
+              background: "#111",
+              borderRadius: "12px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#888"
+            }}>
+              {/* Replace with real video */}
+              Simulation / Real-world demo
+            </div>
+          </div>
+
+          {/* RIGHT: LIVE LOG */}
+          <div className="col col--6">
+            <div style={{
+              background: "#0d1117",
+              color: "#c9d1d9",
+              padding: "20px",
+              borderRadius: "12px",
+              fontFamily: "monospace",
+              fontSize: "14px",
+              lineHeight: "1.6",
+              height: "320px",
+              overflow: "auto"
+            }}>
+{`User: Start sorting objects based on rules
+
+Agent: Loaded rules
+- X → Zone A
+- Z → Zone B
+
+Agent: Picking object X...
+
+---
+
+User: Update rule — X goes to Zone C
+
+Agent: Rule updated
+Agent: Redirecting current task
+Agent: Placing object X in Zone C
+
+---
+
+User: Stop. Go to Hall 4
+
+Agent: Suspending task
+Agent: Saving state
+
+---
+
+User: Resume
+
+Agent: Restoring context
+Agent: Continuing sorting
+Next object: Z → Zone B`}
+            </div>
+          </div>
+        </div>
+
+        <p className="text--center margin-top--md">
+          MAGMA agents maintain memory, adapt to new instructions, and resume execution
+          without restarting tasks.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
+function Sim2RealSection() {
+  return (
+    <section className="padding-vert--xl">
+      <div className="container">
+        <Heading as="h2" className="text--center margin-bottom--lg">
+          From Simulation to Real-World Execution
+        </Heading>
+
+        {/* Intro centered */}
+        <div className="row">
+          <div className="col col--8 col--offset-2 text--center">
+            <p>
+              MAGMA enables agents developed in simulation to execute the same tasks in the real world
+              without retraining. By transferring seamlessly <strong>reasoning and memory</strong>,
+              not low-level control.
+            </p>
+          </div>
+        </div>
+
+        {/* FIX: center the 2 columns */}
+        <div className="row margin-top--lg">
+          <div className="col col--7 col--offset-3">
+            <div className="row">
+              <div className="col col--6">
+                <h3>What Transfers</h3>
+                <ul>
+                  <li>Task decomposition and multi-step planning</li>
+                  <li>Memory and state tracking</li>
+                  <li>Rule updates and interaction handling</li>
+                  <li>Interrupt / resume behavior</li>
+                  <li>Action sequencing</li>
+                </ul>
+              </div>
+
+              <div className="col col--6">
+                <h3>What Does Not Transfer</h3>
+                <ul>
+                  <li>Low-level motion policies</li>
+                  <li>Robot-specific control</li>
+                  <li>Physics and contact dynamics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom text centered */}
+        <div className="row margin-top--lg">
+          <div className="col col--8 col--offset-2 text--center">
+            <p>
+              MAGMA operates at an abstraction level independent of embodiment:
+              agents learn <strong>what to do</strong>, while execution is handled by
+              robot-specific controllers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function ConceptSection() {
   return (
@@ -166,7 +309,9 @@ export default function Home() {
 
       <main>
         <WhySection />
+        <InteractiveDemoSection />
         <TasksSection />
+        <Sim2RealSection />
         <HomepageFeatures />
         <ConceptSection />
         <AudienceSection />

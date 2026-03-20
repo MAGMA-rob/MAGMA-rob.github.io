@@ -18,11 +18,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Create a Scenario",
+    "title": "Create your custom scenario in 5 minutes",
     "permalink": "/docs/use-magma-gen/tutorials/create-scenarios"
   },
   "next": {
-    "title": "Create a Tool",
-    "permalink": "/docs/use-magma-gen/tutorials/create-tools"
+    "title": "Define reusable stages",
+    "permalink": "/docs/use-magma-gen/tutorials/make-reusable-stages"
   }
 }

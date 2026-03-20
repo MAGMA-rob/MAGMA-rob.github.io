@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/task-randomization copy",
+  "title": "Randomize Tasks",
+  "description": "Learn how to randomize tool names, parameter names, and task attributes through a YAML config.",
+  "source": "@site/docs/use-magma-gen/tutorials/task-randomization copy.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/task-randomization copy",
+  "permalink": "/docs/use-magma-gen/tutorials/task-randomization copy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "sidebar_position": 9,
+    "title": "Randomize Tasks",
+    "description": "Learn how to randomize tool names, parameter names, and task attributes through a YAML config."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Make multi-stage actions",
+    "permalink": "/docs/use-magma-gen/tutorials/multi-stages"
+  },
+  "next": {
+    "title": "Randomize Tasks",
+    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+  }
+}

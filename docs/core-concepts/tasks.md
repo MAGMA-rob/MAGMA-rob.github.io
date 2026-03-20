@@ -175,6 +175,6 @@ Keeping those levels separate makes authoring cleaner and evaluation easier to r
 
 For implementation guidance in MAGMA-GEN, continue with:
 
-- [Create a Task](../use-magma-gen/tutorials/create-tasks.md)
-- [Create Stages](../use-magma-gen/tutorials/create-stages.md)
-- [Tutorials overview](../use-magma-gen/tutorials/overview.md)
+- [Create a Scenario](../use-magma-gen/tutorials/create-scenarios.md)
+- [Create a Stage (Lightweight)](../use-magma-gen/tutorials/create-stages-light.md)
+- [Create a Task Preset (Lightweight)](../use-magma-gen/tutorials/create-tasks-light.md)

@@ -149,6 +149,7 @@ export default function MagmaGenPage() {
                   <h3 className={styles.resultTitle}>Results</h3>
                   <p className={styles.resultCaption}>
                     <strong>MAGMA-GEN enables a 1.7B parameter model to outperform human-labeled training by +15–25% absolute improvement</strong>, using the exact same amount of data.<br></br>
+                    The collection of 500 humans data + synthetic aumgmentation took 50 hours against 1 hours for our method.<br></br>
                     Evaluation is conducted on 100 long-horizon sorting tasks with evolving constraints.<br></br>
                     For reference, even larger zero-shot models struggle on these tasks, highlighting their intrinsic difficulty.
                   </p>

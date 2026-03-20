@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/tutorials/create-cycle",
+  "title": "Create a Cycle Tool",
+  "description": "Learn how to use `redo` to build one tool that can execute several pick-and-place steps.",
+  "source": "@site/docs/use-magma-gen/tutorials/create-cycle.md",
+  "sourceDirName": "use-magma-gen/tutorials",
+  "slug": "/use-magma-gen/tutorials/create-cycle",
+  "permalink": "/docs/use-magma-gen/tutorials/create-cycle",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "sidebar_position": 7,
+    "title": "Create a Cycle Tool",
+    "description": "Learn how to use `redo` to build one tool that can execute several pick-and-place steps."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Allow dynamic attribute updates",
+    "permalink": "/docs/use-magma-gen/tutorials/modify-attributes"
+  },
+  "next": {
+    "title": "How to Build multi-stage instruction",
+    "permalink": "/docs/use-magma-gen/tutorials/multi-stages"
+  }
+}

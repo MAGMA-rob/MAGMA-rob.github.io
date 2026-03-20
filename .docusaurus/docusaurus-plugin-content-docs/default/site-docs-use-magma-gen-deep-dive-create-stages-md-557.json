@@ -1,0 +1,28 @@
+{
+  "id": "use-magma-gen/deep-dive/create-stages",
+  "title": "Create Stages",
+  "description": "Detailed tutorial on how to define MAGMA stages, situations, goals, predicates, and text-only verification.",
+  "source": "@site/docs/use-magma-gen/deep-dive/create-stages.md",
+  "sourceDirName": "use-magma-gen/deep-dive",
+  "slug": "/use-magma-gen/deep-dive/create-stages",
+  "permalink": "/docs/use-magma-gen/deep-dive/create-stages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6,
+    "title": "Create Stages",
+    "description": "Detailed tutorial on how to define MAGMA stages, situations, goals, predicates, and text-only verification."
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Tool",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-tools"
+  },
+  "next": {
+    "title": "Create a Task Preset",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-tasks"
+  }
+}
