@@ -6,8 +6,7 @@ description: Publications and preprints from the MAGMA project.
 # Publications
 
 ## MAGMA-Gen
-**title:** Addressing Long-Horizon Failure in Language-Grounded Robotics via Structured Interaction
+**title:** MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution
 
-*conference*: under review at RSS 2026. [HAL](https://hal.science/hal-05514580v1)
-
+*conference*: under review at CoRL 2026. [HAL](https://hal.science/hal-05514580v1)
 

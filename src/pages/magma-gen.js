@@ -4,7 +4,7 @@ import Heading from '@theme/Heading';
 import styles from './project-page.module.css';
 
 const citation = `@misc{bernat:hal-05514580,
-  TITLE = {{Addressing Long-Horizon Failure in Language-Grounded Robotics via Structured Interaction}},
+  TITLE = {{MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution}},
   AUTHOR = {Bernat, Loan and Grard, Matthieu and Herbulot, Ariane and Lamiraux, Florent},
   URL = {https://hal.science/hal-05514580},
   NOTE = {under-review},
@@ -26,14 +26,14 @@ const authors = [
 export default function MagmaGenPage() {
   return (
     <Layout
-      title="MAGMA-Gen"
+      title="MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution"
       description="Project landing page for MAGMA-Gen.">
       <main className={styles.genPage}>
         <header className={`hero hero--primary ${styles.genHeader}`}>
           <div className="container text--center">
-            <p className={styles.genVenue}>Under Review at Robotics: Science and Systems (RSS) 2026</p>
+            <p className={styles.genVenue}>Under Review at CoRL 2026</p>
             <Heading as="h1" className={styles.genTitle}>
-              Addressing Long-Horizon Failure in Language-Grounded Robotics via Structured Interaction
+              MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution
             </Heading>
             <p className={styles.genAuthors}>{authors.join(' · ')}</p>
             <p className={styles.genSubtitle}>
@@ -57,22 +57,15 @@ export default function MagmaGenPage() {
         <div className={`container ${styles.genContent}`}>
           <section className={styles.genSection}>
             <Heading as="h2" className={styles.genSectionTitle}>
-              Video Demonstrations
+              Overview Video
             </Heading>
-            <div className={styles.mediaGrid}>
-              <article>
-                <h3 className={styles.mediaTitle}>Real Robot Demo</h3>
-                <div className={styles.mediaPlaceholder}>
-                  Add an embedded video (YouTube/Vimeo/HTML5).
-                </div>
-              </article>
-              <article>
-                <h3 className={styles.mediaTitle}>Simulation Demo</h3>
-                <div className={styles.mediaPlaceholder}>
-                  Add a second demo for simulation results.
-                </div>
-              </article>
-            </div>
+            <iframe
+              className={styles.overviewVideo}
+              src="https://www.youtube.com/embed/7Lj5-pO2FFQ"
+              title="MAGMA-GEN overview video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </section>
 
           <section className={styles.genSection}>
@@ -80,111 +73,29 @@ export default function MagmaGenPage() {
               Abstract
             </Heading>
             <p>
-              Deploying autonomous robots in human-centric environments requires consistent reasoning, memory, and failure recovery 
-              across many sequential actions. Although vision-language action systems have shown impressive low-level generalization, 
-              their performance degrades rapidly as action sequences grow longer and constraints evolve. Our insight is that these 
-              failures arise from a structural mismatch between training supervision and the states that agents encounter during 
-              execution, leading to compounding errors and inconsistent behavior over time. To address this, we introduce <strong>MAGMA-GEN</strong>,
-              a structured interaction-based data generation framework, where a language model-based agent generates supervision signals 
-              directly from its own long-horizon executions. <strong>MAGMA-GEN provides structured preference and scoring signals for partial 
-              completion, failure, and recovery, enabling continued training without expert demonstrations</strong> or trajectory-level human 
-              labeling once task components are defined. <strong>We further analyze a dual-agent instantiation that separates high-level tool 
-              selection from persistent task and safety memories, improving stability over extended action sequences</strong>. We evaluate our 
-              approach on long-horizon manipulation tasks with evolving constraints, designed to expose long-horizon failure modes. 
-              Under a fixed training budget, models trained with our method outperform human-labeled and synthetic-augmentation baselines, 
-              while continuing to improve with additional self-generated experience, demonstrating more stable scaling behavior. 
+              Hierarchical robotic systems executing long-horizon manipulation tasks must make high-level semantic decisions that orchestrate stochastic low-level skills. In this setting, failed rollouts are <strong>ambiguous</strong>: a poor downstream state may reflect an invalid high-level decision, partial observation, or a valid decision whose physical execution failed. Traditional supervised learning lacks data for such recovery states, while reinforcement learning struggles with sparse rewards and non-local credit assignment. We propose MAGMA-GEN, an on-policy data-generation pipeline that converts ambiguous failed rollouts into validated recovery supervision. MAGMA-GEN first uses a privileged coach to hypothesize an early decision-level error and propose localized correction or recovery actions. Because this diagnosis is fallible, candidates are retained only if re-execution from the same state under matched conditions improves downstream progress. This produces supervised examples from the agent's own failure distribution without per-step human demonstrations. Evaluated on interactive long-horizon manipulation tasks, MAGMA-GEN improves task success and recovery capabilities, against distillation and trajectory-repair baselines under evolving task constraints in both simulation and real-robot execution.  
             </p>
           </section>
 
           <section className={styles.genSection}>
             <Heading as="h2" className={styles.genSectionTitle}>
-              Task Formulation
+              Method
             </Heading>
-            <p>
-              See here for a detailled description of what tasks we are targetting.
+            <p className={styles.methodIntro}>
+              MAGMA-GEN generates recovery supervision by re-executing ambiguous failure states under counterfactual choices, validating
+              which interventions recover task progress before using them as training signal.
             </p>
-          </section>
-
-          <section className={styles.genSection}>
-            <Heading as="h2" className={styles.genSectionTitle}>
-              Method and Results
-            </Heading>
-            <div className={styles.contentStack}>
-              <article className={styles.contentBlock}>
-                <h3>Method Overview</h3>
-                <p>
-                  MAGMA-GEN is a data generation framework for long-horizon, language-conditioned
-                  manipulation that learns from an agent’s own executions without relying on expert demonstrations.
-                  Tasks are decomposed into stages and executed in simulation, producing branching trajectories.
-                  Two core components structure data generation: Coaching, which provides explicit recovery behavior, corrective feedback
-                  following failures or sub-optimal executions, and User Simulation, which generates and evaluates linguistic interactions.
-                </p>
-                <figure className={styles.pipelineFigure}>
-                  <img
-                    className={styles.figureImage}
-                    src="/magma-gen/pipeline.jpg"
-                    alt="MAGMA-Gen pipeline overview"
-                    loading="lazy"
-                  />
-                  <figcaption className={styles.figureCaption}>
-                    Overview of MAGMA-GEN in a simple sorting task.
-                  </figcaption>
-                </figure>
-              </article>
-
-              <article className={styles.contentBlock}>
-                <h3>Main Results</h3>
-              </article>
-
-              <article className={`${styles.resultCard} ${styles.resultFigureLeft}`}>
-                <div className={styles.resultFigureWrap}>
-                  <img
-                    className={styles.figureImage}
-                    src="/magma-gen/result.jpg"
-                    alt="MAGMA-Gen result figure"
-                    loading="lazy"
-                  />
-                </div>
-                <div>
-                  <h3 className={styles.resultTitle}>Results</h3>
-                  <p className={styles.resultCaption}>
-                    <strong>MAGMA-GEN enables a 1.7B parameter model to outperform human-labeled training by +15–25% absolute improvement</strong>, using the exact same amount of data.<br></br>
-                    The collection of 500 humans data + synthetic aumgmentation took 50 hours against 1 hours for our method.<br></br>
-                    Evaluation is conducted on 100 long-horizon sorting tasks with evolving constraints.<br></br>
-                    For reference, even larger zero-shot models struggle on these tasks, highlighting their intrinsic difficulty.
-                  </p>
-                </div>
-              </article>
-              <article className={`${styles.resultCard} ${styles.resultFigureRight}`}>
-                <div>
-                  <h3 className={styles.resultTitle}>Failure Analysis</h3>
-                  <p className={styles.resultCaption}>
-                    <strong>Failure analysis reveals long-term memorization (LM) as the primary bottleneck of the 1.7B monolithic model.</strong><br></br>
-                    While using MAGMA-GEN results in a significant improvement in multi-step coordination and constrained reasonning, adding an external Memorizer
-                    improves long-horizon completion but introduces a coordination penalty on shorter tasks, exposing a semantic bottleneck between specialized agents.
-                    This highlights the need for communication-aware training in modular robotic systems.
-                  </p>
-                </div>
-                <div className={styles.resultFigureWrap}>
-                  <img
-                    className={styles.figureImage}
-                    src="/magma-gen/tab_result.png"
-                    alt="MAGMA-Gen result tab"
-                    loading="lazy"
-                  />
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <section className={styles.genSection}>
-            <Heading as="h2" className={styles.genSectionTitle}>
-              Additional Details
-            </Heading>
-            <p>
-              Add any extra section you need here: setup details, ablations,
-              supplementary insights, or qualitative analyses.
-            </p>
+            <figure className={styles.pipelineFigure}>
+              <img
+                className={styles.figureImage}
+                src="/magma-gen/pipeline.jpg"
+                alt="MAGMA-Gen pipeline overview"
+                loading="lazy"
+              />
+              <figcaption className={styles.figureCaption}>
+                Overview of MAGMA-GEN in a simple sorting task.
+              </figcaption>
+            </figure>
           </section>
 
           <section className={styles.genSection}>
