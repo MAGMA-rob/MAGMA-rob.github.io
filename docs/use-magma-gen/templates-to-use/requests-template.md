@@ -20,6 +20,7 @@ Requests create stages from the current `TaskState` and may also update that sta
 
 | Template | What it offers | Use when |
 | --- | --- | --- |
+| `GiveRelationAssignmentRequest` | Generic request for assigning source values to target values through `RelationAssignmentConstraint`. | You want reusable relation updates beyond the built-in object/category/area wrappers. |
 | `GiveObjectAssignmentRequest` | Samples direct object-to-area sorting rules. | You want short permanent assignment updates such as "box_1 goes to zone_a". |
 | `GiveObjectCategoryRequest` | Samples object-to-category updates. | Objects may be reclassified before later category-level routing is applied. |
 | `GiveCategoryAssignmentRequest` | Samples category-to-area rules. | Users give routing rules for whole categories instead of single objects. |

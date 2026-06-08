@@ -79,6 +79,7 @@ The constructor also accepts optional task metadata:
 | `approximal_difficulty` | Difficulty metadata |
 | `styles` | TaskStyle metadata |
 | `env_options` | Options forwarded to the environment |
+| `tools_constant` | Constant values passed to tools through `Observation.add_constants` |
 
 ## Minimal example
 
@@ -221,7 +222,7 @@ This matters when a request removes or changes attributes.
 Example:
 - an older constraint says `ref_obj_1 -> area2`
 - later, a request removes `area2` from `state.attributes["target_areas"]`
-- after recompute, `ObjectAssignmentConstraint.outdated(...)` returns `True`
+- after recompute, `RelationAssignmentConstraint.outdated(...)` returns `True`
 - the relation is not replayed anymore
 
 ### Requests: the generation-time building blocks
@@ -303,7 +304,7 @@ This base class is used for requests like:
 - remove an area
 
 :::note
-You have also custom templates in `magma_scenarios.templates.request` that define `AddValueToListRequest` and `RemoveValueFromListRequest` which inherits from `BaseAttributesModifRequest`, that you can reuse directly inside your task definition.
+You have also custom templates in `magma_scenarios.templates.requests` that define `AddValueToListRequest` and `RemoveValueToListRequest` which inherit from `BaseAttributesModifRequest`, that you can reuse directly inside your task definition.
 :::
 
 ### Constraints : Dynamic state influence
@@ -338,38 +339,30 @@ If you override `apply(...)`, keep the parent call if you want replay support.
 
 This is what lets MAGMA drop stale assignments after attribute changes.
 
-#### Example: `ObjectAssignmentConstraint`
+#### Example: `RelationAssignmentConstraint`
 
 ```python title="Template provided"
-class ObjectAssignmentConstraint(BaseConstraint):
+from magma_scenarios.templates.constraints import RelationAssignmentConstraint
 
-    def __init__(self, object : str, zone : str) -> None:
-        super().__init__()
-        self.obj = object
-        self.zone = zone
 
-    def apply(self, state: TaskState):
-        super().apply(state) # important for register the constraint in the state list.
-        all_obj = state.attributes.get("objects", [])
-        all_zone = state.attributes.get("target_areas", [])
-        if not self.obj in all_obj or not self.zone in all_zone:
-            raise RuntimeError(f"The {self.__class__.__name__} failed to be applied")
-        state.relations["object_area"][self.obj] = self.zone
-
-    def outdated(self, state: TaskState) -> bool:
-        if (not self.obj in state.attributes.get("objects",[]) 
-            or not self.zone in state.attributes.get("target_areas",[])):
-            return True
-        return False
+constraint = RelationAssignmentConstraint(
+    source_value=obj,
+    target_value=area,
+    relation_key="object_area",
+    source_attribute_key="objects",
+    target_attribute_key="target_areas",
+)
 ```
 
 It:
 - checks that the object still exists in `state.attributes["objects"]`
-- checks that the zone still exists in `state.attributes["target_areas"]`
-- writes the assignment into `state.relations["object_area"]`
+- checks that the area still exists in `state.attributes["target_areas"]`
+- writes the assignment into `state.relations["object_area"][obj]`
 - becomes outdated if either the object or the area disappears
 
 This is the right pattern when a rule should survive future generation steps and participate in recomputation.
+
+`RelationAssignmentConstraint` is generic. It can also represent object-to-category or category-to-area relations by changing `relation_key` and the optional attribute validation keys.
 
 ## How does the task generation work
 
@@ -436,9 +429,12 @@ To target instruction like *"Do X and remember Y for the rest"*, you can create 
 Take a look at this exemple:
 
 ```python
+from magma_scenarios.templates.constraints import RelationAssignmentConstraint
+
+
 class CycleWithPermanentRulesRequest(CycleRequest):
 
-    constraints : list[ObjectAssignmentConstraint]
+    constraints : list[RelationAssignmentConstraint]
 
     def __init__(self, max_object_per_cycle_request: int = 3, max_permanent_rule : int = 2) -> None:
         super().__init__(max_object_per_cycle_request)
@@ -461,7 +457,15 @@ class CycleWithPermanentRulesRequest(CycleRequest):
         for i in range(nb_rules):
             a = random.choice(all_areas)
             assignement[all_objects[i]] = a
-            self.constraints.append(ObjectAssignmentConstraint(all_objects[i], a))
+            self.constraints.append(
+                RelationAssignmentConstraint(
+                    source_value=all_objects[i],
+                    target_value=a,
+                    relation_key="object_area",
+                    source_attribute_key="objects",
+                    target_attribute_key="target_areas",
+                )
+            )
         
         
         return self._create_stages(all_objects[:nb_obj], all_areas, state, base_assignement=assignement)
@@ -477,7 +481,7 @@ This request is especially instructive because it demonstrates the `create_stage
 It:
 
 1. samples some new permanent assignments
-2. creates `ObjectAssignmentConstraint` objects and stores them on `self.constraints`
+2. creates `RelationAssignmentConstraint` objects and stores them on `self.constraints`
 3. passes those assignments directly into `_create_stages(...)` which is an helper function to create action stages.
 4. only afterwards, in `apply_request(...)`, applies the constraints to the latent state
 

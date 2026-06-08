@@ -19,6 +19,12 @@ Constraints update the latent `TaskState` used to generate stages and keep track
 
 | Template | What it offers | Use when |
 | --- | --- | --- |
-| `ObjectAssignmentConstraint` | Stores a direct object-to-area rule in `state.relations["object_area"]`. | The user gives or overrides the target area for specific objects. |
-| `ObjectCategoryConstraint` | Stores an object-to-category rule in `state.relations["object_type"]`. | The user reclassifies objects before later category-based rules are applied. |
-| `CategoryAreaConstraint` | Stores a category-to-area rule in `state.relations["type_area"]`. | Whole categories should map to an area instead of assigning each object one by one. |
+| `RelationAssignmentConstraint` | Stores a source-to-target assignment in a configurable `state.relations[...]` dictionary, with optional source and target attribute validation. | You need object-to-area, object-to-category, category-to-area, or another persistent relation update. |
+
+Common relation configurations:
+
+| Relation | Constraint setup |
+| --- | --- |
+| Object to area | `RelationAssignmentConstraint(obj, area, "object_area", source_attribute_key="objects", target_attribute_key="target_areas")` |
+| Object to category | `RelationAssignmentConstraint(obj, category, "object_type", source_attribute_key="objects")` |
+| Category to area | `RelationAssignmentConstraint(category, area, "type_area", target_attribute_key="target_areas")` |

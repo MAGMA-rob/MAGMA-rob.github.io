@@ -15,6 +15,7 @@ This tutorial explains how to create MAGMA tools. The goal is to understand:
 - how to declare a tool with `@register_tool`
 - what `Observation`, `ToolExecution`, and `ToolResult` are used for
 - how to use `verifier`, `redo`, and `Log`
+- how tools opt in to runtime error injection
 - how the registry is built automatically
 
 If you want the shortest path first, start with [Create a Tool (Lightweight)](../tutorials/building-blocks/create-tools-light.md).
@@ -113,6 +114,7 @@ class ToolResult:
     ok: bool
     reason: str = ""
     logs: Optional[Log] = None
+    context: Dict[str, Any] = field(default_factory=dict)
 ```
 
 #### Fields
@@ -122,6 +124,7 @@ class ToolResult:
 | `ok` | `bool` | Indicates whether the tool execution was successful |
 | `reason` | `str` | Message sent back to the system or the model |
 | `logs` | `Optional[Log]` | Persistent information or attribute modifications |
+| `context` | `Dict[str, Any]` | Optional structured data passed to post-verification error hooks or downstream runtime logic |
 
 #### When to build it
 
@@ -184,6 +187,8 @@ class ToolExecution:
         redo: Optional[Callable[[Dict], Trajectory]] = None,
         reason: Optional[str] = "",
         robot_idx: int = 0,
+        context: Optional[Dict[str, Any]] = None,
+        compatible_error_supports: Optional[List[ToolErrorSupport]] = None,
     ):
 ```
 
@@ -196,6 +201,17 @@ class ToolExecution:
 | `redo` | `Callable[[Dict], Trajectory] \| None` | Optional replanning |
 | `reason` | `str` | Error message if the tool could not be prepared (e.g. invalid argument combination) |
 | `robot_idx` | `int` | Index of the executing robot. In single robot, it stays at 0. In multi-robot, you can compute the index from `selected_robot_name`. |
+| `context` | `Dict[str, Any]` | Optional structured runtime data used by error injection, such as the target object name |
+| `compatible_error_supports` | `List[ToolErrorSupport]` | Error support declarations attached by the tool wrapper; you usually do not set this manually |
+
+`ToolExecution` also tracks internal error state:
+
+- `failure_flag`
+- `must_fail_stage`
+- `injection_applied`
+- active error instances and supports
+
+Most tool authors only need to set `context` when an injected error must know what the tool is trying to manipulate.
 
 #### What `poses` can contain
 
@@ -256,6 +272,7 @@ The registry does not store your raw Python methods directly. It stores `Tool` o
 - its description
 - its argument schema
 - its optional parameters
+- its supported error-injection declarations
 - the Python function to call
 
 One important thing the `Tool` wrapper does before calling your code is validating `params` with `verify_parameters_dict(...)`.
@@ -273,7 +290,12 @@ In other words, the real flow is:
 The base decorator is:
 
 ```python
-register_tool(description: str = "", params_spec: Dict = {}, optional: List = [])
+register_tool(
+    description: str = "",
+    params_spec: Optional[Dict] = None,
+    optional: Optional[List] = None,
+    errors: Optional[List[Union[type[BaseError], ToolErrorSupport]]] = None,
+)
 ```
 
 ### Decorator parameters
@@ -283,6 +305,7 @@ register_tool(description: str = "", params_spec: Dict = {}, optional: List = []
 | `description` | Description visible to the agent |
 | `params_spec` | Schema of the expected arguments |
 | `optional` | List of optional argument names |
+| `errors` | Error types or `ToolErrorSupport` declarations that this tool can support |
 
 Each entry in `params_spec` must contain:
 
@@ -358,6 +381,86 @@ If the signature does not match, a `TypeError` is raised at load time.
 :::note
 Names declared in `optional` must also exist in `params_spec`. The decorator checks this.
 :::
+
+### Error injection support
+
+MAGMA can inject recoverable runtime errors, such as perception masking or grasp failure, during generation and benchmark runs.
+
+The mechanism has two sides:
+
+- stages declare which errors may be active with `possible_errors`
+- tools declare which of those errors they support with `@register_tool(..., errors=[...])`
+
+The decorator accepts either a `BaseError` subclass or a `ToolErrorSupport`.
+
+```python
+from magma_core.base.data_structures import ToolExecution, ToolErrorSupport
+from magma_core.base.tools import register_tool
+
+from my_scenario.errors import MyGraspError
+
+
+@register_tool(
+    description="Take an object.",
+    params_spec={
+        "obj": {"description": "Object to take.", "type": str},
+    },
+    errors=[ToolErrorSupport(MyGraspError, pre=True, post=False)],
+)
+def take(self, obs, env_id, params) -> ToolExecution:
+    ...
+```
+
+Use `ToolErrorSupport` when you need to control whether the error runs:
+
+- before trajectory execution with `pre=True`
+- after the verifier with `post=True`
+
+If you pass the error class directly, MAGMA treats it like `ToolErrorSupport(MyError, pre=True, post=True)`.
+
+Error classes must inherit from `BaseError` and be instantiable without required constructor arguments.
+
+```python
+from magma_core.base.errors import BaseError
+
+
+class MyFailureError(BaseError):
+    required_key = ["target"]
+    recovery_extra_steps = 1
+
+    def initialize(self, obs, env_id):
+        return None
+
+    def apply_pre_exec(self, tool_execution, arguments):
+        target = tool_execution.context.get("target_name")
+        if target is not None:
+            tool_execution.fail(f"Failed to manipulate {target}.")
+
+    def get_description(self, arguments):
+        return "The tool may fail on one selected target."
+```
+
+The most common pattern is to put the object or entity being manipulated in `ToolExecution.context`:
+
+```python
+return ToolExecution(
+    poses=poses,
+    verifier=verifier,
+    context={"target_name": obj_name},
+)
+```
+
+Post-verification errors can also read and modify `ToolResult.context`:
+
+```python
+return ToolResult(
+    True,
+    reason="Detected visible objects.",
+    context={"table": visible_objects},
+)
+```
+
+This is useful for perception-style errors that hide part of a detection result after the tool verifier has produced it.
 
 ### Automatic argument validation
 
@@ -623,6 +726,8 @@ Before validating a new tool, check this list:
 - `verifier` always returns a `ToolResult`
 - a logical tool uses `["OK"]`, not `[]`
 - if you use `Log(action=...)`, the content is compatible with task attributes
+- if the tool supports injected errors, declare them in `errors=[...]`
+- if an injected error needs target information, set `ToolExecution.context`
 
 ## Common pitfalls
 
@@ -700,6 +805,7 @@ To create a MAGMA tool:
 5. let `verifier` produce the `ToolResult`
 6. use `redo` for iterative actions
 7. use `Log` if the tool modifies attributes
+8. declare supported injected errors with `errors=[...]` when the stage error system should be able to affect the tool
 
 By following these recommendations, you get tools that are:
 

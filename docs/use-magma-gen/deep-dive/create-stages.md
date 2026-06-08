@@ -51,6 +51,34 @@ The base class also supports:
 - `reset_at_end`
 - `additive_stage`
 - `verification_prompt`
+- `possible_errors`
+- `min_active_errors`
+- `max_active_errors`
+- `linked_to_prev`
+- `allow_tools_before_answer`
+- `allowed_tools`
+
+`possible_errors`, `min_active_errors`, and `max_active_errors` are used by the error-injection system. They let a stage declare which runtime errors may be sampled for a trajectory, and how many of them may be active at once.
+
+`linked_to_prev` marks a stage as part of the same logical interaction block as the previous stage. MAGMA also sets it automatically when the stage uses `EmptyInstruction()`.
+
+`allow_tools_before_answer` and `allowed_tools` are only valid on text-only stages. They allow a question-answering stage to call tools before the final judged answer.
+
+### Stage-level error injection
+
+Stages can declare runtime errors that may be injected while the stage is being solved:
+
+```python
+from my_scenario.errors import MyGraspFailureError
+
+
+class PickRequestedObject(BaseTaskStage):
+    possible_errors = [MyGraspFailureError()]
+    min_active_errors = 0
+    max_active_errors = 1
+```
+
+At initialization time, MAGMA samples between `min_active_errors` and `max_active_errors` from `possible_errors` for each trajectory. A sampled error only affects tools that explicitly support that error in their `@register_tool(..., errors=[...])` declaration.
 
 ### Stage timing and budget
 
@@ -142,6 +170,7 @@ It is used for things like:
 - asking for missing information
 - checking that the model understood a user constraint
 - forcing a refusal or a specific explanation
+- asking a question whose answer requires tool calls before the final response
 
 </TabItem>
 </Tabs>
@@ -317,9 +346,9 @@ Default combination logic is:
 
 For a text-only stage:
 
-1. the model should not call any tool
-2. the system checks that the tool call is empty
-3. the executor builds a `JudgePayload`
+1. the model usually answers directly without calling a tool
+2. if `allow_tools_before_answer=True`, the model may call tools before the final answer
+3. when the final answer is produced, the executor builds a `JudgePayload`
 4. an external model judges the answer against `verification_prompt`
 5. if verdict is true, the stage finishes and the next stage starts
 
@@ -369,6 +398,15 @@ If the object enters a forbidden area:
 - it can return `0` when `strict=False`
 
 That makes `NotAt` a failure predicate.
+
+Other built-in goals include:
+
+- `On(top_object, bottom_object)`
+- `AtLeastCountAt(objects, location, minimum)`
+- `ExactCountAt(objects, location, expected)`
+- `MaxAt(objects, location, maximum, strict=True)`
+- `And([...])`
+- `Or([...])`
 
 ### How stage goals are combined
 
@@ -540,6 +578,12 @@ The codebase already provides stage templates for this:
 
 Both create a `Situation`, set `flag_answer_to_user=False`, and define a `verification_prompt`.
 
+`AskingBaseStage` also accepts:
+
+- `linked_to_prev`
+- `allow_tools_before_answer`
+- `allowed_tools`
+
 ### How the executor verifies text-only stages
 
 The important point is:
@@ -550,20 +594,27 @@ The important point is:
 In `magma-gen`, the generation executor does the following:
 
 1. detect that the current stage is text-only
-2. ensure the tool call is fully empty
-3. fetch the rule with `task_ref.get_stage_rule(stage_id)`
-4. build a `JudgePayload(rule=..., model_answer=...)`
-5. send it to the worker
-6. parse the returned JSON verdict
+2. if the model answers directly, fetch the rule with `task_ref.get_stage_rule(stage_id)`
+3. build a `JudgePayload(rule=..., model_answer=...)`
+4. send it to the worker
+5. parse the returned JSON verdict
 
 If the verdict is true:
 
 - the stage is marked finished
 - MAGMA advances to the next stage
 
-If the model tries to call a non-empty tool on a text-only stage:
+If the model tries to call a non-empty tool on a text-only stage while `allow_tools_before_answer=False`:
 
 - the stage is treated as a catastrophic failure
+
+If `allow_tools_before_answer=True`:
+
+- the tool call is executed
+- the tool result can be returned to the model
+- the stage remains text-only and is still completed only by a judged final answer
+- if `allowed_tools` is empty, every tool is allowed
+- if `allowed_tools` contains names, only those tools are allowed before the final answer
 
 :::info
 In evaluation mode, text-only stages are skipped by `ToolsTestingExecutor` because they cannot be verified from raw environment state alone.
@@ -584,7 +635,7 @@ When defining your own stage, a very good workflow is:
    - optionally add log checks
 5. for text-only stages:
    - define a precise `verification_prompt`
-   - make sure the model should not call tools
+   - decide whether the model should answer directly or may call tools before answering
 
 ### Simple custom goal stage
 
@@ -654,6 +705,33 @@ class AskForClipboardArea(BaseTaskStage):
         )
 ```
 
+### Text-only stage with tool calls before the answer
+
+Use this variation when the user asks a question that the model cannot answer from memory or attributes alone, but can answer by calling an information-gathering tool.
+
+```python
+from magma_core.base.stage import AskingBaseStage
+
+
+class AskPeopleInTeamStage(AskingBaseStage):
+    def __init__(self, team_name: str, memory: list[str], attributes: dict):
+        super().__init__(
+            question=f"Who is in team {team_name}?",
+            answer=f"The model must answer with the people returned by the people_from_team tool for {team_name}.",
+            memory=memory,
+            attributes=attributes,
+            linked_to_prev=True,
+            allow_tools_before_answer=True,
+            allowed_tools=["people_from_team"],
+        )
+
+        self.stage_goal_description = (
+            "The model must call the team lookup tool before answering the user's question."
+        )
+```
+
+This is still a text-only stage because success is judged from `verification_prompt`. The tool call is only an allowed intermediate step used to gather information for the final answer.
+
 ### When to override `combine_stage_completion(...)`
 
 The default logic is usually enough:
@@ -676,6 +754,8 @@ For most scenarios, you should not need to override it.
 - Prefer several small predicates over one opaque custom check.
 - Use `NotAt(..., strict=True)` for forbidden states when failure should be immediate.
 - Use `verif_log_completion(...)` when "how it was solved" matters.
+- Use `allow_tools_before_answer=True` for text-only questions that genuinely require tool lookup before answering.
+- Use `allowed_tools` to keep tool-assisted text-only stages narrow and auditable.
 - Keep `_get_obs_extra(...)` keys in the env aligned with the names used in goals.
 - Use `EmptyInstruction()` only for true continuation stages.
 - Use `flag_answer_to_user=True` only when the stage should end with a proper user-facing answer.
@@ -684,24 +764,30 @@ For most scenarios, you should not need to override it.
 
 ### 1. Mixing actions and objectives
 
-A stage should not say "call tool X".
+For action stages, a stage should not say "call tool X".
 It should say "make condition Y true".
 
 If you need to force or forbid a tool, do it through log verification.
+
+For text-only question-answering stages, it is fine to allow a narrow lookup tool with `allow_tools_before_answer=True` and `allowed_tools=[...]` when the final judged answer depends on information returned by that tool.
 
 ### 2. Defining goals on a text-only stage
 
 If you set `verification_prompt`, do not also define `goals`.
 
-### 3. Forgetting log validation when method matters
+### 3. Setting `allowed_tools` without enabling tool-assisted text-only mode
+
+If you set `allowed_tools`, you must also set `allow_tools_before_answer=True`.
+
+### 4. Forgetting log validation when method matters
 
 If the final state can be reached in several ways, and only some are allowed, add `verif_log_completion(...)`.
 
-### 4. Using attribute-modifying tools in a non-additive stage
+### 5. Using attribute-modifying tools in a non-additive stage
 
 MAGMA will treat that as a failure.
 
-### 5. Ending a stage with `flag_answer_to_user=True` and starting the next one with `EmptyInstruction()`
+### 6. Ending a stage with `flag_answer_to_user=True` and starting the next one with `EmptyInstruction()`
 
 That is invalid and caught by task validation.
 

@@ -13,7 +13,7 @@ Stages define what the agent sees, how long it has to act, and how completion is
 | Template | What it offers | Use when |
 | --- | --- | --- |
 | `BaseTaskStage` | Base class for custom stages with goals, situation, and completion logic. | You need a stage with custom environment or log verification. |
-| `AskingBaseStage` | One-step text-only stage that checks whether the agent answers a question correctly. | You want to validate a direct user-facing answer. |
+| `AskingBaseStage` | One-step text-only stage that checks whether the agent answers a question correctly. It can also allow tool calls before the final answer with `allow_tools_before_answer`. | You want to validate a direct answer, or a question that needs a narrow lookup tool before answering. |
 | `ConstraintBaseStage` | One-step text-only stage that checks whether the agent understood a new rule. | A request introduces a permanent constraint that must be acknowledged first. |
 | `ModifAttributesBaseStage` | One-step additive stage that checks for an `ADD` or `REMOVE` action on attributes. | A request should trigger a structured attribute update through tool use. |
 

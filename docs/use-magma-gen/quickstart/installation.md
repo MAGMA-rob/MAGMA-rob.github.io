@@ -113,6 +113,7 @@ They must match the actual running services. If you are changing them when launc
 ```yaml
 generate:
   mode: single
+  seed: null
   nb_branch: 2
   history_length: 3
   nb_env: 64
@@ -128,9 +129,10 @@ These values are used unless overridden at runtime.
 
 #### Parameters
 
-- `mode` — Generation mode (`single` or `dual`)
+- `mode` — Generation mode. Use `single` in the current launcher; `dual` is still parsed but rejected by `magma_gen.launch`.
+- `seed` — Optional seed for reproducible task creation and runtime randomization
 - `nb_branch` — Number of candidate answers generated per state
-- `history_length` — History window size (used in `dual` mode)
+- `history_length` — History window size kept for dual-mode internals
 - `nb_env` — Number of parallel ManiSkill environments
 - `nb_max_update` — Maximum number of states processed in parallel
 - `max_start_per_stage` — Maximum number of trajectories per stage

@@ -157,7 +157,8 @@ Good:
 
 ```yaml
 generate:
-  mode: dual
+  mode: single
+  seed: 42
   nb_branch: 3
   history_length: 4
   nb_env: 32
@@ -171,7 +172,7 @@ Risky:
 
 ```yaml
 generate:
-  mode: dual
+  mode: single
 ```
 
 With the current loader, the second example replaces the entire `generate` block and can leave required keys missing later.
@@ -199,13 +200,15 @@ With the current loader, the second example replaces the entire `generate` block
 | `--config_path` | `-c` | n/a | Use a specific YAML config file | Changes the loaded config source |
 | `--nb_branch` | `-n` | `generate.nb_branch` | Number of answers generated per pending situation | Increases branching factor and search width |
 | `--history_length` | `-hl` | `generate.history_length` | Max history window length | Mainly relevant in dual mode |
-| `--mode` | `-m` | `generate.mode` | `single` or `dual` | Selects single-agent vs dual-agent pipeline |
+| `--mode` | `-m` | `generate.mode` | `single` or `dual` | `single` is the supported launcher mode today; `dual` is rejected after config loading |
 | `--nb_env` | `-nb` | `generate.nb_env` | Max parallel env windows used for tool execution | Controls env-side parallelism |
 | `--no_coaching` | `-nc` | `generate.coaching=false` | Disable coaching | Turns off the coaching manager |
 | `--nb_max_update` | `-nmu` | `generate.nb_max_update` | Max number of pending nodes sent to the model at once | Controls model update batch size |
-| `--max_launch_per_stage` | `-ns` | intended `generate.max_start_per_stage` | Max trajectory budget per stage | Parsed by CLI, but not currently applied to the override dict |
+| `--max_launch_per_stage` | `-ns` | `generate.max_start_per_stage` | Max trajectory budget per stage | Forwarded to the counter manager through the config override |
+| `--max_total_target_steps` | n/a | n/a | Target-step budget for dynamically generated task definitions | Also accepts `--max-total-target-steps`; defaults to `15` inside `TaskGenerator` |
+| `--seed` | n/a | `generate.seed` | Non-negative generation seed | Makes task creation and runtime randomization reproducible |
 | `--no_randomized` | `-nr` | `generate.randomized=false` | Disable task randomization | Disables runtime randomizer usage |
-| `--backends_instance` | `-bi` | active backend filter | Select backend instance(s) | In practice parser currently accepts one string |
+| `--backends_instance` | `-bi` | active backend filter | Select backend instance(s) | Accepts repeated names and comma-separated names |
 | `--magma_agent_address` | `-mas` | `magma_agent_address` | Override MAGMA agent server address | Changes commander server endpoint |
 | `--gui` | n/a | n/a | Open a GUI render | Changes env render mode to human |
 
@@ -266,8 +269,9 @@ Examples:
 - uses `DualAgentManager`
 - uses `DualGraphManager`
 - uses `DualNodeEndManager`
+- is currently rejected by `magma_gen.launch` before the runner is created
 
-This is selected in `GenerationRunner.__init__()`.
+The runner still contains the dual manager classes, but the launcher raises `NotImplementedError` for `mode: dual` in the current CORL-oriented version. Use `single` for current generation runs.
 
 ### `generate.nb_branch`
 
@@ -276,7 +280,6 @@ This is the main branching factor.
 It affects:
 
 - how many commander answers are sampled per pending situation
-- how many memorizer candidates are generated in dual mode
 - how counters measure per-stage exploration capacity
 
 Increasing it usually gives:
@@ -292,6 +295,7 @@ This is passed to the graph manager as `max_history_length`.
 It is intended to cap the size of conversation history sent back to the commander.
 
 The CLI help says it is only for dual mode, and that is the safest way to think about it for now.
+Since the current launcher rejects `dual`, this value usually remains present in the config without changing single-agent behavior much.
 
 ### `generate.nb_env`
 
@@ -318,14 +322,27 @@ This is the per-stage exploration budget consumed by `CounterManager`.
 
 It limits how many trajectories the generator tries to launch for a given stage.
 
-Current source caveat:
+Current name mapping:
 
 - the config key is `max_start_per_stage`
 - the CLI flag is `--max_launch_per_stage`
-- the CLI parser accepts it
-- but `build_generate_override_from_cli()` does not currently forward it
+- `build_generate_override_from_cli()` forwards the CLI value to `generate.max_start_per_stage`
 
-So today, if you want to change this value reliably, do it in YAML.
+So you can set this value either in YAML or with `--max_launch_per_stage`.
+
+### `--max_total_target_steps`
+
+This value is passed directly to `TaskGenerator` when you launch a task definition with `--definition`.
+
+It limits the total target-step budget used while dynamically sampling requests into stages. If you omit it, `TaskGenerator` uses `15`.
+
+This flag does not change fixed presets loaded with `--preset`.
+
+### `generate.seed`
+
+The seed is stored in `generate.seed` and is used by the generation runner to seed Python's `random` module.
+
+It is also forwarded to the runtime randomizer, so repeated runs with the same task, config, and seed are easier to reproduce.
 
 ### `generate.randomized`
 
@@ -372,12 +389,13 @@ There is currently no dedicated CLI override for this field in `launch.py`, so c
 
 Backends are used to create the `LMWorker`.
 
-In generation, the runner currently selects the first backend in the active backend dictionary.
+In generation, the runner builds an `LMWorkerPool` from all active backend configs.
 
 So:
 
 - you must define at least one backend
-- if you filter with `--backends_instance`, the first remaining backend becomes the active one used by the worker
+- if you filter with `--backends_instance`, only the selected backend names remain active
+- you can pass backend names as `-bi backend_a backend_b` or `-bi backend_a,backend_b`
 
 ## Example launch recipes
 
@@ -397,19 +415,20 @@ python -m magma_gen.launch single_small \
 Use this when you want a small debug-friendly run.
 
   </TabItem>
-  <TabItem value="dual-richer" label="Richer dual run">
+  <TabItem value="definition-seeded" label="Seeded definition run">
 
 ```bash
-python -m magma_gen.launch dual_richer \
+python -m magma_gen.launch generated_seeded \
   --definition warehouse_sorting.SimpleSortingDefinition \
-  --mode dual \
+  --mode single \
   --nb_branch 3 \
-  --history_length 4 \
   --nb_env 16 \
-  --nb_max_update 20
+  --nb_max_update 20 \
+  --max_total_target_steps 20 \
+  --seed 42
 ```
 
-Use this when you want memory updates and richer branching.
+Use this when you want a dynamic task definition run that is easier to reproduce.
 
   </TabItem>
   <TabItem value="preset-args" label="Preset with extra args">
@@ -448,6 +467,7 @@ At a high level:
    - `commander_datas/`
    - `memorizer_datas/`
    - `config.json`
+10. Global generation logs are also written under `output/`, such as `debug.log`, `progress.log`, and `coaching.log`.
 
 ## Files generated by a successful run
 
@@ -459,6 +479,12 @@ Inside `output/<folder_name>/`, the runner creates:
 
 `config.json` stores the effective task/tool/task-description metadata used for export.
 
+During generation, MAGMA-GEN also writes shared logs under `output/`:
+
+- `debug.log`
+- `progress.log`
+- `coaching.log`
+
 :::tip
 To learn how to use these data to train your model, refer to the [next page](export.md).
 :::
@@ -469,21 +495,25 @@ To learn how to use these data to train your model, refer to the [next page](exp
 
 The CLI accepts it, but `GenerationScenarioRunner` immediately raises `NotImplementedError`.
 
-### `--max_launch_per_stage` is currently ignored by the override builder
+### `mode: dual` is not usable through the current launcher
 
-The argument is parsed, but `build_generate_override_from_cli()` does not map it to `generate.max_start_per_stage`.
+The parser still accepts `--mode dual`, and the runner still contains dual manager classes, but `main()` rejects dual mode with `NotImplementedError`.
 
-Use YAML for this parameter until the launcher is fixed.
+Use `--mode single` for current generation runs.
 
 ### There is no CLI override for `magma_planner_address`
 
 Change it in YAML.
 
-### `--backends_instance` is effectively single-value today
+### `--backends_instance` accepts multiple names
 
-The override code supports a list, but the parser declares `type=str` without `nargs`.
+The parser accepts one or more strings and also splits comma-separated values.
 
-So in current CLI usage, pass one backend instance name.
+Valid forms:
+
+- `-bi backend_a`
+- `-bi backend_a backend_b`
+- `-bi backend_a,backend_b`
 
 ### User YAML overlays are shallow at the top level
 
@@ -536,6 +566,5 @@ Fix:
 - Keep a local `config.yaml` in the working directory and use CLI for only the few values you change often.
 - Use `--preset` or `--definition`, not `--scenarios`, for now.
 - Start with small values for `nb_env`, `nb_branch`, and `nb_max_update` while debugging.
-- If you need to change `max_start_per_stage`, change it in YAML until the CLI override path is fixed.
+- Use `--max_launch_per_stage` when you need to change `generate.max_start_per_stage` for one run.
 - If you rely on a custom planner address, set it in YAML because there is no launcher flag for it yet.
-

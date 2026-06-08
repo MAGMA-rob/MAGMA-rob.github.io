@@ -248,6 +248,8 @@ You define the function `apply` that apply the constraint to the Task State. And
 Unlike Task Preset, the handling of constraint and their lifecycle is automaticly done by the **Task Generator** but it requires more code. So use the different **Templates** to go faster!
 :::
 
+The example above shows the custom implementation pattern. In the current template library, the reusable generic constraint is `RelationAssignmentConstraint`, and the ready-made object/category request wrapper is `GiveObjectCategoryRequest`.
+
 ## More details
 
 - [Text-only stages in more detail](../deep-dive/create-stages.md#text-only-stages-in-more-detail)

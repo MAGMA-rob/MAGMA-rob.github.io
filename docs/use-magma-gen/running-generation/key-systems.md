@@ -109,7 +109,7 @@ While the curriculum building is not yet avalaible in the open-source version of
 
 ### Generation Modes
 - **Single Agent**: Unified decision-making for simpler tasks
-- **Dual Agent**: Separated planning and memory management for complex scenarios
+- **Dual Agent**: Internal dual-agent classes still exist, but the current `magma_gen.launch` entrypoint rejects `mode: dual`. Treat dual mode as legacy/unsupported for new generation runs.
 
 ### Performance Tuning
 - **Branch Count**: Number of parallel execution paths (typically 2-3)

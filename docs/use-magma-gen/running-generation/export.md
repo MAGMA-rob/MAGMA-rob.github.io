@@ -109,10 +109,12 @@ After export, the run folder may contain:
 
 - `commander_data.json`
 - `memorizer_data.json`
+- `stats.json`
 
 The exact outputs depend on the builder you selected:
 
-- single-agent builders only write commander data
+- single-agent SFT writes commander data and export statistics
+- single-agent DPO writes commander data
 - dual SFT builders can write both commander and memorizer data
 
 ## Common commands
@@ -153,6 +155,8 @@ Use a non-`none` memorizer mode to activate the dual builder.
 
 `base` enables memorizer scoring.
 
+Current generation note: `magma_gen.launch` rejects `mode: dual` today, so this recipe is mainly for legacy dual run folders or folders produced by a branch/tooling path that still emits dual data.
+
   </TabItem>
 </Tabs>
 
@@ -167,6 +171,10 @@ Use a non-`none` memorizer mode to activate the dual builder.
 | `--nb_of_augment` | `-n` | no | Number of randomized data variants generated per selected sample |
 | `--commander_mode` | `-cm` | no | Commander scoring mode |
 | `--memorizer_mode` | `-mm` | no | Memorizer scoring mode / builder switch |
+| `--skip_pre_made` | n/a | no | Skip run folders that already contain an export marker |
+| `--force_export_coached_answers` | n/a | no | For single-agent SFT, force valid coached answers into the export |
+| `--skip_coached_answers` | n/a | no | For single-agent SFT, exclude coached answers from the export |
+| `--only_first_child` | n/a | no | For single-agent SFT baseline export, follow only the first child path |
 
 ## How builder selection works
 
@@ -249,21 +257,52 @@ Use:
 - `base` for dual export with memorizer scoring
 - `no` for dual export without memorizer scoring
 
+### `--skip_pre_made`
+
+This skips folders that already contain `commander_data.json`.
+
+Use it when you point export at a parent folder and only want to process runs that have not already been exported.
+
+### `--force_export_coached_answers` and `--skip_coached_answers`
+
+These two flags only affect the single-agent SFT builder.
+
+- `--force_export_coached_answers` keeps valid coached answers in the export even when they would normally only be ranked by score.
+- `--skip_coached_answers` removes coached answers from the export.
+
+They are mutually exclusive; the parser raises an error if you pass both.
+
+The dash-case aliases are also accepted:
+
+- `--force-export-coached-answers`
+- `--skip-coached-answers`
+- `--no-coached-answers`
+
+### `--only_first_child`
+
+This flag only applies to the single-agent SFT builder.
+
+It follows only the first answer of each step and stops the trajectory when that first-child path fails. It is useful for baseline exports where you want a simple deterministic path through the generated graph.
+
+The dash-case alias `--only-first-child` is also accepted.
+
 ## How export works internally
 
 At a high level:
 
 1. parse CLI arguments
-2. load `MAGMAConfig`
-3. optionally filter active backends with `--backends_instance`
-4. build one export worker per active backend
-5. recursively find all folders containing `config.json`
-6. load each folder's `config.json`
-7. traverse the exported graph files referenced by that config
-8. score/select good commander trajectories
-9. optionally score/select memorizer updates
-10. apply augmentation
-11. write final JSON dataset files
+2. recursively find folders containing `config.json`
+3. optionally skip folders that already contain pre-made export data
+4. discard incomplete folders that do not contain the required source graph files
+5. load `MAGMAConfig`
+6. optionally filter active backends with `--backends_instance`
+7. build one export worker per active backend
+8. load each folder's `config.json`
+9. traverse the exported graph files referenced by that config
+10. score/select good commander trajectories
+11. optionally score/select memorizer updates
+12. apply augmentation
+13. write final JSON dataset files
 
 ## Input data model
 
@@ -327,6 +366,8 @@ python -m magma_gen.launch_export output/run_a DPO \
 
 ### Export one dual-agent run with memorizer scoring
 
+Use this only for an existing dual run folder. The current generation launcher does not create new dual runs.
+
 ```bash
 python -m magma_gen.launch_export output/run_dual SFT \
   -c config.yaml \
@@ -340,6 +381,15 @@ python -m magma_gen.launch_export output/run_dual SFT \
 python -m magma_gen.launch_export output SFT \
   -c config.yaml \
   -bi local_ollama
+```
+
+### Export only runs without a previous export
+
+```bash
+python -m magma_gen.launch_export output SFT \
+  -c config.yaml \
+  -bi local_ollama \
+  --skip_pre_made
 ```
 
 ## Current limitations
@@ -369,6 +419,14 @@ If you export a dual-generation run with `--memorizer_mode none`, the single-age
 ### At least one active backend is required
 
 If the loaded config contains no backend, or if `--backends_instance` filters them all out, export fails before processing folders.
+
+### Coached-answer flags are mutually exclusive
+
+`--force_export_coached_answers` and `--skip_coached_answers` cannot be passed together.
+
+### Some flags are single-agent SFT only
+
+`--force_export_coached_answers`, `--skip_coached_answers`, and `--only_first_child` are used by the single-agent SFT builder.
 
 ## Troubleshooting
 
