@@ -121,6 +121,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "use-magma-gen/templates-to-use/errors-template",
+              "path": "/docs/use-magma-gen/templates-to-use/errors-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "use-magma-gen/templates-to-use/goals-template",
               "path": "/docs/use-magma-gen/templates-to-use/goals-template",
               "sidebar": "tutorialSidebar"

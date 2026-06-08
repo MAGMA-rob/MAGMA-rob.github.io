@@ -61,7 +61,7 @@ export default function MagmaGenPage() {
             </Heading>
             <iframe
               className={styles.overviewVideo}
-              src="https://www.youtube.com/embed/7Lj5-pO2FFQ"
+              src="https://www.youtube.com/embed/pA6mvs9GvIA"
               title="MAGMA-GEN overview video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
