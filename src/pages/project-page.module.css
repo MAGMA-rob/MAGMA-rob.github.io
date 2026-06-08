@@ -5,6 +5,19 @@
 .genHeader {
   padding: 4.6rem 0 4.3rem;
   margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  color: #191715;
+  background: #fff8f5;
+  border-bottom: 1px solid rgba(195, 71, 44, 0.16);
+}
+
+.genHeader::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--ifm-color-primary);
 }
 
 .genContent {
@@ -20,9 +33,9 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  border: 1px solid rgba(195, 71, 44, 0.3);
+  background: #ffffff;
+  color: var(--ifm-color-primary-darkest);
 }
 
 .genTitle {
@@ -32,13 +45,13 @@
   line-height: 1.1;
   text-align: center;
   text-wrap: balance;
-  color: #fff;
+  color: #111111;
 }
 
 .genAuthors {
   margin: 0;
   font-size: 1.04rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: #2f2b28;
 }
 
 .genSubtitle {
@@ -46,7 +59,7 @@
   font-size: 1.1rem;
   line-height: 1.5;
   max-width: 72ch;
-  color: rgba(255, 255, 255, 0.86);
+  color: #3f3a37;
 }
 
 .genActions {
@@ -58,27 +71,27 @@
 }
 
 .paperButton {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #173b5e;
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #ffffff;
 }
 
 .paperButton:hover {
-  background: #f2f7ff;
-  border-color: #f2f7ff;
-  color: #102c49;
+  background: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  color: #ffffff;
 }
 
 .repoButton {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: #ffffff;
+  border: 1px solid rgba(195, 71, 44, 0.55);
+  color: var(--ifm-color-primary-darkest);
 }
 
 .repoButton:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.9);
-  color: #ffffff;
+  background: rgba(195, 71, 44, 0.08);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-darkest);
 }
 
 .genSection {
@@ -150,6 +163,41 @@
   .pipelineFigure {
     width: 100%;
   }
+}
+
+:global([data-theme='dark']) .genHeader {
+  color: #f8f2ef;
+  background: #191715;
+  border-bottom-color: rgba(216, 92, 58, 0.28);
+}
+
+:global([data-theme='dark']) .genVenue {
+  border-color: rgba(216, 92, 58, 0.42);
+  background: rgba(216, 92, 58, 0.12);
+  color: #f2a898;
+}
+
+:global([data-theme='dark']) .genTitle {
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .genAuthors {
+  color: rgba(255, 248, 245, 0.9);
+}
+
+:global([data-theme='dark']) .genSubtitle {
+  color: rgba(255, 248, 245, 0.82);
+}
+
+:global([data-theme='dark']) .repoButton {
+  border-color: rgba(242, 168, 152, 0.55);
+  color: #f7d6ce;
+}
+
+:global([data-theme='dark']) .repoButton:hover {
+  background: rgba(216, 92, 58, 0.14);
+  border-color: #f2a898;
+  color: #ffffff;
 }
 
 .benchComingPage {

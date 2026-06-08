@@ -8,6 +8,21 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  color: #191715;
+  background: #fff8f5;
+  border-bottom: 1px solid rgba(195, 71, 44, 0.16);
+}
+
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: var(--ifm-color-primary);
+}
+
+.heroBanner :global(.hero__title) {
+  color: #111111;
 }
 
 @media screen and (max-width: 996px) {
@@ -28,7 +43,7 @@
   margin: 1.1rem auto 0;
   font-size: 1.1rem;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.88);
+  color: #3f3a37;
 }
 
 .heroButtons {
@@ -44,9 +59,9 @@
   margin: 0;
   padding: 0.35rem 0.78rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  border: 1px solid rgba(195, 71, 44, 0.3);
+  background: #ffffff;
+  color: var(--ifm-color-primary-darkest);
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -54,35 +69,61 @@
 
 .heroSubtitle {
   margin-top: 0.65rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: #3f3a37;
 }
 
 .heroPrimaryButton {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #173b5e;
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #ffffff;
 }
 
 .heroPrimaryButton:hover {
-  background: #f2f7ff;
-  border-color: #f2f7ff;
-  color: #102c49;
+  background: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  color: #ffffff;
 }
 
 .heroSecondaryButton {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  color: #ffffff;
+  border: 1px solid rgba(195, 71, 44, 0.55);
+  color: var(--ifm-color-primary-darkest);
 }
 
 .heroSecondaryButton:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(195, 71, 44, 0.08);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-darkest);
+}
+
+:global([data-theme='dark']) .heroBanner {
+  color: #f8f2ef;
+  background: #191715;
+  border-bottom-color: rgba(216, 92, 58, 0.28);
+}
+
+:global([data-theme='dark']) .heroBanner :global(.hero__title) {
   color: #ffffff;
 }
 
-.taskImg {
-  height: 180px;
-  object-fit: contain;
-  margin-bottom: 1rem;
+:global([data-theme='dark']) .heroDescription,
+:global([data-theme='dark']) .heroSubtitle {
+  color: rgba(255, 248, 245, 0.82);
+}
+
+:global([data-theme='dark']) .heroBadge {
+  border-color: rgba(216, 92, 58, 0.42);
+  background: rgba(216, 92, 58, 0.12);
+  color: #f2a898;
+}
+
+:global([data-theme='dark']) .heroSecondaryButton {
+  border-color: rgba(242, 168, 152, 0.55);
+  color: #f7d6ce;
+}
+
+:global([data-theme='dark']) .heroSecondaryButton:hover {
+  background: rgba(216, 92, 58, 0.14);
+  border-color: #f2a898;
+  color: #ffffff;
 }
