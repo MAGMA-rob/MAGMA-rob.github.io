@@ -7,13 +7,13 @@ const citation = `@misc{bernat:hal-05514580,
   TITLE = {{MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution}},
   AUTHOR = {Bernat, Loan and Grard, Matthieu and Herbulot, Ariane and Lamiraux, Florent},
   URL = {https://hal.science/hal-05514580},
-  NOTE = {under-review},
+  NOTE = {working paper or preprint},   
   YEAR = {2026},
   MONTH = Feb,
   KEYWORDS = {Robot Learning ; Found Models ; Planning ; Human-Robot Interaction},
-  PDF = {https://hal.science/hal-05514580v1/file/magma-gen-submitted-version.pdf},
+  PDF = {https://hal.science/hal-05514580v2/file/main.pdf},
   HAL_ID = {hal-05514580},
-  HAL_VERSION = {v1},
+  HAL_VERSION = {v2},
 }`;
 
 const authors = [
@@ -42,7 +42,7 @@ export default function MagmaGenPage() {
             <div className={styles.genActions}>
               <Link
                 className={`button button--lg ${styles.paperButton}`}
-                to="https://hal.science/hal-05514580v1">
+                to="https://hal.science/hal-05514580">
                 Paper
               </Link>
               <Link
