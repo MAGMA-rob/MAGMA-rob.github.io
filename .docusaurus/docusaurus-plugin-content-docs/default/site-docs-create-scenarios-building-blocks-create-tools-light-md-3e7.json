@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/building-blocks/create-tools-light",
+  "title": "Create a Tool",
+  "description": "This example adds a detection tool to your button scenario. It reuses the physical button implementation while explicitly exposing both methods in your concrete API.",
+  "source": "@site/docs/create-scenarios/building-blocks/create-tools-light.md",
+  "sourceDirName": "create-scenarios/building-blocks",
+  "slug": "/use-magma-gen/tutorials/building-blocks/create-tools-light",
+  "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/use-magma-gen/tutorials/building-blocks/create-tools-light",
+    "title": "Create a Tool"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Stage",
+    "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light"
+  },
+  "next": {
+    "title": "Create an Environment",
+    "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-envs"
+  }
+}

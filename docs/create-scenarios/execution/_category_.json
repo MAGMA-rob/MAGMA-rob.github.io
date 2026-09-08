@@ -1,0 +1,11 @@
+{
+  "label": "5. Extend Execution",
+  "position": 5,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Extend Execution",
+    "description": "Compose tools into skills, change the world between stages, introduce failures, and coordinate several robots.",
+    "slug": "/create-scenarios/execution"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "create-scenarios/multi-robot",
+  "title": "Coordinate Robots and Shared Resources",
+  "description": "First make each tool work on one robot. Then specify robot identity and how simultaneous calls share resources.",
+  "source": "@site/docs/create-scenarios/multi-robot.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/create-scenarios/multi-robot",
+  "permalink": "/docs/create-scenarios/multi-robot",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 17,
+  "frontMatter": {
+    "sidebar_position": 17,
+    "title": "Coordinate Robots and Shared Resources"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Inject a Temporary Tool Failure",
+    "permalink": "/docs/create-scenarios/errors"
+  },
+  "next": {
+    "title": "Add an Optional Perfect Trace",
+    "permalink": "/docs/create-scenarios/perfect-traces"
+  }
+}

@@ -11,48 +11,203 @@
           "mainDocId": "intro",
           "docs": [
             {
-              "id": "core-concepts/envs",
+              "id": "concepts/architecture",
+              "path": "/docs/concepts/architecture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/envs",
               "path": "/docs/core-concepts/envs",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "core-concepts/overview",
+              "id": "concepts/errors",
+              "path": "/docs/concepts/errors",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/execution",
+              "path": "/docs/concepts/execution",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/overview",
               "path": "/docs/core-concepts/overview",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "core-concepts/scenarios",
+              "id": "concepts/perfect-traces",
+              "path": "/docs/concepts/perfect-traces",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/requests",
+              "path": "/docs/concepts/requests",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/scenarios",
               "path": "/docs/core-concepts/scenarios",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "core-concepts/tasks",
+              "id": "concepts/stages",
+              "path": "/docs/concepts/stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/state",
+              "path": "/docs/concepts/state",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "concepts/tasks",
               "path": "/docs/core-concepts/tasks",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "core-concepts/tools",
+              "id": "concepts/tools",
               "path": "/docs/core-concepts/tools",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "customization/create-agent",
+              "id": "create-scenarios/building-blocks/create-envs",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-envs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/building-blocks/create-stages-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/building-blocks/create-tools-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/building-blocks/log-verification",
+              "path": "/docs/use-magma-gen/tutorials/log-verification",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/building-blocks/make-reusable-stages",
+              "path": "/docs/use-magma-gen/tutorials/make-reusable-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/execution/articulated-object",
+              "path": "/docs/use-magma-gen/tutorials/articulated-object",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/execution/create-cycle",
+              "path": "/docs/use-magma-gen/tutorials/create-cycle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/execution/env-transitions",
+              "path": "/docs/create-scenarios/env-transitions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/execution/errors",
+              "path": "/docs/create-scenarios/errors",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/execution/multi-robot",
+              "path": "/docs/create-scenarios/multi-robot",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/first-scenario/create-scenarios",
+              "path": "/docs/use-magma-gen/tutorials/create-scenarios",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/first-scenario/create-tasks-light",
+              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/first-scenario/testing",
+              "path": "/docs/create-scenarios/testing",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/asking-request",
+              "path": "/docs/use-magma-gen/tutorials/asking-request",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/constraint-cycle",
+              "path": "/docs/use-magma-gen/tutorials/constraint-cycle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/interruption",
+              "path": "/docs/use-magma-gen/tutorials/interuption",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/lack-information",
+              "path": "/docs/use-magma-gen/tutorials/lack-information",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/modify-attributes",
+              "path": "/docs/use-magma-gen/tutorials/modify-attributes",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/interactions/multi-stages",
+              "path": "/docs/use-magma-gen/tutorials/multi-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/overview",
+              "path": "/docs/create-scenarios/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/procedural-tasks/requests",
+              "path": "/docs/create-scenarios/requests",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/procedural-tasks/task-randomization",
+              "path": "/docs/use-magma-gen/tutorials/task-randomization",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/traces-and-replay/perfect-traces",
+              "path": "/docs/create-scenarios/perfect-traces",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "create-scenarios/traces-and-replay/serialization",
+              "path": "/docs/create-scenarios/serialization",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "custom-agent/create-agent",
               "path": "/docs/customization/create-agent",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "customization/create-backends",
-              "path": "/docs/customization/create-backends",
+              "id": "custom-agent/overview",
+              "path": "/docs/custom-agent/overview",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "customization/create-planner",
-              "path": "/docs/customization/create-planner",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "installation",
+              "id": "getting-started/installation",
               "path": "/docs/installation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "getting-started/overview",
+              "path": "/docs/getting-started/overview",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -61,28 +216,103 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "reference/generation-cli",
+              "path": "/docs/use-magma-gen/running-generation/cli-argument",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/integrations/create-backends",
+              "path": "/docs/customization/create-backends",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/integrations/create-planner",
+              "path": "/docs/customization/create-planner",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/overview",
+              "path": "/docs/reference/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/create-stages",
+              "path": "/docs/use-magma-gen/deep-dive/create-stages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/create-tasks",
+              "path": "/docs/use-magma-gen/deep-dive/create-tasks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/create-tasks-definition",
+              "path": "/docs/use-magma-gen/deep-dive/create-tasks-definition",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/create-tools",
+              "path": "/docs/use-magma-gen/deep-dive/create-tools",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/errors",
+              "path": "/docs/reference/scenarios/errors",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/perfect-traces",
+              "path": "/docs/reference/scenarios/perfect-traces",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/providers",
+              "path": "/docs/reference/scenarios/providers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/scenarios/skills",
+              "path": "/docs/reference/scenarios/skills",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/templates/constraints-template",
+              "path": "/docs/use-magma-gen/templates-to-use/constraints-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/templates/errors-template",
+              "path": "/docs/use-magma-gen/templates-to-use/errors-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/templates/goals-template",
+              "path": "/docs/use-magma-gen/templates-to-use/goals-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/templates/requests-template",
+              "path": "/docs/use-magma-gen/templates-to-use/requests-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "reference/templates/stages-template",
+              "path": "/docs/use-magma-gen/templates-to-use/stages-template",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "use-magma-bench/overview",
               "path": "/docs/use-magma-bench/overview",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/deep-dive/create-stages",
-              "path": "/docs/use-magma-gen/deep-dive/create-stages",
+              "id": "use-magma-gen/coaching-and-generation",
+              "path": "/docs/use-magma-gen/running-generation/key-systems",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/deep-dive/create-tasks",
-              "path": "/docs/use-magma-gen/deep-dive/create-tasks",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/deep-dive/create-tasks-definition",
-              "path": "/docs/use-magma-gen/deep-dive/create-tasks-definition",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/deep-dive/create-tools",
-              "path": "/docs/use-magma-gen/deep-dive/create-tools",
+              "id": "use-magma-gen/export",
+              "path": "/docs/use-magma-gen/running-generation/export",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -101,173 +331,83 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/running-generation/cli-argument",
-              "path": "/docs/use-magma-gen/running-generation/cli-argument",
+              "id": "/category/get-started",
+              "path": "/docs/category/get-started",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/running-generation/export",
-              "path": "/docs/use-magma-gen/running-generation/export",
+              "id": "/category/evaluate-your-agent--magma-bench",
+              "path": "/docs/category/evaluate-your-agent--magma-bench",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/running-generation/key-systems",
-              "path": "/docs/use-magma-gen/running-generation/key-systems",
+              "id": "/category/generate-data--magma-gen",
+              "path": "/docs/category/generate-data--magma-gen",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/templates-to-use/constraints-template",
-              "path": "/docs/use-magma-gen/templates-to-use/constraints-template",
+              "id": "/category/first-generation",
+              "path": "/docs/category/first-generation",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/templates-to-use/errors-template",
-              "path": "/docs/use-magma-gen/templates-to-use/errors-template",
+              "id": "/create-scenarios/first-scenario",
+              "path": "/docs/create-scenarios/first-scenario",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/templates-to-use/goals-template",
-              "path": "/docs/use-magma-gen/templates-to-use/goals-template",
+              "id": "/create-scenarios/building-blocks",
+              "path": "/docs/create-scenarios/building-blocks",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/templates-to-use/requests-template",
-              "path": "/docs/use-magma-gen/templates-to-use/requests-template",
+              "id": "/create-scenarios/interactions",
+              "path": "/docs/create-scenarios/interactions",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/templates-to-use/stages-template",
-              "path": "/docs/use-magma-gen/templates-to-use/stages-template",
+              "id": "/create-scenarios/procedural-tasks",
+              "path": "/docs/create-scenarios/procedural-tasks",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/articulated-object",
-              "path": "/docs/use-magma-gen/tutorials/articulated-object",
+              "id": "/create-scenarios/execution",
+              "path": "/docs/create-scenarios/execution",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/asking-request",
-              "path": "/docs/use-magma-gen/tutorials/asking-request",
+              "id": "/create-scenarios/traces-and-replay",
+              "path": "/docs/create-scenarios/traces-and-replay",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/building-blocks/create-envs",
-              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-envs",
+              "id": "/category/custom-agent",
+              "path": "/docs/category/custom-agent",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/building-blocks/create-stages-light",
-              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light",
+              "id": "/category/concepts-and-architecture",
+              "path": "/docs/category/concepts-and-architecture",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/building-blocks/create-tasks-light",
-              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+              "id": "/category/reference",
+              "path": "/docs/category/reference",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/building-blocks/create-tools-light",
-              "path": "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light",
+              "id": "/category/scenario-contracts",
+              "path": "/docs/category/scenario-contracts",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/constraint-cycle",
-              "path": "/docs/use-magma-gen/tutorials/constraint-cycle",
+              "id": "/category/reusable-components",
+              "path": "/docs/category/reusable-components",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "use-magma-gen/tutorials/create-cycle",
-              "path": "/docs/use-magma-gen/tutorials/create-cycle",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/create-scenarios",
-              "path": "/docs/use-magma-gen/tutorials/create-scenarios",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/interuption",
-              "path": "/docs/use-magma-gen/tutorials/interuption",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/lack-information",
-              "path": "/docs/use-magma-gen/tutorials/lack-information",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/log-verification",
-              "path": "/docs/use-magma-gen/tutorials/log-verification",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/make-reusable-stages",
-              "path": "/docs/use-magma-gen/tutorials/make-reusable-stages",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/modify-attributes",
-              "path": "/docs/use-magma-gen/tutorials/modify-attributes",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/multi-stages",
-              "path": "/docs/use-magma-gen/tutorials/multi-stages",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "use-magma-gen/tutorials/task-randomization",
-              "path": "/docs/use-magma-gen/tutorials/task-randomization",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/core-concepts",
-              "path": "/docs/category/core-concepts",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/magma-gen",
-              "path": "/docs/category/magma-gen",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/quickstart",
-              "path": "/docs/category/quickstart",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/understand",
-              "path": "/docs/category/understand",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/template-you-can-use",
-              "path": "/docs/category/template-you-can-use",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/tutorials",
-              "path": "/docs/category/tutorials",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/scenario-building-blocks",
-              "path": "/docs/category/scenario-building-blocks",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/deep-dive",
-              "path": "/docs/category/deep-dive",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/magma-bench",
-              "path": "/docs/category/magma-bench",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "/category/customization",
-              "path": "/docs/category/customization",
+              "id": "/category/planner-and-backend-integration",
+              "path": "/docs/category/planner-and-backend-integration",
               "sidebar": "tutorialSidebar"
             }
           ],

@@ -1,0 +1,28 @@
+{
+  "id": "reference/scenarios/create-tasks-definition",
+  "title": "Task Definitions and Requests",
+  "description": "Import TaskDefinition from magmacore.simulation.tasks, BaseRequest from magmacore.simulation.requests, and TaskState / RuleRenderer from magma_core.simulation.state.",
+  "source": "@site/docs/reference/scenarios/create-tasks-definition.md",
+  "sourceDirName": "reference/scenarios",
+  "slug": "/use-magma-gen/deep-dive/create-tasks-definition",
+  "permalink": "/docs/use-magma-gen/deep-dive/create-tasks-definition",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/use-magma-gen/deep-dive/create-tasks-definition",
+    "title": "Task Definitions and Requests"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Stage Contract",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-stages"
+  },
+  "next": {
+    "title": "Tool Execution and Result Contract",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-tools"
+  }
+}

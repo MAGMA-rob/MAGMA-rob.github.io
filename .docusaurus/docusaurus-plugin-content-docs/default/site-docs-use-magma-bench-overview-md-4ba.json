@@ -1,7 +1,7 @@
 {
   "id": "use-magma-bench/overview",
-  "title": "Come in september 2026",
-  "description": "Learn how to use MAGMA-GEN",
+  "title": "Evaluate Your Agent with MAGMA-BENCH",
+  "description": "MAGMA-BENCH is the evaluation workflow for testing agents on interactive, long-horizon, multi-robot tasks.",
   "source": "@site/docs/use-magma-bench/overview.md",
   "sourceDirName": "use-magma-bench",
   "slug": "/use-magma-bench/overview",
@@ -13,16 +13,15 @@
   "sidebarPosition": 1,
   "frontMatter": {
     "sidebar_position": 1,
-    "title": "Come in september 2026",
-    "description": "Learn how to use MAGMA-GEN"
+    "slug": "/use-magma-bench/overview"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "MAGMA-BENCH",
-    "permalink": "/docs/category/magma-bench"
+    "title": "Evaluate Your Agent — MAGMA-BENCH",
+    "permalink": "/docs/category/evaluate-your-agent--magma-bench"
   },
   "next": {
-    "title": "Customization",
-    "permalink": "/docs/category/customization"
+    "title": "Generate Data — MAGMA-GEN",
+    "permalink": "/docs/category/generate-data--magma-gen"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "id": "concepts/errors",
+  "title": "Errors and Recovery",
+  "description": "Error injection lets a task expose an agent to temporary execution failures or altered perception. Distinguish an error being available, selected for a stage, and actually triggered on a tool call.",
+  "source": "@site/docs/concepts/errors.md",
+  "sourceDirName": "concepts",
+  "slug": "/concepts/errors",
+  "permalink": "/docs/concepts/errors",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "sidebar_position": 9,
+    "title": "Errors and Recovery"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Execution and Concurrency",
+    "permalink": "/docs/concepts/execution"
+  },
+  "next": {
+    "title": "Perfect Traces",
+    "permalink": "/docs/concepts/perfect-traces"
+  }
+}

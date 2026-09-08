@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+slug: /use-magma-gen/quickstart/launch-first-generation
 ---
 
 import Tabs from '@theme/Tabs';
@@ -15,7 +16,7 @@ By default we provide a reference agent setup to use with `magma-agent` service.
 
 We recommend creating a folder `models` in `magma-agent/`, and unzip the model inside.
 
-If you have your own model, check [**How to use your own agent**](../../customization/create-agent.md).
+If you have your own model, check [**How to use your own agent**](../../custom-agent/create-agent.md).
 
 ## 2. Launching Docker servers
 
@@ -40,7 +41,7 @@ If you have your own model, check [**How to use your own agent**](../../customiz
 
     > You will need to use the `-c <model_path>` option from the `magma_agent` launching script to specifiy the path to the model **folder**. ```bash scripts/launch_agent.bash -g 0 -p 8888 -c models/rss_demos_model/```
 
-    Launch the magma container using the [installation guide](../../installation.md) (or your own). This is your working terminal.
+    Launch the magma container using the [installation guide](../../getting-started/installation.md) (or your own). This is your working terminal.
 </TabItem> 
 </Tabs>
 
@@ -55,6 +56,6 @@ It will create a folder named `test` in the `output` folder. At the end of the g
 
 ## Related Pages
 
-- For all launch options, see [MAGMA-GEN Generation CLI](../running-generation/cli-argument.md)
-- To understand what the pipeline is doing, see [Key Ideas](../running-generation/key-systems.md)
-- To convert runs into datasets, see [How to export data from MAGMA-GEN](../running-generation/export.md)
+- For all launch options, see [MAGMA-GEN Generation CLI](../../reference/generation-cli.md)
+- To understand what the pipeline is doing, see [Key Ideas](../coaching-and-generation.md)
+- To convert runs into datasets, see [How to export data from MAGMA-GEN](../export.md)

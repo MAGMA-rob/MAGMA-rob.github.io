@@ -1,0 +1,11 @@
+{
+  "label": "2. Build Your Components",
+  "position": 2,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Build Your Components",
+    "description": "Extend a working task with your own stages, tools, and environment. Reuse stages and check execution logs.",
+    "slug": "/create-scenarios/building-blocks"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "label": "Understand",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn the best practice and recommendation to use MAGMA-GEN from generating data to export them for training agents."
-  }
-}

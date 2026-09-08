@@ -1,7 +1,7 @@
 {
   "id": "intro",
-  "title": "Get Started",
-  "description": "Get started with MAGMA framework.",
+  "title": "Welcome to MAGMA",
+  "description": "MAGMA is a framework for embodied AI agents working on interactive, long-horizon, multi-robot tasks. Use provided scenarios or build your own tasks and environments, generate training data with MAGMA-GEN, and evaluate agents with MAGMA-BENCH.",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
@@ -12,11 +12,12 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 1
+    "sidebar_position": 1,
+    "slug": "/intro"
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Core installation",
-    "permalink": "/docs/installation"
+    "title": "Get Started",
+    "permalink": "/docs/category/get-started"
   }
 }

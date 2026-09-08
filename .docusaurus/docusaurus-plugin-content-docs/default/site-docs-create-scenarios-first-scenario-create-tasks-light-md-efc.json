@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/first-scenario/create-tasks-light",
+  "title": "Create a Task Preset",
+  "description": "Start from FirstTask in your own package. A preset assembles existing components into an explicit interaction.",
+  "source": "@site/docs/create-scenarios/first-scenario/create-tasks-light.md",
+  "sourceDirName": "create-scenarios/first-scenario",
+  "slug": "/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+  "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "slug": "/use-magma-gen/tutorials/building-blocks/create-tasks-light",
+    "title": "Create a Task Preset"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create Your Own Scenario Package",
+    "permalink": "/docs/use-magma-gen/tutorials/create-scenarios"
+  },
+  "next": {
+    "title": "Test Your Scenario",
+    "permalink": "/docs/create-scenarios/testing"
+  }
+}

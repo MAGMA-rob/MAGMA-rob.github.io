@@ -1,0 +1,28 @@
+{
+  "id": "reference/scenarios/create-tools",
+  "title": "Tool Execution and Result Contract",
+  "description": "Import BaseToolsAPI and registertool from magmacore.simulation.tools. Execution data structures are exported from magmacore.simulation.datastructures.",
+  "source": "@site/docs/reference/scenarios/create-tools.md",
+  "sourceDirName": "reference/scenarios",
+  "slug": "/use-magma-gen/deep-dive/create-tools",
+  "permalink": "/docs/use-magma-gen/deep-dive/create-tools",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/use-magma-gen/deep-dive/create-tools",
+    "title": "Tool Execution and Result Contract"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Task Definitions and Requests",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-tasks-definition"
+  },
+  "next": {
+    "title": "Skill Contract",
+    "permalink": "/docs/reference/scenarios/skills"
+  }
+}

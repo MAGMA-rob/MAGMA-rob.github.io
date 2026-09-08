@@ -1,0 +1,28 @@
+{
+  "id": "reference/templates/constraints-template",
+  "title": "Constraint Building Blocks",
+  "description": "Core classes live in magma_core.simulation.constraints:",
+  "source": "@site/docs/reference/templates/constraints-template.md",
+  "sourceDirName": "reference/templates",
+  "slug": "/use-magma-gen/templates-to-use/constraints-template",
+  "permalink": "/docs/use-magma-gen/templates-to-use/constraints-template",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "slug": "/use-magma-gen/templates-to-use/constraints-template",
+    "title": "Constraint Building Blocks"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Request Building Blocks",
+    "permalink": "/docs/use-magma-gen/templates-to-use/requests-template"
+  },
+  "next": {
+    "title": "Error Templates",
+    "permalink": "/docs/use-magma-gen/templates-to-use/errors-template"
+  }
+}

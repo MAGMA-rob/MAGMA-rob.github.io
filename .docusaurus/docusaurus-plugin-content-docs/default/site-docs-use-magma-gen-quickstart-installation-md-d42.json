@@ -12,12 +12,13 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "sidebar_position": 1
+    "sidebar_position": 1,
+    "slug": "/use-magma-gen/quickstart/installation"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Quickstart",
-    "permalink": "/docs/category/quickstart"
+    "title": "First Generation",
+    "permalink": "/docs/category/first-generation"
   },
   "next": {
     "title": "Launch the first generation",

@@ -1,0 +1,11 @@
+{
+  "label": "3. Design Interactions",
+  "position": 3,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Design Interactions",
+    "description": "Make tasks span several actions, introduce rules and vocabulary changes, and handle interruptions or questions.",
+    "slug": "/create-scenarios/interactions"
+  }
+}

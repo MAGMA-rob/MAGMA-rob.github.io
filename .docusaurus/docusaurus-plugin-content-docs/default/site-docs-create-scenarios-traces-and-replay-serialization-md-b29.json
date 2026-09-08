@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/traces-and-replay/serialization",
+  "title": "Make Components Reconstructible",
+  "description": "Some consumers save task initialization and stage specifications for replay or artifact generation. Execution and serialization are distinct capabilities.",
+  "source": "@site/docs/create-scenarios/traces-and-replay/serialization.md",
+  "sourceDirName": "create-scenarios/traces-and-replay",
+  "slug": "/create-scenarios/serialization",
+  "permalink": "/docs/create-scenarios/serialization",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Make Components Reconstructible",
+    "slug": "/create-scenarios/serialization"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Add an Optional Perfect Trace",
+    "permalink": "/docs/create-scenarios/perfect-traces"
+  },
+  "next": {
+    "title": "Custom Agent",
+    "permalink": "/docs/category/custom-agent"
+  }
+}

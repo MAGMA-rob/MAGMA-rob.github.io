@@ -1,0 +1,27 @@
+{
+  "id": "reference/scenarios/providers",
+  "title": "Scenario Providers",
+  "description": "Import ScenarioManifest from magma_scenarios.manifest.",
+  "source": "@site/docs/reference/scenarios/providers.md",
+  "sourceDirName": "reference/scenarios",
+  "slug": "/reference/scenarios/providers",
+  "permalink": "/docs/reference/scenarios/providers",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Scenario Providers"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Scenario Contracts",
+    "permalink": "/docs/category/scenario-contracts"
+  },
+  "next": {
+    "title": "Task Preset Contract",
+    "permalink": "/docs/use-magma-gen/deep-dive/create-tasks"
+  }
+}

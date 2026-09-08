@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+slug: /use-magma-gen/quickstart/installation
 ---
 
 # Setup
@@ -8,7 +9,7 @@ How to **setup** MAGMA-GEN for your configuration.
 
 ## Prerequies
 
-You must have completed the **core installation procedure**. You have the choice between [**hybrid**](../../installation.md), [conda](../../installation.md), or [docker](../../installation.md).
+You must have completed the **core installation procedure**. You have the choice between [**hybrid**](../../getting-started/installation.md), [conda](../../getting-started/installation.md), or [docker](../../getting-started/installation.md).
 
 ## Install 
 
@@ -57,8 +58,8 @@ backends: {}
 The `backends` section defines the list of language model backends available to MAGMA.
 
 These backends are used by:
-- [Coaching](../running-generation/key-systems.md#3-intelligent-coaching)
-- [User Simulation](../running-generation/key-systems.md#s)
+- [Coaching](../coaching-and-generation.md#3-intelligent-coaching)
+- [User Simulation](../coaching-and-generation.md#4-simulated-user)
 - Curriculum systems
 - Any component requiring LLM interaction
 
@@ -88,7 +89,7 @@ backends:
 - `max_retry` — Number of retries on failure
 - `headers` — Optional HTTP headers (e.g. authorization)
 
-Currently we mostly support Ollama server. But you can create your own clients if needed. See [**Create your own backend**](../../customization/create-backends.md).
+Currently we mostly support Ollama server. But you can create your own clients if needed. See [**Create your own backend**](../../reference/integrations/create-backends.md).
 
 ---
 
@@ -157,6 +158,6 @@ Be aware that using the **docker-only** procedure, you will need to mount this `
 
 ## Next Step
 
-Once your config is ready, continue with [Launch the first generation](./launch-first-generation.md).
+Once your config is ready, continue with [Launch the first generation](launch-first-generation.md).
 
-If you want the full runtime reference, see [MAGMA-GEN Generation CLI](../running-generation/cli-argument.md).
+If you want the full runtime reference, see [MAGMA-GEN Generation CLI](../../reference/generation-cli.md).

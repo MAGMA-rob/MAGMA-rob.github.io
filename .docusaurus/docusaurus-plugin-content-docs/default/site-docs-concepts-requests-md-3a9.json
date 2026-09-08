@@ -1,0 +1,27 @@
+{
+  "id": "concepts/requests",
+  "title": "Requests and Constraints",
+  "description": "A request describes one possible interaction event during task construction: an action request, a rule update, a question, or an interruption. It can produce several stages.",
+  "source": "@site/docs/concepts/requests.md",
+  "sourceDirName": "concepts",
+  "slug": "/concepts/requests",
+  "permalink": "/docs/concepts/requests",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6,
+    "title": "Requests and Constraints"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "State and Observations",
+    "permalink": "/docs/concepts/state"
+  },
+  "next": {
+    "title": "Tools and Skills",
+    "permalink": "/docs/core-concepts/tools"
+  }
+}

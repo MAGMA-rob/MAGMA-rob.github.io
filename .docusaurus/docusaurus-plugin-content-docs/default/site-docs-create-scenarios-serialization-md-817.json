@@ -1,0 +1,27 @@
+{
+  "id": "create-scenarios/serialization",
+  "title": "Make Components Reconstructible",
+  "description": "Some consumers save task initialization and stage specifications for replay or artifact generation. Execution and serialization are distinct capabilities.",
+  "source": "@site/docs/create-scenarios/serialization.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/create-scenarios/serialization",
+  "permalink": "/docs/create-scenarios/serialization",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 19,
+  "frontMatter": {
+    "sidebar_position": 19,
+    "title": "Make Components Reconstructible"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Add an Optional Perfect Trace",
+    "permalink": "/docs/create-scenarios/perfect-traces"
+  },
+  "next": {
+    "title": "Ask the Agent a Question",
+    "permalink": "/docs/use-magma-gen/tutorials/asking-request"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "create-scenarios/env-transitions",
+  "title": "Change and Preserve Environment State",
+  "description": "Choose the mechanism matching the cause of the change.",
+  "source": "@site/docs/create-scenarios/env-transitions.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/create-scenarios/env-transitions",
+  "permalink": "/docs/create-scenarios/env-transitions",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 15,
+  "frontMatter": {
+    "sidebar_position": 15,
+    "title": "Change and Preserve Environment State"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Compose Tools into a Skill",
+    "permalink": "/docs/use-magma-gen/tutorials/create-cycle"
+  },
+  "next": {
+    "title": "Inject a Temporary Tool Failure",
+    "permalink": "/docs/create-scenarios/errors"
+  }
+}

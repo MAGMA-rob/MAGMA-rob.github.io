@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/create-cycle",
+  "title": "Compose Tools into a Skill",
+  "description": "Use a skill when one action should orchestrate several tool calls, inspect intermediate results, and retain progress. The current API replaces the old ToolExecution(..., redo=...) pattern with explicit skill execution.",
+  "source": "@site/docs/create-scenarios/create-cycle.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/use-magma-gen/tutorials/create-cycle",
+  "permalink": "/docs/use-magma-gen/tutorials/create-cycle",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 14,
+  "frontMatter": {
+    "sidebar_position": 14,
+    "slug": "/use-magma-gen/tutorials/create-cycle",
+    "title": "Compose Tools into a Skill"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Verify Execution Logs",
+    "permalink": "/docs/use-magma-gen/tutorials/log-verification"
+  },
+  "next": {
+    "title": "Change and Preserve Environment State",
+    "permalink": "/docs/create-scenarios/env-transitions"
+  }
+}

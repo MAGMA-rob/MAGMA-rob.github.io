@@ -12,7 +12,8 @@
   "version": "current",
   "sidebarPosition": 2,
   "frontMatter": {
-    "sidebar_position": 2
+    "sidebar_position": 2,
+    "slug": "/use-magma-gen/quickstart/launch-first-generation"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
@@ -20,7 +21,7 @@
     "permalink": "/docs/use-magma-gen/quickstart/installation"
   },
   "next": {
-    "title": "Understand",
-    "permalink": "/docs/category/understand"
+    "title": "Key Ideas",
+    "permalink": "/docs/use-magma-gen/running-generation/key-systems"
   }
 }

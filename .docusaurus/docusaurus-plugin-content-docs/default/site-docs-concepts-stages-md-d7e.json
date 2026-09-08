@@ -1,0 +1,27 @@
+{
+  "id": "concepts/stages",
+  "title": "Stages and Interaction",
+  "description": "A stage declares the next checkpoint of an interaction. Tools describe available actions; goals and stage verification determine whether those actions accomplished the objective.",
+  "source": "@site/docs/concepts/stages.md",
+  "sourceDirName": "concepts",
+  "slug": "/concepts/stages",
+  "permalink": "/docs/concepts/stages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4,
+    "title": "Stages and Interaction"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tasks",
+    "permalink": "/docs/core-concepts/tasks"
+  },
+  "next": {
+    "title": "State and Observations",
+    "permalink": "/docs/concepts/state"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "label": "4. Generate Task Variations",
+  "position": 4,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "Generate Task Variations",
+    "description": "Use requests to construct coherent task sequences, then vary the vocabulary exposed to the agent.",
+    "slug": "/create-scenarios/procedural-tasks"
+  }
+}

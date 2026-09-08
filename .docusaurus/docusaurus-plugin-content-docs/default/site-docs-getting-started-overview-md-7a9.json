@@ -1,0 +1,26 @@
+{
+  "id": "getting-started/overview",
+  "title": "Get Started",
+  "description": "Start by running a provided example before building a scenario or integrating a custom agent system.",
+  "source": "@site/docs/getting-started/overview.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/overview",
+  "permalink": "/docs/getting-started/overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Get Started",
+    "permalink": "/docs/category/get-started"
+  },
+  "next": {
+    "title": "Core installation",
+    "permalink": "/docs/installation"
+  }
+}

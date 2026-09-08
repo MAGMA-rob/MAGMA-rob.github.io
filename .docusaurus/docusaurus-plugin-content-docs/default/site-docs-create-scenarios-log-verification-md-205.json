@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/log-verification",
+  "title": "Verify Execution Logs",
+  "description": "Use logs when the way an action was performed matters, such as pressing buttons in order or registering a particular attribute. Environment goals answer whether the world is correct; logs preserve execution evidence.",
+  "source": "@site/docs/create-scenarios/log-verification.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/use-magma-gen/tutorials/log-verification",
+  "permalink": "/docs/use-magma-gen/tutorials/log-verification",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 12,
+  "frontMatter": {
+    "sidebar_position": 12,
+    "slug": "/use-magma-gen/tutorials/log-verification",
+    "title": "Verify Execution Logs"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Randomize Public Vocabulary",
+    "permalink": "/docs/use-magma-gen/tutorials/task-randomization"
+  },
+  "next": {
+    "title": "Compose Tools into a Skill",
+    "permalink": "/docs/use-magma-gen/tutorials/create-cycle"
+  }
+}

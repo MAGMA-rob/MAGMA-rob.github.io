@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/first-scenario/testing",
+  "title": "Test Your Scenario",
+  "description": "If you followed the first tutorial, you have a preset: a task whose stages are already assembled. Follow Check discovery and Test tools in simulation below. That is enough to check the physical button example.",
+  "source": "@site/docs/create-scenarios/first-scenario/testing.md",
+  "sourceDirName": "create-scenarios/first-scenario",
+  "slug": "/create-scenarios/testing",
+  "permalink": "/docs/create-scenarios/testing",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Test Your Scenario",
+    "slug": "/create-scenarios/testing"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Create a Task Preset",
+    "permalink": "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light"
+  },
+  "next": {
+    "title": "2. Build Your Components",
+    "permalink": "/docs/create-scenarios/building-blocks"
+  }
+}

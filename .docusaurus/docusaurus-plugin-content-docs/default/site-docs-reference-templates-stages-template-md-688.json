@@ -1,0 +1,28 @@
+{
+  "id": "reference/templates/stages-template",
+  "title": "Stage Templates",
+  "description": "Core templates are exported from magma_core.simulation.stage.",
+  "source": "@site/docs/reference/templates/stages-template.md",
+  "sourceDirName": "reference/templates",
+  "slug": "/use-magma-gen/templates-to-use/stages-template",
+  "permalink": "/docs/use-magma-gen/templates-to-use/stages-template",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "slug": "/use-magma-gen/templates-to-use/stages-template",
+    "title": "Stage Templates"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Reusable Components",
+    "permalink": "/docs/category/reusable-components"
+  },
+  "next": {
+    "title": "Goal Predicates",
+    "permalink": "/docs/use-magma-gen/templates-to-use/goals-template"
+  }
+}

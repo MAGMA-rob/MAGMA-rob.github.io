@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/interactions/asking-request",
+  "title": "Ask the Agent a Question",
+  "description": "Use a text-only stage when success depends on the agent answering a question.",
+  "source": "@site/docs/create-scenarios/interactions/asking-request.md",
+  "sourceDirName": "create-scenarios/interactions",
+  "slug": "/use-magma-gen/tutorials/asking-request",
+  "permalink": "/docs/use-magma-gen/tutorials/asking-request",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "slug": "/use-magma-gen/tutorials/asking-request",
+    "title": "Ask the Agent a Question"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Interrupt and Resume an Interaction",
+    "permalink": "/docs/use-magma-gen/tutorials/interuption"
+  },
+  "next": {
+    "title": "Require Clarification from the Agent",
+    "permalink": "/docs/use-magma-gen/tutorials/lack-information"
+  }
+}

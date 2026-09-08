@@ -1,265 +1,420 @@
 {
-  "/magma-bench-099": {
-    "__comp": "db7fa65d",
+  "/__docusaurus/debug-5ff": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "a7456010"
-    },
-    "config": "5e9f5e1a"
-  },
-  "/magma-gen-e2e": {
-    "__comp": "cfbdda04",
-    "__context": {
-      "plugin": "a7456010"
-    },
-    "config": "5e9f5e1a"
-  },
-  "/markdown-page-3d7": {
-    "__comp": "1f391b9e",
-    "__context": {
-      "plugin": "a7456010"
-    },
-    "content": "393be207"
-  },
-  "/publications-671": {
-    "__comp": "1f391b9e",
-    "__context": {
-      "plugin": "a7456010"
-    },
-    "content": "0c94c44c"
-  },
-  "/team-a94": {
-    "__comp": "1f391b9e",
-    "__context": {
-      "plugin": "a7456010"
-    },
-    "content": "63473fd1"
-  },
-  "/docs-ef8": {
-    "__comp": "5e95c892",
-    "__context": {
-      "plugin": "aba21aa0"
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
     }
   },
-  "/docs-970": {
-    "__comp": "a7bd4aaa",
-    "__props": "0058b4c6"
+  "/__docusaurus/debug/config-5ba": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
   },
-  "/docs-89d": {
-    "__comp": "a94703ab"
+  "/__docusaurus/debug/content-a2b": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    },
+    "__props": "__props---docusaurus-debug-content-3-c-0-be2"
   },
-  "/docs/category/core-concepts-409": {
-    "__comp": "14eb3368",
-    "__props": "9d132284"
+  "/__docusaurus/debug/globalData-c3c": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
   },
-  "/docs/category/customization-7cd": {
-    "__comp": "14eb3368",
-    "__props": "03136102"
+  "/__docusaurus/debug/metadata-156": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
   },
-  "/docs/category/deep-dive-47b": {
-    "__comp": "14eb3368",
-    "__props": "30b7c663"
+  "/__docusaurus/debug/registry-88c": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
   },
-  "/docs/category/magma-bench-5f5": {
-    "__comp": "14eb3368",
-    "__props": "24e25e56"
+  "/__docusaurus/debug/routes-000": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
   },
-  "/docs/category/magma-gen-6dc": {
-    "__comp": "14eb3368",
-    "__props": "09be2075"
+  "/magma-bench-099": {
+    "__comp": "__comp---site-src-pages-magma-bench-jsdb-7-5f0",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "config": "config---magma-bench-5-e-9-578"
   },
-  "/docs/category/quickstart-b0c": {
-    "__comp": "14eb3368",
-    "__props": "deb49e46"
+  "/magma-gen-e2e": {
+    "__comp": "__comp---site-src-pages-magma-gen-jscfb-9f6",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "config": "config---magma-bench-5-e-9-578"
   },
-  "/docs/category/scenario-building-blocks-ad0": {
-    "__comp": "14eb3368",
-    "__props": "bfad6b2f"
+  "/markdown-page-3d7": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---markdown-page-393-028"
   },
-  "/docs/category/template-you-can-use-918": {
-    "__comp": "14eb3368",
-    "__props": "a7262c0d"
+  "/publications-671": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---publications-0-c-9-232"
   },
-  "/docs/category/tutorials-aaa": {
-    "__comp": "14eb3368",
-    "__props": "2fc3947b"
+  "/team-a94": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---magma-bencha-74-531"
+    },
+    "content": "content---team-634-649"
   },
-  "/docs/category/understand-f8c": {
-    "__comp": "14eb3368",
-    "__props": "c630ee87"
+  "/docs-185": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---docsaba-d7c"
+    }
   },
-  "/docs/core-concepts/envs-537": {
-    "__comp": "17896441",
-    "content": "5bbdc2f2"
+  "/docs-451": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---docs-005-788"
   },
-  "/docs/core-concepts/overview-c43": {
-    "__comp": "17896441",
-    "content": "ff3a5014"
+  "/docs-75b": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
   },
-  "/docs/core-concepts/scenarios-43d": {
-    "__comp": "17896441",
-    "content": "5a952d2e"
+  "/docs/category/concepts-and-architecture-538": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-concepts-and-architecturebe-2-8ea"
   },
-  "/docs/core-concepts/tasks-c7e": {
-    "__comp": "17896441",
-    "content": "b32c2b77"
+  "/docs/category/custom-agent-71e": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-custom-agent-9-ad-d72"
   },
-  "/docs/core-concepts/tools-dcb": {
-    "__comp": "17896441",
-    "content": "1c148229"
+  "/docs/category/evaluate-your-agent--magma-bench-fa5": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-evaluate-your-agent-magma-bench-25-a-199"
   },
-  "/docs/customization/create-agent-69a": {
-    "__comp": "17896441",
-    "content": "082b6332"
+  "/docs/category/first-generation-10e": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-first-generation-3-e-7-5df"
   },
-  "/docs/customization/create-backends-d9d": {
-    "__comp": "17896441",
-    "content": "10936996"
+  "/docs/category/generate-data--magma-gen-5af": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-generate-data-magma-genef-9-901"
   },
-  "/docs/customization/create-planner-94c": {
-    "__comp": "17896441",
-    "content": "07b06de7"
+  "/docs/category/get-started-11c": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-get-started-67-e-571"
   },
-  "/docs/installation-b74": {
-    "__comp": "17896441",
-    "content": "3b8c55ea"
+  "/docs/category/planner-and-backend-integration-5b2": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-planner-and-backend-integration-876-edd"
+  },
+  "/docs/category/reference-2af": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-referenced-81-ff4"
+  },
+  "/docs/category/reusable-components-62a": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-reusable-componentsc-8-b-096"
+  },
+  "/docs/category/scenario-contracts-887": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-category-scenario-contractsb-3-c-21c"
+  },
+  "/docs/concepts/architecture-46a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-architecture-8-a-1-28d"
+  },
+  "/docs/concepts/errors-c1b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-errorsd-55-963"
+  },
+  "/docs/concepts/execution-fdd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-executionf-8-f-3b7"
+  },
+  "/docs/concepts/perfect-traces-2e3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-perfect-traces-575-0c6"
+  },
+  "/docs/concepts/requests-3dd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-requests-3-a-9-816"
+  },
+  "/docs/concepts/stages-10e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-stagesd-7-e-5fe"
+  },
+  "/docs/concepts/state-e3d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-state-502-115"
+  },
+  "/docs/core-concepts/envs-918": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-core-concepts-envs-730-905"
+  },
+  "/docs/core-concepts/overview-689": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-core-concepts-overview-85-b-1c4"
+  },
+  "/docs/core-concepts/scenarios-70a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-core-concepts-scenarios-3-ab-9f7"
+  },
+  "/docs/core-concepts/tasks-a36": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-core-concepts-tasks-3-c-6-e43"
+  },
+  "/docs/core-concepts/tools-b0e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-core-concepts-toolscb-3-1a0"
+  },
+  "/docs/create-scenarios/building-blocks-4b6": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-building-blocks-9-d-9-aef"
+  },
+  "/docs/create-scenarios/env-transitions-530": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-env-transitions-99-b-019"
+  },
+  "/docs/create-scenarios/errors-222": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-errors-344-aeb"
+  },
+  "/docs/create-scenarios/execution-d48": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-execution-759-0e2"
+  },
+  "/docs/create-scenarios/first-scenario-c43": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-first-scenario-3-d-1-f9d"
+  },
+  "/docs/create-scenarios/interactions-656": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-interactions-025-919"
+  },
+  "/docs/create-scenarios/multi-robot-75d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-multi-robot-150-57b"
+  },
+  "/docs/create-scenarios/overview-2ee": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-overview-198-cca"
+  },
+  "/docs/create-scenarios/perfect-traces-c2b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-perfect-traces-2-c-0-2b2"
+  },
+  "/docs/create-scenarios/procedural-tasks-a3b": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-procedural-tasksc-30-82d"
+  },
+  "/docs/create-scenarios/requests-f21": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-requestsa-7-a-c26"
+  },
+  "/docs/create-scenarios/serialization-4e6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-serializationb-29-cd4"
+  },
+  "/docs/create-scenarios/testing-071": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-create-scenarios-testing-2-bf-030"
+  },
+  "/docs/create-scenarios/traces-and-replay-bca": {
+    "__comp": "__comp---theme-doc-category-generated-index-page-14-e-640",
+    "__props": "__props---docs-create-scenarios-traces-and-replayfa-8-451"
+  },
+  "/docs/custom-agent/overview-1f9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-custom-agent-overview-299-0e1"
+  },
+  "/docs/customization/create-agent-0b0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-agent-654-420"
+  },
+  "/docs/customization/create-backends-9e1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-backends-835-e15"
+  },
+  "/docs/customization/create-planner-fb3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-customization-create-plannerc-5-a-347"
+  },
+  "/docs/getting-started/overview-3b4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-getting-started-overview-7-a-9-af0"
+  },
+  "/docs/installation-494": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-installation-54-f-842"
   },
   "/docs/intro-61d": {
-    "__comp": "17896441",
-    "content": "0e384e19"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-intro-0-e-3-be1"
+  },
+  "/docs/reference/overview-ada": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-reference-overview-226-ce1"
+  },
+  "/docs/reference/scenarios/errors-9a2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-reference-scenarios-errorsb-41-c92"
+  },
+  "/docs/reference/scenarios/perfect-traces-757": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-reference-scenarios-perfect-tracesdbb-32c"
+  },
+  "/docs/reference/scenarios/providers-a67": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-reference-scenarios-providers-83-f-fd6"
+  },
+  "/docs/reference/scenarios/skills-7ce": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-reference-scenarios-skillseb-0-e29"
   },
   "/docs/use-magma-bench/overview-dab": {
-    "__comp": "17896441",
-    "content": "4ba6f52e"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-bench-overview-4-ba-ea2"
   },
-  "/docs/use-magma-gen/deep-dive/create-stages-a17": {
-    "__comp": "17896441",
-    "content": "55776a80"
+  "/docs/use-magma-gen/deep-dive/create-stages-8aa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-deep-dive-create-stages-495-d89"
   },
-  "/docs/use-magma-gen/deep-dive/create-tasks-c16": {
-    "__comp": "17896441",
-    "content": "5355f317"
+  "/docs/use-magma-gen/deep-dive/create-tasks-cdf": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-deep-dive-create-tasksdc-7-a77"
   },
-  "/docs/use-magma-gen/deep-dive/create-tasks-definition-e55": {
-    "__comp": "17896441",
-    "content": "d457af7e"
+  "/docs/use-magma-gen/deep-dive/create-tasks-definition-9f5": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-deep-dive-create-tasks-definitione-6-c-206"
   },
-  "/docs/use-magma-gen/deep-dive/create-tools-dbb": {
-    "__comp": "17896441",
-    "content": "51b537a6"
+  "/docs/use-magma-gen/deep-dive/create-tools-411": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-deep-dive-create-tools-9-ec-95e"
   },
   "/docs/use-magma-gen/overview-c73": {
-    "__comp": "17896441",
-    "content": "abaefdd6"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-overviewaba-5d4"
   },
   "/docs/use-magma-gen/quickstart/installation-d98": {
-    "__comp": "17896441",
-    "content": "d4282e15"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-quickstart-installationd-42-39f"
   },
   "/docs/use-magma-gen/quickstart/launch-first-generation-0a7": {
-    "__comp": "17896441",
-    "content": "35eee973"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-quickstart-launch-first-generation-35-e-f91"
   },
-  "/docs/use-magma-gen/running-generation/cli-argument-1ae": {
-    "__comp": "17896441",
-    "content": "f8737d70"
+  "/docs/use-magma-gen/running-generation/cli-argument-b77": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-running-generation-cli-argument-859-9a4"
   },
-  "/docs/use-magma-gen/running-generation/export-edc": {
-    "__comp": "17896441",
-    "content": "3d7c5018"
+  "/docs/use-magma-gen/running-generation/export-af1": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-running-generation-exportb-84-305"
   },
-  "/docs/use-magma-gen/running-generation/key-systems-3e6": {
-    "__comp": "17896441",
-    "content": "039f0d53"
+  "/docs/use-magma-gen/running-generation/key-systems-040": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-running-generation-key-systemsc-12-698"
   },
-  "/docs/use-magma-gen/templates-to-use/constraints-template-10f": {
-    "__comp": "17896441",
-    "content": "69edd2dc"
+  "/docs/use-magma-gen/templates-to-use/constraints-template-10c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-templates-to-use-constraints-template-559-3bf"
   },
-  "/docs/use-magma-gen/templates-to-use/errors-template-f9a": {
-    "__comp": "17896441",
-    "content": "078a9ab6"
+  "/docs/use-magma-gen/templates-to-use/errors-template-039": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-templates-to-use-errors-templatecb-2-1e2"
   },
-  "/docs/use-magma-gen/templates-to-use/goals-template-804": {
-    "__comp": "17896441",
-    "content": "170ba864"
+  "/docs/use-magma-gen/templates-to-use/goals-template-a6b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-templates-to-use-goals-templatea-20-e68"
   },
-  "/docs/use-magma-gen/templates-to-use/requests-template-4eb": {
-    "__comp": "17896441",
-    "content": "47a48764"
+  "/docs/use-magma-gen/templates-to-use/requests-template-209": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-templates-to-use-requests-template-650-885"
   },
-  "/docs/use-magma-gen/templates-to-use/stages-template-2b7": {
-    "__comp": "17896441",
-    "content": "4d3cfff2"
+  "/docs/use-magma-gen/templates-to-use/stages-template-a94": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-templates-to-use-stages-template-688-ebc"
   },
-  "/docs/use-magma-gen/tutorials/articulated-object-eb2": {
-    "__comp": "17896441",
-    "content": "a45e09c8"
+  "/docs/use-magma-gen/tutorials/articulated-object-45e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-articulated-objectdbb-c9c"
   },
-  "/docs/use-magma-gen/tutorials/asking-request-2ea": {
-    "__comp": "17896441",
-    "content": "1c9c0fd4"
+  "/docs/use-magma-gen/tutorials/asking-request-1f3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-asking-request-5-b-4-aac"
   },
-  "/docs/use-magma-gen/tutorials/building-blocks/create-envs-055": {
-    "__comp": "17896441",
-    "content": "d8393378"
+  "/docs/use-magma-gen/tutorials/building-blocks/create-envs-fad": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-building-blocks-create-envsd-23-86b"
   },
-  "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light-953": {
-    "__comp": "17896441",
-    "content": "0aca0afc"
+  "/docs/use-magma-gen/tutorials/building-blocks/create-stages-light-8e6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-building-blocks-create-stages-light-9-c-7-e92"
   },
-  "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light-b5f": {
-    "__comp": "17896441",
-    "content": "6ed224fd"
+  "/docs/use-magma-gen/tutorials/building-blocks/create-tasks-light-1e8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-building-blocks-create-tasks-lightefc-020"
   },
-  "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light-c71": {
-    "__comp": "17896441",
-    "content": "7f27477a"
+  "/docs/use-magma-gen/tutorials/building-blocks/create-tools-light-936": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-building-blocks-create-tools-light-3-e-7-fbf"
   },
-  "/docs/use-magma-gen/tutorials/constraint-cycle-661": {
-    "__comp": "17896441",
-    "content": "bd0eb516"
+  "/docs/use-magma-gen/tutorials/constraint-cycle-770": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-constraint-cycle-6-cb-c05"
   },
-  "/docs/use-magma-gen/tutorials/create-cycle-07b": {
-    "__comp": "17896441",
-    "content": "a479c8f1"
+  "/docs/use-magma-gen/tutorials/create-cycle-0ee": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-create-cycle-6-cc-d63"
   },
-  "/docs/use-magma-gen/tutorials/create-scenarios-36c": {
-    "__comp": "17896441",
-    "content": "ac8f0be0"
+  "/docs/use-magma-gen/tutorials/create-scenarios-f55": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-create-scenarios-003-2c0"
   },
-  "/docs/use-magma-gen/tutorials/interuption-f54": {
-    "__comp": "17896441",
-    "content": "508eed46"
+  "/docs/use-magma-gen/tutorials/interuption-1ce": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-interuption-3-a-3-483"
   },
-  "/docs/use-magma-gen/tutorials/lack-information-c05": {
-    "__comp": "17896441",
-    "content": "06f1ec3f"
+  "/docs/use-magma-gen/tutorials/lack-information-268": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-lack-information-8-f-6-170"
   },
-  "/docs/use-magma-gen/tutorials/log-verification-9e5": {
-    "__comp": "17896441",
-    "content": "674a1427"
+  "/docs/use-magma-gen/tutorials/log-verification-ea7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-log-verification-084-87e"
   },
-  "/docs/use-magma-gen/tutorials/make-reusable-stages-32f": {
-    "__comp": "17896441",
-    "content": "aef6c831"
+  "/docs/use-magma-gen/tutorials/make-reusable-stages-701": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-make-reusable-stages-99-a-a80"
   },
-  "/docs/use-magma-gen/tutorials/modify-attributes-22c": {
-    "__comp": "17896441",
-    "content": "255b2ad2"
+  "/docs/use-magma-gen/tutorials/modify-attributes-e8f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-modify-attributes-1-d-1-bfa"
   },
-  "/docs/use-magma-gen/tutorials/multi-stages-3af": {
-    "__comp": "17896441",
-    "content": "8b8b8dfe"
+  "/docs/use-magma-gen/tutorials/multi-stages-0f7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-multi-stages-543-a51"
   },
-  "/docs/use-magma-gen/tutorials/task-randomization-19a": {
-    "__comp": "17896441",
-    "content": "060313e1"
+  "/docs/use-magma-gen/tutorials/task-randomization-5b6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-use-magma-gen-tutorials-task-randomization-951-af3"
   },
   "/-2e1": {
-    "__comp": "c4f5d8e4",
+    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---magma-bencha-74-531"
     },
-    "config": "5e9f5e1a"
+    "config": "config---magma-bench-5-e-9-578"
   }
 }

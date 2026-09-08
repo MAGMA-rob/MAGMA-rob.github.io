@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/constraint-cycle",
+  "title": "Introduce Persistent Rules",
+  "description": "A persistent rule has a construction-side effect and an interaction-side presentation. Keep those two parts consistent.",
+  "source": "@site/docs/create-scenarios/constraint-cycle.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/use-magma-gen/tutorials/constraint-cycle",
+  "permalink": "/docs/use-magma-gen/tutorials/constraint-cycle",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "sidebar_position": 8,
+    "slug": "/use-magma-gen/tutorials/constraint-cycle",
+    "title": "Introduce Persistent Rules"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Build a Multi-stage Interaction",
+    "permalink": "/docs/use-magma-gen/tutorials/multi-stages"
+  },
+  "next": {
+    "title": "Modify Task Attributes",
+    "permalink": "/docs/use-magma-gen/tutorials/modify-attributes"
+  }
+}

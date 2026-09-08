@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: What can you do with MAGMA-GEN
 description: MAGMA-GEN is a sophisticated system designed to enable AI agents to perform long-horizon manipulation tasks.
+slug: /use-magma-gen/overview
 ---
 
 
@@ -102,11 +103,11 @@ With MAGMA-GEN, you can:
 
 ## 🔗 Next Steps
 
-- Start with [Quickstart setup](./quickstart/installation.md)
-- Then [launch your first generation](./quickstart/launch-first-generation.md)
-- For the main authored workflow, start with [Create your custom scenario in 5 minutes](./tutorials/create-scenarios.md)
-- If you need more detail on one authoring step, use the [Scenario Building Blocks](./tutorials/building-blocks/create-envs.md)
-- Keep the [Generation CLI reference](./running-generation/cli-argument.md) nearby for runtime options
-- Explore [Key Systems](./running-generation/key-systems.md)
-- Understand [MAGMA concepts](../core-concepts/overview.md)
-- Dive into advanced pipelines in the *Deep Dive* section
+- Start with [Quickstart setup](quickstart/installation.md)
+- Then [launch your first generation](quickstart/launch-first-generation.md)
+- For the main authored workflow, start with [Create your first scenario](../create-scenarios/first-scenario/create-scenarios.md)
+- If you need more detail on one authoring step, use the [Scenario Building Blocks](../create-scenarios/building-blocks/create-envs.md)
+- Keep the [Generation CLI reference](../reference/generation-cli.md) nearby for runtime options
+- Explore [Key Systems](coaching-and-generation.md)
+- Understand [MAGMA concepts](../concepts/overview.md)
+- Look up implementation contracts in [Reference](../reference/overview.md)

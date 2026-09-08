@@ -1,0 +1,28 @@
+{
+  "id": "create-scenarios/asking-request",
+  "title": "Ask the Agent a Question",
+  "description": "Use a text-only stage when success depends on the agent answering a question.",
+  "source": "@site/docs/create-scenarios/asking-request.md",
+  "sourceDirName": "create-scenarios",
+  "slug": "/use-magma-gen/tutorials/asking-request",
+  "permalink": "/docs/use-magma-gen/tutorials/asking-request",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 20,
+  "frontMatter": {
+    "sidebar_position": 20,
+    "slug": "/use-magma-gen/tutorials/asking-request",
+    "title": "Ask the Agent a Question"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Make Components Reconstructible",
+    "permalink": "/docs/create-scenarios/serialization"
+  },
+  "next": {
+    "title": "Require Clarification from the Agent",
+    "permalink": "/docs/use-magma-gen/tutorials/lack-information"
+  }
+}

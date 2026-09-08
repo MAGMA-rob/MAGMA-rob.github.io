@@ -1,0 +1,27 @@
+{
+  "id": "reference/scenarios/errors",
+  "title": "Error Injection Contract",
+  "description": "BaseError is exported by magmacore.simulation.errors. Declare compatible classes in @registertool(errors=...), optionally wrapped in ToolErrorSupport(error_type, pre=True, post=True).",
+  "source": "@site/docs/reference/scenarios/errors.md",
+  "sourceDirName": "reference/scenarios",
+  "slug": "/reference/scenarios/errors",
+  "permalink": "/docs/reference/scenarios/errors",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "sidebar_position": 7,
+    "title": "Error Injection Contract"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Skill Contract",
+    "permalink": "/docs/reference/scenarios/skills"
+  },
+  "next": {
+    "title": "Perfect Trace Contract",
+    "permalink": "/docs/reference/scenarios/perfect-traces"
+  }
+}

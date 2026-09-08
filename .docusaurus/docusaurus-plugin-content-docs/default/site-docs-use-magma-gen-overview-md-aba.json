@@ -14,15 +14,16 @@
   "frontMatter": {
     "sidebar_position": 1,
     "title": "What can you do with MAGMA-GEN",
-    "description": "MAGMA-GEN is a sophisticated system designed to enable AI agents to perform long-horizon manipulation tasks."
+    "description": "MAGMA-GEN is a sophisticated system designed to enable AI agents to perform long-horizon manipulation tasks.",
+    "slug": "/use-magma-gen/overview"
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "MAGMA-GEN",
-    "permalink": "/docs/category/magma-gen"
+    "title": "Generate Data — MAGMA-GEN",
+    "permalink": "/docs/category/generate-data--magma-gen"
   },
   "next": {
-    "title": "Quickstart",
-    "permalink": "/docs/category/quickstart"
+    "title": "First Generation",
+    "permalink": "/docs/category/first-generation"
   }
 }
