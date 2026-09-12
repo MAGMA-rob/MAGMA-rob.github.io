@@ -45,7 +45,7 @@ class PressRequest(BaseRequest[PressParameters]):
 
 This definition samples each initially available button at most once. Removing it here restricts **future request sampling**; it does not ask the agent to remove a visible attribute or remove the physical button. See [attribute edits](../interactions/modify-attributes.md) for those distinct behaviors.
 
-Keep `sampling_weight` free of mutations and finite/non-negative. A zero weight makes a request ineligible. Sample random choices once in `sample_parameters`; do not resample in `create_stages` or a trace method.
+Keep `sampling_weight` free of mutations and finite/non-negative. A zero weight makes a request ineligible. Sample random choices once in `sample_parameters`; do not resample in `create_stages` or `apply_request`.
 
 ## 2. Declare a definition
 
@@ -70,7 +70,9 @@ class ButtonDefinition(TaskDefinition):
 
 When `starting_state` is omitted, the base definition copies attributes and memory from `SituationInit` into a new `TaskState`. Supply an explicit starting state when you need initial relations or properties.
 
-The task's initial visible vocabulary remains the three buttons. The generator's working state changes while constructing the sequence. This example has no rule system or perfect trace.
+The task's initial visible vocabulary remains the three buttons. The generator's working state changes while constructing the sequence. This example needs no rule system.
+
+Each stage used by the current GEN `TaskGenerator` must have an exact, non-`None` `target_tool_calls`. It uses those targets to budget task construction. The core permits some stages with only a maximum, but request construction testing alone does not check this generator requirement.
 
 ## 3. Register and inspect
 
@@ -94,6 +96,8 @@ Each constructed task should contain three `PressNamedButton` stages, in a sampl
 
 ## Extend the interaction
 
-Add [constraints](../interactions/constraint-cycle.md), [questions](../interactions/asking-request.md), [interruptions](../interactions/interruption.md), or [optional perfect traces](../traces-and-replay/perfect-traces.md). When a sequence contains repeated actions on already-completed physical state, explicitly define the needed reset or transition; symbolic construction does not reset the simulator.
+Add [constraints](../interactions/constraint-cycle.md), [questions](../interactions/asking-request.md), or [interruptions](../interactions/interruption.md). When a sequence contains repeated actions on already-completed physical state, explicitly define the needed reset or transition; symbolic construction does not reset the simulator.
+
+To use your scenario with offpolicy generation, you will need to define an extension; see [Offpolicy generation](../../use-magma-gen/offpolicy.md).
 
 **Reference:** [definition and request contracts](../../reference/scenarios/create-tasks-definition.md).

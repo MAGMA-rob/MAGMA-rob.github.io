@@ -54,7 +54,7 @@ Inspect:
 
 ### What the tool tester does not validate
 
-The current tester skips text-only stages. It does not validate answers, coaching, perfect traces, or a custom agent's reasoning. Its CLI accepts individual tool calls, not a full simultaneous multi-robot skill workflow.
+The current tester skips text-only stages. It does not validate answers, coaching, or a custom agent's reasoning. Its CLI accepts individual tool calls, not a full simultaneous multi-robot skill workflow.
 
 It applies explicit `state_updates`, but does not reproduce the actor-restoration protection of GEN/BENCH. The shared result context applies attribute-edit logs to its own attribute copy, but this tester does not synchronize that copy back into the attributes used for the next manual call. Do not use it to certify persistence of an edit across calls. The tester also does not reproduce full budget accounting. Check those behaviors in the consuming runtime before treating the scenario as validated.
 
@@ -77,10 +77,10 @@ The stage cap preserves request atomicity: a request that would exceed it is not
 
 ### What request testing does not validate
 
-The tester calls `sample_parameters`, `create_stages`, and `apply_request`, with optional state replay. It does not execute the simulation, call `build_perfect_trace`, materialize completion-answer stages, or perform all runtime stage validation. The mode name `trace` means a construction trace.
+The tester calls `sample_parameters`, `create_stages`, and `apply_request`, with optional state replay. It does not execute the simulation, materialize completion-answer stages, or perform all runtime stage validation. The mode name `trace` means a construction trace. The current GEN generator also requires an exact `target_tool_calls` on every generated stage; this tester does not enforce that requirement.
 
 It deep-copies requests before execution, whereas a consumer may reuse request instances. Keep sampled data in the parameter object rather than mutable request fields.
 
 ## Recommended development loop
 
-Inspect discovery, validate the preset's action path, inspect a few request chains, and then run a larger construction sample. Finally verify text responses, interruption/resumption, errors, and optional trace requirements in the runtime that will consume your scenario.
+Inspect discovery, validate the preset's action path, inspect a few request chains, and then run a larger construction sample. Finally verify text responses, interruption/resumption, errors, and reconstruction requirements in the runtime that will consume your scenario.

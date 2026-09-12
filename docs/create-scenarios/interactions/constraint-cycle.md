@@ -36,11 +36,7 @@ stage = ConstraintBaseStage("From now on, place the cup in zone_a.", reset_at_en
 
 This checks the response to the new rule. A later action stage should use the assignment to construct the expected goal. Acknowledging a rule and complying with it are separate checkpoints.
 
-In a request, sample the assignment once, construct the rule stage from it, and apply the corresponding constraint in `apply_request`. `BaseConstraintRequest` with `ConstraintParameters` implements that common split, but concrete requests still provide parameter sampling and any required trace behavior.
-
-## Render active rules
-
-When a consumer needs canonical rules, implement `RuleRenderer.rules(state)` and set `RuleRenderer_cls` on the definition. For this domain, render entries of `state.relations["object_area"]` into stable descriptions. Initial rendered rules must agree with any initial reactive task-state memory supplied to GEN.
+In a request, sample the assignment once, construct the rule stage from it, and apply the corresponding constraint in `apply_request`. `BaseConstraintRequest` with `ConstraintParameters` implements that common split, but concrete requests still provide parameter sampling.
 
 ## Attribute changes and replay
 

@@ -32,9 +32,9 @@ Agent → tool or skill calls → environment → results → stage verification
 | What is executed? | [Tools and skills](tools.md) |
 | How do several robots share resources? | [Execution and concurrency](execution.md) |
 | How are failures introduced? | [Errors and recovery](errors.md) |
-| What is a perfect trace? | [Perfect traces](perfect-traces.md) |
+| How are agent mistakes corrected? | [Coaching and corrections](coaching.md) |
 | What must an environment preserve? | [Environments](envs.md) |
 
-These abstractions support generation, evaluation, and trace-based data workflows. Each consumer determines which optional capabilities it requires. A scenario declaration alone does not make a custom task part of the official benchmark.
+These abstractions support generation and evaluation workflows. Each consumer determines which optional capabilities it requires. A scenario declaration alone does not make a custom task part of the official benchmark.
 
 To build something, start with [your own scenario package](../create-scenarios/first-scenario/create-scenarios.md). Package and service responsibilities are described in [architecture](architecture.md).

@@ -47,26 +47,6 @@ This snippet assembles stages, not a standalone preset. It needs the color-sorti
 
 The goal does not prescribe which cube to move first or prove that the agent moved it. Use [logs](log-verification.md) if execution order matters, and configure the initial scene if it must start unsolved.
 
-## Reuse the logic with another objective
-
-The same class can describe the opposite assignment:
-
-```python
-cross_color_stage = SortByColorStage(
-    n=2,
-    assignment={
-        "red_tray": {"blue": 1},
-        "blue_tray": {"red": 1},
-    },
-    instruction="Put the blue cube in the red tray and the red cube in the blue tray.",
-    last=False,
-)
-# This single checkpoint covers both placements rather than one incremental move.
-cross_color_stage.target_tool_calls = 6
-cross_color_stage.max_tool_calls = 8
-```
-
-The goal-construction logic remains identical. The assignment changes destinations, `n` changes the required progress, and the instruction communicates the desired behavior. The budget above allows for two placements using the stage's usual three-call-per-placement model; match it to your tools and initial arrangement.
 
 The class keeps `reset_at_end=False`, so correctly placed objects remain available for later checkpoints. Its string `"none"` is a class-specific convention that creates `EmptyInstruction()`; it is not a universal MAGMA instruction value. Your own reusable class can accept `Instruction` or `StageInput` directly.
 
@@ -97,7 +77,7 @@ print(inspect.getsource(SortByColorStage))
 
 For “all objects sorted,” one stage checking the full arrangement may suffice. Several thresholds let you inspect progress, introduce an interruption, or change the world between actions. A single stage covering all moves needs an appropriate budget; a per-placement limit does not fit an arbitrarily long task.
 
-An [entry transition](../execution/env-transitions.md) is useful when an external event changes the scene, such as a new delivery. Ordinary pick-and-place belongs in tools; repeated orchestration belongs in a [skill](../execution/create-cycle.md).
+An [entry transition](../execution/env-transitions.md) is useful when an external event changes the scene, such as a new delivery or simulate a human action. Ordinary pick-and-place belongs in tools; repeated orchestration belongs in a [skill](../execution/create-cycle.md).
 
 ## Apply the pattern in your package
 

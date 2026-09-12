@@ -27,18 +27,44 @@ This declares compatibility. It does not activate an error by itself. Concrete t
 
 ## Configure the stage
 
-Pass these error parameters to the stage constructor:
+Replace the initial tutorial's `PressNamedButton` class in `stages.py` with this configurable version. Existing calls keep working with errors disabled:
 
-```python
-from magma_core.simulation.stage import StageErrorParameters
+```python title="src/my_magma_scenarios/scenarios/buttons/stages.py"
+from magma_core.simulation.data_structures import StageInput, UserInstruction
+from magma_core.simulation.stage import BaseTaskStage, StageErrorParameters
+from magma_scenarios.scenarios.press_button.button_stages import Pressed
 from magma_scenarios.templates.errors import OneShotToolFailureError
 
-error_parameters = StageErrorParameters(
-    possible_errors=[OneShotToolFailureError(failure_probability=1.0, failure_count=1)],
-    min_active_errors=1,
-    max_active_errors=1,
-)
+
+class PressNamedButton(BaseTaskStage):
+    target_tool_calls = 1
+    max_tool_calls = 3
+
+    def __init__(self, button: str = "sw0", failure_count: int = 0) -> None:
+        if failure_count < 0:
+            raise ValueError("failure_count must be nonnegative")
+        self.button = button
+        self.failure_count = failure_count
+        errors = []
+        if failure_count:
+            errors.append(OneShotToolFailureError(
+                failure_probability=1.0, failure_count=failure_count,
+            ))
+        super().__init__(
+            goals=[Pressed(button)],
+            stage_goal_description=f"Press {button}.",
+            stage_input=StageInput(
+                UserInstruction(f"Please press {button}."),
+                flag_answer_to_user=False,
+            ),
+            error_parameters=StageErrorParameters(possible_errors=errors),
+        )
+
+    def _to_spec_arguments(self) -> dict:
+        return {"button": self.button, "failure_count": self.failure_count}
 ```
+
+In `FirstTask.__init__`, set `self.stages = [PressNamedButton(button, failure_count=1)]`. Keep the provided button tool, which already declares error support, or the custom `ButtonTools` with the decorator support added above. Run `magma-scenarios test-tools my_buttons.FirstTask --nb-env 1` and call the requested button twice.
 
 For this deterministic debugging setup, the first compatible call fails before execution, and its error state consumes one failure. A later compatible call can succeed. Reduce the probability for stochastic cases.
 

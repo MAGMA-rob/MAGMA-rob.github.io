@@ -10,7 +10,7 @@ This tutorial creates `my_buttons.FirstTask` in your own package. It reuses an i
 
 ## Prerequisites
 
-Use a Python environment with MAGMA 1.0 simulation dependencies and `magma_scenarios` installed. The interactive tool test needs a working display and the planner service used by the provided button tool. These are runtime prerequisites, not files to copy into your provider.
+Use a Python environment with MAGMA 2.0 simulation dependencies and `magma_scenarios` installed. The interactive tool test needs a working display and the planner service used by the provided button tool. These are runtime prerequisites, not files to copy into your provider.
 
 ## 1. Create the package
 
@@ -40,7 +40,7 @@ build-backend = "setuptools.build_meta"
 name = "my-magma-scenarios"
 version = "0.1.0"
 requires-python = ">=3.10"
-dependencies = ["magma_scenarios>=1.0.0,<2.0.0"]
+dependencies = ["magma_scenarios>=2.0.0,<3.0.0"]
 
 [project.entry-points."magma.scenarios"]
 my_buttons = "my_magma_scenarios.manifest:SCENARIO"

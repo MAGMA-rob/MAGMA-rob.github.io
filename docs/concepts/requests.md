@@ -18,9 +18,9 @@ Current TaskState
   → next TaskState
 ```
 
-The sampled parameters bind the request's instruction and objectives together. Reuse them when building a perfect trace; independent random choices could describe different tasks.
+The sampled parameters bind the request's instruction and objectives together. Use those same parameters when applying the symbolic change; independent random choices could describe different tasks.
 
-`create_stages` describes what will be executed. `apply_request` advances the symbolic construction state; it does not execute tools or establish that an agent succeeded.
+`TaskState` belongs to procedural task construction, not to the agent’s internal reasoning or memory and must not be exposed to agents. `create_stages` describes what will be executed. `apply_request` advances the symbolic construction state; it does not execute tools or establish that an agent succeeded.
 
 ## Constraints and replay
 

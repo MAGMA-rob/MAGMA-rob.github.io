@@ -28,20 +28,13 @@ inputs = [
 
 Bind these inputs to stages verifying `sw0`, the interrupting `sw2`, and the resumed `sw1`. The first instruction describes the work to remember; the final empty input continues using the preceding status. Use explicit goals and coherent physical reset settings for each stage.
 
-## What happens at runtime
+## Expected interaction
 
-```text
-An action completes a stage
-  → its final tool status is delivered first
-  → continuation of the old work is captured
-  → the direct instruction waiting at the next stage is published
-  → the agent handles the interruption
-  → suspended work can be resumed or cancelled
-```
+At this stage boundary, the preceding action's final status is delivered before the new instruction. The agent should handle `sw2`, then resume the original request with `sw1`. Keeping the first answer flag false leaves that original interaction unfinished; the final answer boundary closes it.
 
-The skill runtime detects a completed stage with a nonempty next instruction while the preceding answer flag is false. It temporarily hides that next instruction behind an empty input so the preceding status is processed first. The pending input and captured work are retained explicitly.
+Use the `ButtonCheckpoint` class from the [complete multi-stage example](multi-stages.md) to attach these instructions to physical and log checks. For the interrupting stage, set `linked_to_prev=True` in its `StageInput` if it belongs to the same evaluated interaction, and preserve that choice in its constructor arguments when serializing it.
 
-The captured continuation can be an agent answer proposing more work, or a saved skill tick. A skill may therefore remain running while its next action waits. Do not interpret the previous tool status as an instruction to discard the new input, or the new input as permission to silently lose the previous work.
+The runtime's continuation and skill bookkeeping is described in the [skill reference](../../reference/scenarios/skills.md). Scenario authors declare the input sequence, expected goals, and reset behavior; the agent remains responsible for choosing the actions that resume the work.
 
 ## Interruption is not cancellation
 

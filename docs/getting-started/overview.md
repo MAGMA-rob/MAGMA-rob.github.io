@@ -20,4 +20,4 @@ The existing example still depends on the reference agent setup, which is marked
 - [Generate and export training data](../use-magma-gen/overview.md).
 - [Create scenarios and tasks](../create-scenarios/overview.md).
 
-For custom model integration, continue to [Custom Agent](../custom-agent/overview.md).
+To run your own LLM, start with [full-history-agent](../custom-agent/use-full-history.md). For custom memory, model orchestration, coaching, or export, follow [Use your model or agent](../custom-agent/overview.md).

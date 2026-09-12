@@ -16,6 +16,10 @@ Optional constructor arguments include `starting_state`, `name`, `randomized_con
 
 `build_default_task()` copies shared configuration into `BaseTask`; the caller must assemble stages before running the task.
 
+## Rendering symbolic rules
+
+`RuleRenderer.rules(state)` returns a list of descriptions derived from the scenario's symbolic state. Set `RuleRenderer_cls` on a definition when a consumer requires this projection. It does not update agent memory or communicate an instruction; use stages to present rules to the agent.
+
 ## Requests: the generation-time building blocks
 
 `BaseRequest[ParametersT]` has this contract:
@@ -26,12 +30,11 @@ Optional constructor arguments include `starting_state`, `name`, `randomized_con
 | `sample_parameters(state)` | Sampled parameter value | Must implement |
 | `create_stages(state, parameters)` | `list[BaseTaskStage]` | Must implement |
 | `apply_request(state, parameters)` | Next `TaskState` | Returns state unchanged |
-| `build_perfect_trace(state, parameters)` | `PerfectTrace` or `None` | `None` |
 | `force_state_recompute()` | `bool` | `False` |
 
 Keep weights finite, nonnegative, and side-effect free. Use a typed immutable parameter object, sampling randomness once. Requests can be reused across calls; do not keep sampled choices in mutable request-instance fields.
 
-## The latent state: TaskState
+## The construction state: TaskState
 
 `TaskState` contains `attributes`, a memory dictionary, `relations`, `properties`, and `constraints_history`. Its initial relation keys include `object_type`, `type_area`, and `object_area`; these defaults are not a restriction to sorting domains.
 
@@ -41,7 +44,7 @@ Keep weights finite, nonnegative, and side-effect free. Use a typed immutable pa
 
 ## Execution order and consumer requirements
 
-Sample parameters → create stages → apply symbolic change → optional replay. A trace describes the same request against its pre-request state. Current GEN additionally materializes completion stages and, when requested, builds canonical TSR checkpoints from perfect traces. That mode requires traces; ordinary `BaseRequest` does not.
+Sample parameters → create stages → apply symbolic change → optional replay. Current GEN additionally materializes completion-answer stages and requires an exact, non-`None` `target_tool_calls` for every generated stage to budget construction. These are generator requirements, beyond the core request contract.
 
 `request_tester` implements construction inspection, not all generator transformations or physical validation. Read [tester limits](../../create-scenarios/first-scenario/testing.md).
 

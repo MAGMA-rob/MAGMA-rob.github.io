@@ -17,7 +17,7 @@ title: Request Building Blocks
 | `AttributesModificationParameters` | Copied attribute snapshot |
 | `BaseAttributesModifRequest` | Apply an attribute snapshot and request constraint replay |
 
-`BaseConstraintRequest.build_perfect_trace` raises `NotImplementedError` unless specialized. It can be used in ordinary construction without calling that method; trace-consuming workflows need a concrete implementation.
+`BaseConstraintRequest` creates a `ConstraintBaseStage` from the sampled instruction and applies the sampled constraints to `TaskState`. Concrete subclasses provide parameter sampling. Its `reset_at_end` setting defaults to `True`; override it when the next interaction needs the resulting physical state.
 
 The `magma_scenarios.templates.requests` package exports relation-assignment request bases (`GiveRelationAssignmentRequest`, `GiveObjectAssignmentRequest`, `GiveObjectCategoryRequest`, `GiveCategoryAssignmentRequest`) and list-attribute bases (`AddValueToListRequest`, `RemoveValueToListRequest`). These are reusable building blocks, not a guarantee that every exported class is directly runnable without specialization.
 

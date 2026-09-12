@@ -1,88 +1,38 @@
 ---
 sidebar_position: 12
+title: Packages and Services
 ---
 
 # Packages and Services
 
-## 🐋 Docker
+MAGMA separates scenario logic, runtime orchestration, and agent implementation. Each can evolve behind its documented contract.
 
-**MAGMA** officially supports [docker](https://www.docker.com/) for all of its packages. If you want to use docker for a specific package, you can freely deploy into a container. Dockerfile and launching scripts are provided. 
+| Package or service | Responsibility |
+| --- | --- |
+| `magma_core` | Shared contracts, state structures, and optional simulation/interface support |
+| `magma_scenarios` | Environments, tools, task presets, requests, and scenario skills |
+| `magma_gen` | Generate and evaluate branching interactions, coordinate coaching, record graphs |
+| `magma_bench` | Run benchmark episodes against an agent and collect results |
+| Agent package | Model access, prompts, decisions, memory, optional coaching and dataset rendering |
+| Motion planner | Compute trajectories needed by physical tools |
+| Configured model/human backends | User simulation, validation, or coaching assistance according to their assigned role |
 
-We recommend to use docker for python server such for package `magma_agent` or `magma_mplib` which starts python server, exposes the port and ensure an isolate excution. But it's not mandatory and everything could work in a single conda environment.
+## Inference crosses a service boundary
 
-## 📦 Repositories
+GEN and BENCH call the same [agent HTTP API](../reference/integrations/agent-http.md). They need a compatible reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
 
-MAGMA is divided into multiples repository. Repositories names are `magma-xxx`. They contains generally one python package `magma_xxx` with a corresponding names. For `magma-ros2-*`, they contains multiple ROS2 packages named `magma_*`.
+One agent package can contain several models. Scenario tools execute the proposed actions. Model resources can remain loaded, but interaction memory is passed explicitly so episodes and branches remain independent.
 
-Here is a global presentation of all packages and their dependencies.
+## Coaching and export
 
-```
-+-------------+   +-------------+
-| magma_gen   |   | magma_bench |
-+-------------+   +-------------+
-        \           /
-         \         /
-          v       v
-        +-----------------+
-        | magma_scenarios |
-        +-----------------+
-              |
-              v
-        +------------+
-        | magma_core |
-        +------------+
-```
+GEN provides coaching configuration and context; the agent owns its repair strategy. See [coaching](coaching.md).
 
-### Generation and Evaluation Packages
+Export is a local Python integration. Install the agent exporter in the export environment and discover it through `magma.export.gen` or the separate offpolicy group. No export HTTP server is needed. An inference-only HTTP implementation can use any language; implementing a local exporter is an additional integration.
 
-| Package           | Role                                                   | Internal Dependencies                  | Principal External Dependencies | Runtime Plugin Dependencies |
-|------------------|--------------------------------------------------------|----------------------------------------|----------------------------------|------------------------------|
-| `magma_core`      | Core abstractions, task logic, shared utilities        | —                                      | `torch`, `mani_skill`, `numpy`   | —                            |
-| `magma_scenarios` | Scenario definitions and task environments             | `magma_core`                          | —                                | —                            |
-| `magma_agent`     | Default policy / agent server implementation          | —                                      | `torch`                          | Must expose **Agent API**    |
-| `magma_planner`   | Default motion planning backend implementation        | —                                      | `torch`, `mplib`                 | Must expose **Planner API**  |
-| `magma_gen`       | Data generation and orchestration layer               | `magma_core`, `magma_scenarios`       | —                                | Agent API–compatible server, Planner API–compatible backend |
-| `magma_bench`     | Running the benchmark to evaluate your agent          | `magma_core`, `magma_scenarios`       | —                                | Planner API–compatible backend |
+## Deploy together or separately
 
-#### 1. Hard Dependencies (Import-Level)
+The agent, simulator, and planner can run in separate environments or containers. Configure addresses reachable from each caller; `localhost` identifies the current process's host or container. HTTPS may terminate at a reverse proxy. Model loading settings belong to the agent, simulation settings to the consumer, and coaching provider settings to GEN.
 
-These are direct code-level dependencies required for the package to run.  
-They must be installed because the package imports them directly.
+The minimal custom HTTP example uses the core protocol without importing ManiSkill. Simulation dependencies are needed where environments/tools execute, not inherently in every agent process.
 
-Examples:
-- `magma_scenarios` depends on `magma_core`
-- `magma_core` depends on `torch`, `mani_skill`, and `numpy`
-
-#### 2. Runtime Plugin Dependencies (Interface-Level)
-
-Some packages depend on services that implement a specific API contract,  
-but not on a specific implementation.
-
-Typically, `magma_gen` requires:
-  - An **Agent backend** implementing the *Agent API*
-  - A **Planner backend** implementing the *Planner API*
-
-Default implementations are provided in:
-- `magma_agent` for *AGENT API*
-- `magma_planner` for *Planner API*
-
-However, these components are replaceable. Any custom backend can be used as long as it exposes the same API endpoints.
-
-This design enables:
-- Custom agent servers
-- Alternative motion planners
-- Distributed deployments
-- Minimal or modular configurations
-
-:::info Integrations
-Learn more on that in the [integration reference](../reference/overview.md).
-:::
-
-### Deployment Package
-
-There are additionals repositories that allows to deloy MAGMA-robtyle application on custom robot within ROS2 framework.
-
- Package           | Role                                                   |
-|------------------|--------------------------------------------------------|
-| `magma_ros2_core`      | Core abstractions, task logic, TTS, STT        |
-| `magma_ros2_apps` | Registry of application definition (Robot Interface)          |
+See the [integration reference](../reference/overview.md) for model backends and motion planners.

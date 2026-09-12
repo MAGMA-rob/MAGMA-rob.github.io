@@ -30,7 +30,7 @@ self.initialization_parameters.env_options = {"use_visual_assets": False}
 
 Only use options supported by your chosen environment. For multiple robots, configure `agent_names` in `InitializationParameters` and keep their order aligned with the environment.
 
-`SituationInit.attributes` supplies initial vocabulary; `all_task_attributes` supplies future possible values when vocabulary changes. Memory is a dictionary, for example `memory={"memory_list": ["Keep fragile items separate."]}` when the consuming agent uses that representation.
+`SituationInit.attributes` supplies initial vocabulary; `all_task_attributes` supplies future possible values when vocabulary changes. Initial memory is a dictionary. For example, the provided history agents accept `memory={"memory_list": ["Keep fragile items separate."]}` for initial rules. This is a consumer convention, not a universal scenario memory schema. The agent package manages its subsequent memory and history.
 
 ## Register and test
 

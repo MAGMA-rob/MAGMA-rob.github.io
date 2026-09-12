@@ -12,7 +12,31 @@ The [first package tutorial](../first-scenario/create-scenarios.md#2-write-a-sta
 
 Supply `goals`, `stage_goal_description`, and `StageInput`. A goal checks an observation; it does not choose or execute an action. The stage may also verify logs when the method or order matters.
 
-Set `target_tool_calls` and `max_tool_calls` **before** calling the base constructor. Both names must be defined, even when one value is `None`. For a known one-call action, a target of one and maximum of three permits retries without redefining success.
+Set `target_tool_calls` and `max_tool_calls` **before** calling the base constructor. Both names must be defined, even when one value is `None`. They cannot both be `None`. For procedural tasks consumed by the current GEN generator, provide an exact target. For a known one-call action, a target of one and maximum of three permits retries without redefining success.
+
+## Write your own physical goal
+
+Create `goals.py` beside your button stage. This goal uses the provided environment's batched button observation: the last value is joint displacement, and a sufficiently depressed joint counts as pressed.
+
+```python title="src/my_magma_scenarios/scenarios/buttons/goals.py"
+import torch
+from magma_core.simulation.goals import BaseGoal
+from magma_scenarios.scenarios.press_button.helper import BTN_STROKE
+
+
+class ButtonIsPressed(BaseGoal):
+    def __init__(self, button: str) -> None:
+        super().__init__()
+        self.button = button
+
+    def verify(self, obs: dict) -> torch.Tensor:
+        displacement = obs["extra"][self.button][:, -1]
+        return (displacement < -BTN_STROKE / 2).to(torch.int32)
+```
+
+In `stages.py`, replace the `Pressed` import with `from .goals import ButtonIsPressed`, then use `goals=[ButtonIsPressed(button)]`. Run the original preset with `test-tools`.
+
+`verify` returns one value per supplied environment, with shape `(num_envs,)`: `1` means satisfied, `0` means pending, and `-1` means failure. This goal returns only `0` or `1`; add an explicit failure condition when the domain requires one. Keep verification free of world mutations and use the observation batch supplied by the executor. The default goal serializer can recover `button` because the constructor argument and instance attribute have the same name.
 
 ## Choose stage behavior
 
