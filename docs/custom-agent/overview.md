@@ -1,28 +1,35 @@
 ---
 sidebar_position: 1
+title: Use Your Model or Agent
 ---
 
-# Custom Agent
+# Use Your Model or Agent
 
-Choose the integration path that matches the system you want to run in MAGMA-GEN or evaluate with MAGMA-BENCH.
+An agent turns MAGMA's instructions, tool descriptions, task attributes, and memory into a response or tool calls. Its package owns prompt construction, model access, decision making, and memory updates. MAGMA-GEN and MAGMA-BENCH execute the proposed actions and evaluate their effects.
 
-## A single LLM
+## Do I need to create a package?
 
-Use this path when one model receives the interaction context and produces the next response or tool call. The integration guide will cover model access, message formatting, tool schemas, and response handling.
+| Your goal | Start with |
+| --- | --- |
+| Run one compatible LLM with the full interaction history | [Use full-history-agent](use-full-history.md) |
+| Change the prompt while retaining the provided decision and memory logic | [Adapt the chat template](model-prompts.md) |
+| Use a different model API, output parser, or inference engine | [Create an agent package](create-agent.md), then replace its decision function |
+| Add custom memory, planning, routing, or several models | [Create an agent package](create-agent.md), then [manage memory and components](memory-and-models.md) |
 
-## A system with multiple models or components
+Start with full-history to obtain a first result. You do not need to implement coaching or dataset export to run inference. A model must support the selected adapter's input and output conventions; a template alone cannot make every checkpoint compatible.
 
-Use this path when your agent coordinates several LLMs, memory, planning, routing, or other components. Treat the whole system as the agent being integrated. The guide will cover its external interaction contract, state across steps, and reset between episodes.
+One package represents the whole agent, even if it contains several models. The number of internal models is independent of the number of robots controlled or environments processed in parallel. The provided history-summarized implementation is a worked example of multi-model design in the advanced memory guide.
 
-These two paths describe the agent's internal organization. They are separate from the number of robots in a scenario or the number of environments running in parallel.
+## Follow the integration path
 
-:::info Documentation status
-The concrete MAGMA 1.0 integration contracts and runnable examples for both paths still need to be documented in [Use your own agent](create-agent.md).
-:::
+1. [Run a first LLM](use-full-history.md) and inspect its response.
+2. [Adapt its prompt](model-prompts.md) if your checkpoint needs another template.
+3. [Connect it to GEN and BENCH](connect.md).
+4. If you need different behavior, [create your package](create-agent.md) and [define its state](memory-and-models.md).
+5. Add your agent's [coaching logic](coaching.md) and [dataset export](export.md) when needed.
 
-## Related integrations
+## Keep the responsibilities clear
 
-A coaching model backend and a robot motion planner have different roles from the agent being evaluated. Their extension guides belong in the reference:
+A scenario defines the world, tools, instructions, and success conditions. An agent chooses how to solve those instructions. The motion planner executes physical trajectories; a coaching backend supplies assistance when requested. They are separate integrations.
 
-- [Model backends](../reference/integrations/create-backends.md).
-- [Motion planners](../reference/integrations/create-planner.md).
+Read [packages and services](../concepts/architecture.md) for deployment, [coaching concepts](../concepts/coaching.md) for the correction lifecycle, and the [agent HTTP reference](../reference/integrations/agent-http.md) for exact fields.

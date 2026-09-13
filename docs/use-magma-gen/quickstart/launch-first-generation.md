@@ -1,61 +1,39 @@
 ---
 sidebar_position: 2
 slug: /use-magma-gen/quickstart/launch-first-generation
+title: Run Configuration and Services
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# Run Configuration and Services
 
-# Launch the first generation
+Using GEN requires a configured scenario, a compatible running agent, simulation dependencies, and any planner/backend services needed by the task. These components can run in different processes or containers; their configured addresses must be reachable from their callers.
 
-You need to have **three** terminal open and have **defined your config** as explained in [**Installation**](installation.md#how-to-set-your-own-config).
+For one LLM, use [full-history-agent](../../custom-agent/use-full-history.md). Its model settings belong to the agent process. GEN's configuration covers simulation, service addresses, exploration and coaching. You do not need to edit generator code or implement a new agent to run a compatible checkpoint.
 
-## 1. Get a default agent
+## Select the task and collection settings
 
-By default we provide a reference agent setup to use with `magma-agent` service. *soon*
+A typical command using a working `config.yaml` and an installed preset is:
 
-We recommend creating a folder `models` in `magma-agent/`, and unzip the model inside.
-
-If you have your own model, check [**How to use your own agent**](../../custom-agent/create-agent.md).
-
-## 2. Launching Docker servers
-
-<Tabs>
-<TabItem value="hybrid" label="Hybrid Installation">
-
-    Launch the two servers services with their dedicated script in `magma-agent/scripts` and `magma-planner-mplib/scripts`.
-
-    > You will need to use the `-c <model_path>` option from the `magma_agent` launching script to specifiy the path to the model **folder**. ```bash scripts/launch_agent.bash -g 0 -p 8888 -c models/rss_demos_model/```
-
-    Then, in the last terminal activate your conda env. This is your working terminal.
-
-</TabItem> <TabItem value="conda" label="Conda Only">
-
-    Activate your conda env in all terminals, then start each server with `python3 -m magma_agent --commander-id <model_path>` and `python3 -m magma_mplib`.
-
-    Finally, your last terminal is your working terminal.
-
-</TabItem> <TabItem value="docker" label="Docker Only">
-
-    Launch the two servers services with their dedicated script in `magma-agent/scripts` and `magma-planner-mplib/scripts`.
-
-    > You will need to use the `-c <model_path>` option from the `magma_agent` launching script to specifiy the path to the model **folder**. ```bash scripts/launch_agent.bash -g 0 -p 8888 -c models/rss_demos_model/```
-
-    Launch the magma container using the [installation guide](../../getting-started/installation.md) (or your own). This is your working terminal.
-</TabItem> 
-</Tabs>
-
-## 3. Start the generation
-
-Inside your working terminal:
 ```bash
-python3 -m magma_gen.launch test --preset warehouse_sorting.NoManuPreset
+magma-gen run my_run --preset press_button.ButtonPressPreset1 \
+  --config-path ./config.yaml --magma-agent-address http://localhost:8888 \
+  --nb-env 1 --nb-branch 1 --no-coaching
 ```
 
-It will create a folder named `test` in the `output` folder. At the end of the generation procedure it will save all .json containing interaction data and a config.json.
+This illustrates the inputs to a run, not a complete installation recipe. The button tools need their planner. Use a fresh run name: the launcher can clear existing contents in the target output directory. Run data is saved under `output/my_run`.
 
-## Related Pages
+`--preset` selects an explicit task; `--definition` selects a request-based task definition. Branching changes exploration, environment count changes simulation concurrency, and `--no-coaching` disables assistance. See [the collection process](../generation-process.md) for their effects and [CLI/configuration reference](../../reference/generation-cli.md) for exact options.
 
-- For all launch options, see [MAGMA-GEN Generation CLI](../../reference/generation-cli.md)
-- To understand what the pipeline is doing, see [Key Ideas](../coaching-and-generation.md)
-- To convert runs into datasets, see [How to export data from MAGMA-GEN](../export.md)
+## Observe generation and preserve the run
+
+Start the [viewer](../viewer.md) separately before generation if you want live graph inspection. An unavailable viewer does not prevent collection. The simulation window enabled by `--gui` is a different interface.
+
+During the run, inspect progress, failures and pending corrections. Completion of generation means the run has stopped collecting and saved its graph; it is not a guarantee that all branches succeeded or that the output contains enough selected training examples.
+
+Keep the run directory, its `config.json`, graph files and `_coaching_logs/` where present. [Export](../export.md) reads the saved graph and produces datasets afterward. The agent exporter must be installed in that export environment, even if the inference server ran elsewhere.
+
+## Enable coaching when it is meaningful
+
+GEN uses the agent's advertised correction capabilities. Configure the top-level `coaching` section and its providers/backends, then collect with coaching enabled. A connected provider cannot supply correction behavior absent from the agent.
+
+Read [diagnose, propose, validate](../coaching-and-generation.md) to interpret proposals and tested outcomes. The exact session and repair interfaces belong to agent development, not to operating GEN.

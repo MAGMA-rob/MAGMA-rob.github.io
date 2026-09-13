@@ -16,7 +16,7 @@ Your code lives in **your own Python package**. Install `magma_core[simulation]`
 
 Your scenario defines the world, available tools, instructions, success and failure conditions, and optional procedural variations. GEN and BENCH execute and evaluate these interactions according to their respective modes. The agent package owns decision making and its internal memory and history management.
 
-`TaskState` is the symbolic state used to construct tasks. It does not represent the agent's reasoning or internal memory. Scenario skills can orchestrate domain tools; the agent decides when to call the exposed capabilities. Implementing an agent belongs in a separate guide.
+Scenario skills can orchestrate domain tools; the agent decides when to call the exposed capabilities. Implementing an agent belongs in a separate guide.
 
 ## Start with one working task
 

@@ -1,150 +1,87 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 slug: /use-magma-gen/running-generation/key-systems
+title: Coaching — Diagnose, Propose, Validate
 ---
 
-# Key Ideas
+# Coaching — Diagnose, Propose, Validate
 
-Learn more about how the generation works and the different components.
+Coaching attempts to turn an observed difficulty into a tested alternative continuation. GEN gathers execution evidence and coordinates the intervention; the agent owns the logic that repairs its decisions or internal state. The resulting proposal must pass through execution and task checks before it can count as a successful continuation.
 
-## Core Concept
+## Why a failure needs diagnosis
 
-Magma generates training data through **on-policy, offline rollouts** that simulate an agent playing in the environment. This approach minimizes compounding errors and long-horizon drift by keeping the agent close to the training distribution while collecting both positive and negative trajectories.
+A failed action does not necessarily identify the decision that caused the failure. The agent may have used a wrong argument, missed an earlier prerequisite, retained a wrong assumption, or encountered a declared environment error. Replacing only the last action can miss the actual source of the problem. Conversely, a valid grasp attempt may fail because of execution uncertainty: useful supervision may teach recovery from the resulting state, without treating the original choice as a decision error.
 
-:::tip
-For components concepts: Tasks, Tool API, Envs... Read [Core Concepts](../concepts/overview.md).
-:::
+The useful supervision is therefore more than “this answer is wrong.” It connects the context in which a decision was made, a proposed correction, and its observed consequence. For the scientific treatment of ambiguous failures and recovery supervision, see the [MAGMA-GEN paper](https://openreview.net/pdf?id=r7ZN8cPEcj). This page explains how to interpret that process in the current software.
 
-## Key Benefits
+## Diagnose: select a decision worth revisiting
 
-### Self-correction Data
+GEN recognizes correction opportunities such as a failed stage, absence of useful action, exhausted budget, invalid response format, or a completed but suboptimal trajectory. Requests are constrained by routing rules, available agent capabilities, and collection budgets; not every unsuccessful tool call causes coaching.
 
-The most valuable data generated are **positive outcomes emerging from negative actions**. When an agent makes a mistake but recovers successfully, this creates gold-standard examples of self-correction that are absent from human annotations and crucial for training robust agents.
+For trajectory-level failure diagnosis, GEN supplies the stage objective, relevant decisions and execution feedback, plus available error descriptions and hints. Diagnosis identifies a candidate root-cause decision and explains why revisiting it may help. In the current implementation, a trajectory with only one diagnosable decision can use a deterministic diagnosis without a model call. Format repair and text-only rewriting also have their own paths; the three conceptual phases do not require three LLM calls every time.
 
-### Scaling
+The paper calls the coach *privileged*: task-generation information can reveal the active objective and rules more directly than the agent's partial interaction history does. In v2, GEN assembles the objective, trajectory evidence, applicable error descriptions and available hints for diagnosis. This generation-time assistance is separate from the ordinary policy input. An assisted branch should not be interpreted as an unassisted benchmark result.
 
-With MAGMA-GEN, you are able to generate 5000+ data in 1 hours, all of them are viable, robust and unique.
+Suboptimal diagnosis asks whether a defensible inefficiency can be identified. It may decline to propose a repair. An explanation from a judge or coach remains a hypothesis about the behavior, not execution evidence of improvement.
 
-:::info
-For more theorical details, see the [Publications](/publications) page.
-:::
+## Propose: let the agent repair its own behavior
 
+GEN passes the selected context and permitted restart points to the agent's specialized coaching service. The agent may propose an alternative action, repair an internal summary or plan, or use another correction strategy appropriate to its architecture.
 
-## Five-Pillar Architecture
+The proposal selects an allowed point and carries the correction information needed by that agent. GEN sends that information back through the normal agent response endpoint. The agent produces a decision and consistent updated memory before physical execution resumes. This prevents GEN from editing an action while leaving the agent's internal state inconsistent with it.
 
-### 1. **Dynamic Environment Management**
-- **Parallel Execution**: Multiple environments run simultaneously with dynamic allocation
-- **State Preservation**: Environment states are saved and restored between tool executions
-- **Efficient Resource Use**: Free environments are immediately reassigned to new tasks
-- **Multi-Agent Support**: Handles complex scenarios with multiple interacting agents
-- **Autonomous Randomization**: Interface Randomization without coding
+Full-history currently supports replacement decisions and text responses. An agent with other components must implement its own repair strategy and advertise what it supports. Configuration alone does not add those capabilities. The [coaching concepts](../concepts/coaching.md) describe these responsibilities; the [custom-agent guide](../custom-agent/coaching.md) is only needed when implementing a new strategy.
 
-### 2. **Dual-Agent System**
-- **Commander Agent**: Makes high-level decisions (what action to take)
-- **Memorizer Agent**: Manages context and memory updates
-- **Coordinated Execution**: Both agents work together to maintain coherent task progression
-- **Branching Strategy**: Multiple execution paths explored in parallel (configurable branching factor)
+## Counterfactual re-execution
 
-:::info
-The pipeline support also single agent architecture.
-:::
+A replacement asks: **what happens if the agent makes a different decision from this saved point?** GEN preserves the original branch and creates an alternative input at the selected point. The associated simulator state and execution context are reused, the repaired input passes through the agent, and the new decision is executed and evaluated.
 
-### 3. **Intelligent Coaching**
-- **External Model Integration**: Uses separate LLM backends for coaching.
-- **Asynchronous Processing**: Coaching requests are queued and processed independently
-- **Error Recovery**: Provides guidance when agents make mistakes
-- **Context-Aware**: Coaching adapts based on current task state and agent performance
+```text
+Saved situation S
+  ├─ original decision → observed failure
+  └─ diagnosis + proposed intervention
+       → agent produces corrected decision and memory
+       → execution from S → new feedback and task checks
+```
 
-### 4. **Simulated User**
-- **External Model Integration**: Uses separate LLM backends for user simulation
-- **Semantic Randomization**: AUtonomous randomization of instruction to ensure more variety in language.
-- **Task Interuption**: Provide system to simulate task interuption and continuation.
-- **Runtime Instruction Generation**: Generate instruction from template at runtime.
+For example, an agent attempts to place an object it has not picked up. A diagnosis may select that decision; the agent proposes picking up the object first. Re-execution tests this alternative from the saved situation. If picking succeeds, the continuation still has to place the object and satisfy the task's checks. The coach's assertion that the repair is correct is insufficient.
 
-### 5. **Curriculum Task Building**
-- **Task Generator**: Possibility to define Task Definition and generate unbound set of tasks from it.
-- **Preset Parametrization**: Possibility to parametrize presets to change at launch the task objectives.
-- **Difficulty-Aware**: Autonomous curriculum system adapting task difficulty to ensure good dataset distribution.
-- *open sourced in summer 2026*
+The current failure path can also offer a recovery point after suitable invalid tool-call feedback. That asks a different question: **what should the agent do now that it has observed this failure?** It retains the feedback instead of replacing the earlier decision. The allowed anchors determine which intervention is being tested; a recovery is not interchangeable with a rewind to an earlier state.
 
-## Generation Workflow
+Section 4.3 of the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) describes matched comparisons, including holding sampled stage perturbations fixed across sibling branches. In the current runtime, a saved continuation includes environment state, logs, attributes, call accounting and active error state; these are restored/copied for execution from the selected source. Whether every source of randomness is controlled also depends on the scenario and tools. Do not equate snapshot restoration alone with a guarantee of identical random outcomes.
 
-### Phase 1: Task Initialization
-1. **Task Loading**: Dynamic import of task definitions or presets
-2. **Environment Setup**: ManiSkill environment initialization with state management
-3. **Agent Configuration**: Commander and memorizer agents are configured
-4. **Graph Initialization**: Decision tree structure is prepared for data collection
+This is a physical/runtime continuation from saved state, not merely a rewritten transcript or a language-model prediction of success. Its conclusion is limited to the tested context and checks. It does not guarantee identical future randomness or prove that the chosen diagnosis is the only possible cause.
 
-### Phase 2: Interactive Rollout
-1. **Agent Decision**: Commander agent proposes actions based on current situation
-2. **Memory Update**: Memorizer agent updates context and memory state
-3. **Environment Execution**: Actions are executed in parallel environments
-4. **State Verification**: Task completion is verified using goal-based criteria
-5. **Branch Management**: Successful branches continue, failed branches are coached or terminated
+## Validate: observe the revised continuation
 
-### Phase 3: Data Collection
-1. **Trajectory Recording**: Complete action sequences are logged
-2. **Outcome Classification**: Each trajectory is labeled as success/failure
-3. **Memory State Tracking**: Context evolution is preserved throughout
-4. **Error Analysis**: Mistakes and recoveries are identified for training value
+GEN routes the repaired decision through its usual execution and validation machinery: tool results, physical/log conditions, applicable text validation, and call budgets. The repaired branch may succeed, remain ongoing, fail again, or be terminated by exploration limits.
 
-## Technical Implementation
+Keep these three outcomes distinct:
 
-### Environment Orchestration
+| Outcome | Meaning |
+| --- | --- |
+| Proposal returned as corrected | The agent produced a repair proposal |
+| Reinjected candidate produced/executed | The intervention became a real candidate continuation |
+| Successful evaluated continuation | The relevant task checks were satisfied after execution |
 
-To take advantage of the high parrallelism of Maniskill, we develop a dynamic allocation system. When we receive multiple answer from agent, we attribute a free environment and execute inside the tool call. When a tool is ended, we save the current state and free the env for a future answer. This allows to stay efficient by executing multiple different tool call in different environment, allowing to handle different outcomes and different task progression without slowing the growth of the tree.
+A `coached` marker identifies origin, not success. Inspect the candidate's status and descendants. A successful local correction also does not certify all later stages of the task. The graph keeps correction source/attempt information so successful, failed, and unresolved interventions remain distinguishable.
 
-### Agent Coordination
+## From validation to supervision
 
-Agent generate multiple answer from each state leading to different trajectories that we explore through a tree of trajectories. Leading to the possibility to build Preference Dataset from MAGMA-GEN, as well as classic positive dataset for Supervised Fine Tuning. The agent run inside a **magma-agent** compatible service. The default provided implementation, relies on the *transformers* librairy from Hugging Face. It allows to batch the state and recolt multiple answer in parrallel. 
+After the local intervention, the current agent continues the branch. A correction is useful because of the downstream progress it enables, not because its origin is coaching. Policy-sampled candidates and coach-proposed candidates are compared using observed continuations. A failed context can therefore contribute a successful recovery target, while an unsupported coach suggestion need not become a training label.
 
-### System Integration
+Section 4.4 of the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) formalizes selection by downstream stage success, followed by supervised training. The [v2 export command](export.md) implements its current selection policy over saved descendant scores. The graph retains the explored evidence; the training dataset is a selected product of that evidence.
 
-**Coaching** and **User Simulation** are handled by an external model. This model use one of the **backend** that you define in the config (see [Setup](quickstart/installation.md#backends)). It uses a payload system, where each request is put in a queue and treated asynchronously. To learn more about how to define your own backend or client system, check [Create your own backend](../reference/integrations/create-backends.md).
+## Configure assistance and read its logs
 
-### Dynamic Task building
+Coaching settings belong to GEN's top-level `coaching` configuration and its backend definitions. GEN supplies effective settings to supported agent sessions. Providers can be LLM-based or human; their network addresses must be reachable from the process using them. The graph viewer is separate from the human coaching interface.
 
-While the curriculum building is not yet avalaible in the open-source version of **MAGMA-GEN**, we release a sampling task generator capable of building task from a **Task Definiton**.
+Use `--no-coaching` to collect without coaching. When coaching is enabled, GEN reads the agent's advertised kinds and generic text-resume support. Unsupported corrections are unavailable even if a provider is configured.
 
-## Configuration Options
+Diagnostics and remote coaching logs are recorded under the run's `_coaching_logs/` directory. Use them alongside the [graph viewer](viewer.md) to follow a diagnosis, its proposal, and the actual continuation. Optional successful-coaching example registration/reuse can provide cases to later diagnosis; these settings are separate from exporting a training dataset and do not train the agent during the run.
 
-### Generation Modes
-- **Single Agent**: Unified decision-making for simpler tasks
-- **Dual Agent**: Internal dual-agent classes still exist, but the current `magma_gen.launch` entrypoint rejects `mode: dual`. Treat dual mode as legacy/unsupported for new generation runs.
+## Keep the other services distinct
 
-### Performance Tuning
-- **Branch Count**: Number of parallel execution paths (typically 2-3)
-- **Environment Count**: Maximum parallel environments (typically 32-64)
-- **Update Size**: Batch size for agent updates (typically 10)
+User simulation creates or varies inputs where requested by the scenario. A semantic verifier checks relevant textual objectives. A planner supports physical tool execution. The agent produces task decisions, and coaching assists selected corrections. Several roles can use the same configured model service without becoming the same operation.
 
-### Advanced Features
-- **Task Randomization**: Automatic variation of task parameters
-- **Curriculum Learning**: Progressive difficulty scaling
-- **User Simulation**: Simulated human interaction for interactive tasks
-
-## Data Output Structure
-
-Generated data includes:
-- **Commander Data**: High-level decisions and reasoning
-- **Memorizer Data**: Memory updates and context management
-- **Environment States**: Complete simulation snapshots
-- **Action Sequences**: Detailed tool execution logs
-- **Success Metrics**: Task completion status and performance indicators
-
-## Advantages Over Traditional Methods
-
-1. **Scalability**: Automated generation vs. manual human annotation
-2. **Quality**: Self-correction examples impossible to collect manually
-3. **Consistency**: Standardized task execution and evaluation
-4. **Flexibility**: Easy adaptation to new tasks and environments
-5. **Efficiency**: Parallel execution maximizes computational resources
-
-## Use Cases
-
-- **Long-Horizon Manipulation**: Complex multi-step tasks
-- **Error Recovery Training**: Teaching agents to handle mistakes
-- **Interactive Scenarios**: Tasks requiring human-like interaction
-- **Multi-Agent Coordination**: Complex collaborative tasks
-- **Curriculum Learning**: Progressive skill development
-
-This generation procedure enables the creation of high-quality, diverse training data that captures the nuances of real-world manipulation tasks while maintaining computational efficiency and scalability.
+The final dataset can contain ordinary policy decisions and assisted continuations. Their provenance and subsequent outcomes matter when interpreting training data. Continue with [export selection](export.md), and use the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) for scientific claims and experimental comparisons rather than treating any individual run as evidence of general improvement.

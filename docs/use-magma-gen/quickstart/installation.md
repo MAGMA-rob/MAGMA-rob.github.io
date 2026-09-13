@@ -58,8 +58,8 @@ backends: {}
 The `backends` section defines the list of language model backends available to MAGMA.
 
 These backends are used by:
-- [Coaching](../coaching-and-generation.md#3-intelligent-coaching)
-- [User Simulation](../coaching-and-generation.md#4-simulated-user)
+- [Coaching](../../concepts/coaching.md)
+- [User Simulation](../coaching-and-generation.md#keep-the-other-services-distinct)
 - Curriculum systems
 - Any component requiring LLM interaction
 

@@ -1,113 +1,53 @@
 ---
 sidebar_position: 1
-title: What can you do with MAGMA-GEN
-description: MAGMA-GEN is a sophisticated system designed to enable AI agents to perform long-horizon manipulation tasks.
+title: Understand and Use MAGMA-GEN
+description: Collect agent trajectories, validate corrected continuations, inspect runs, and export training data.
 slug: /use-magma-gen/overview
 ---
 
+# Understand and Use MAGMA-GEN
 
-# What can you do with MAGMA-GEN
+MAGMA-GEN collects training data by letting an agent interact with tasks in simulation. It explores alternative decisions, checks their consequences, and can request coaching when a trajectory fails or is inefficient. The resulting graph records both the agent's behavior and the outcomes of attempted corrections.
 
-MAGMA-GEN is a data generation framework designed to train AI agents on **long-horizon, interactive robotic tasks** without relying on human demonstrations or annotations.
+You use GEN by selecting a scenario, connecting an agent and the required services, configuring collection, and inspecting the run. You do not need to modify the generator. Scenario authoring and agent implementation have their own guides.
 
-It enables the creation of tasks where agents must **plan, act, adapt, and remember over extended sequences (15+ steps)** in physically grounded environments powered by [ManiSkill3](https://maniskill.readthedocs.io/en/latest/#).
+## The generation-to-training workflow
 
-
-## 🧩 Task Formulation
-
-MAGMA-GEN structures tasks as:
-
-- **Tasks** → full objective  
-- **Stages** → ordered sub-tasks  
-- **Goals** → success conditions per stage  
-- **Tools** → action interface exposed to the agent  
-
-This creates a **hierarchical and compositional task space**, where:
-
-- Tasks can be **fully scripted** or **procedurally generated**
-- Complexity can scale without manual annotation
-- Agents interact through a **tool-based API**
-
----
-
-## ⚙️ How MAGMA-GEN Generates Data
-
-The system builds trajectories through **interactive rollouts**:
-
-1. Load a task from a scenario
-2. Initialize environment and tools
-3. Let the agent interact step-by-step
-4. Sample multiple trajectories per state (tree exploration)
-5. Prune failed executions
-6. Continue from successful branches
-
-This results in:
-
-- Diverse trajectories  
-- On-policy data  
-- No human supervision  
-
----
-
-## 🏗️ System Overview
-
+```text
+Scenario + agent + generation settings
+  → agent-generated trajectories in simulation
+  → evaluation and optional coaching/re-execution
+  → saved interaction graph, inspected in the viewer
+  → selection and agent-specific dataset export
+  → training outside this generation run
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        MAGMA SYSTEM                             │
-├─────────────────────────────────────────────────────────────────┤
-│  magma_gen (Data Generation)                                    │
-│  ├── Builders (SFT/DPO, Single/Dual Agent)                      │
-│  ├── Data Generator (Graph Management)                          │
-│  ├── Executor (Environment Management)                          │
-│  └── Runners (Task Orchestration)                               │
-├─────────────────────────────────────────────────────────────────┤
-│  magma_core (Foundation Framework)                              │
-│  ├── Tasks & Stages (Task Definition)                           │
-│  ├── Tools & Executors (Action System)                          │
-│  ├── Data Structures (State Management)                         │
-│  ├── Environments (Simulation Interface)                        │
-│  └── Protocol (Communication Layer)                             │
-└─────────────────────────────────────────────────────────────────┘
-```
----
 
-## 🔬 Research Positioning
+Generation, inspection, and export are distinct operations. A saved run contains more than the examples eventually selected for training. The viewer can follow a run while generation is active and inspect its saved graph afterward; it does not need a training-dataset export first.
 
-MAGMA-GEN targets a gap between existing paradigms:
+| What you want to understand | Read |
+| --- | --- |
+| Where the situations and decisions come from | [On-policy collection and branching](generation-process.md) |
+| How a mistake becomes a candidate correction | [Diagnose, propose, validate](coaching-and-generation.md) |
+| How to examine progress, decisions and coached branches | [Use the graph viewer](viewer.md) |
+| Which recorded examples become training data | [Export generated data](export.md) |
+| Which services and run options to configure | [Run configuration](quickstart/launch-first-generation.md) and [CLI reference](../reference/generation-cli.md) |
 
-| Paradigm | Limitation |
-|--------|-----------|
-| Imitation Learning | Requires human demonstrations |
-| RL (short horizon) | Poor scaling to long sequences |
-| LLM agents (tool use) | Weak grounding in physical environments |
+## Why collect the agent's own experience?
 
-MAGMA-GEN explores:
+A provided successful trajectory shows one way to finish a task. An agent's own rollout also exposes the situations reached through its choices: a missed observation, an incorrect tool argument, or a decision made after an unsuccessful action. These contexts are useful when the training objective includes handling mistakes and recovering from them.
 
-- **Long-horizon embodied reasoning**
-- **Memory-aware agents**
-- **Tool-based interaction in robotics**
-- **Autonomous data generation at scale**
+GEN's educational role is to connect an observed difficulty to a proposed alternative and its tested outcome. The paper's motivation is that the learner needs examples from its own difficult contexts, including recovery after a reasonable action fails physically. A stronger coach directs additional exploration at suspected problem points instead of supplying an entirely different expert rollout. The coach's explanation is a hypothesis; execution checks whether the revised behavior actually helps in the task. For the scientific formulation and experiments, see the [MAGMA-GEN paper: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution](https://openreview.net/pdf?id=r7ZN8cPEcj). The pages here describe the current v2 user workflow, rather than reproduce the paper's experimental setup.
 
----
+The mechanism ablation in Section 5.3 compares collection without coaching, coaching proposals used without re-execution validation, and the complete method. In that evaluated setting, combining coaching and re-execution yields better recovery than either ablated variant. This supports the role of both targeted proposals and outcome validation; it is not a guarantee of the same gain for every agent or scenario. See the [paper, Section 5.3](https://openreview.net/pdf?id=r7ZN8cPEcj) for the experimental conditions and results.
 
-## 🚀 What You Can Build
+## On-policy collection, with explicit assistance
 
-With MAGMA-GEN, you can:
+In the ordinary rollout, the connected agent proposes decisions and encounters the situations caused by those decisions. This is the on-policy part of collection. A coached decision is an intervention with additional assistance; its origin remains distinct in the recorded graph. Do not interpret a dataset containing coached examples as entirely unassisted agent behavior.
 
-- Generate datasets for **robotic instruction following**
-- Train agents capable of **multi-step reasoning**
-- Study **memory and planning in embodied AI**
-- Prototype **real-world robotic behaviors in simulation**
+The agent's weights are not updated automatically during a generation run. Training happens afterward using exported data. Producing a later collection run with an updated checkpoint is a separate operation. Offpolicy preparation has a [dedicated future section](offpolicy.md).
 
----
+## What you supply
 
-## 🔗 Next Steps
+A scenario supplies instructions, tools, and success conditions. Your agent supplies decisions and updated memory. Physical tools may require a motion planner; user simulation, semantic validation, and coaching use configured backends as needed. GEN coordinates these components and records what happens.
 
-- Start with [Quickstart setup](quickstart/installation.md)
-- Then [launch your first generation](quickstart/launch-first-generation.md)
-- For the main authored workflow, start with [Create your first scenario](../create-scenarios/first-scenario/create-scenarios.md)
-- If you need more detail on one authoring step, use the [Scenario Building Blocks](../create-scenarios/building-blocks/create-envs.md)
-- Keep the [Generation CLI reference](../reference/generation-cli.md) nearby for runtime options
-- Explore [Key Systems](coaching-and-generation.md)
-- Understand [MAGMA concepts](../concepts/overview.md)
-- Look up implementation contracts in [Reference](../reference/overview.md)
+Use [full-history with your LLM](../custom-agent/use-full-history.md) and [connect it to GEN](../custom-agent/connect.md). If your tasks or agent behavior need changing, follow [scenario creation](../create-scenarios/overview.md) or [custom agents](../custom-agent/overview.md); those are separate from using the generator.

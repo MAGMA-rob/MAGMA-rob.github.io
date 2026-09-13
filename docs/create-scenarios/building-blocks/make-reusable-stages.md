@@ -83,4 +83,4 @@ An [entry transition](../execution/env-transitions.md) is useful when an externa
 
 Keep mutable stage data per instance, with initial task vocabulary and memory in `SituationInit`. Parameterize the objective and input, then derive goals from those arguments. For saved specifications, record the same constructor data in `_to_spec_arguments()`, as the color-sorting class does.
 
-See [Create a Stage](create-stages-light.md) for the minimal contract and [serialization](../traces-and-replay/serialization.md) for reconstruction. Use ordinary stage sequences: the current composite-stage base remains experimental.
+See [Create a Stage](create-stages-light.md) for the minimal contract and [serialization](../../reference/scenarios/create-stages.md#serialization-and-unsupported-composites) for reconstruction. Use ordinary stage sequences: the current composite-stage base remains experimental.

@@ -8,8 +8,10 @@ slug: /use-magma-bench/overview
 MAGMA-BENCH is the evaluation workflow for testing agents on interactive, long-horizon, multi-robot tasks.
 
 :::info Documentation status
-The MAGMA 1.0 benchmark instructions are being prepared. The sections below define the evaluation reading path; runnable commands and protocol details are not available on this page yet.
+The detailed benchmark and official evaluation guides are being prepared. To connect a v2 agent to an existing benchmark artifact, follow [Connect to GEN and BENCH](../custom-agent/connect.md).
 :::
+
+Use [full-history with your LLM](../custom-agent/use-full-history.md) for a first integration, or [create an agent package](../custom-agent/create-agent.md) for custom behavior.
 
 ## First evaluation
 
