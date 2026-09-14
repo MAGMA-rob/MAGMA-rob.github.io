@@ -14,7 +14,7 @@ Your code lives in **your own Python package**. Install `magma_core[simulation]`
 
 ## What belongs in your package?
 
-Your scenario defines the world, available tools, instructions, success and failure conditions, and optional procedural variations. GEN and BENCH execute and evaluate these interactions according to their respective modes. The agent package owns decision making and its internal memory and history management.
+Your scenario defines the world, available tools, instructions, success and failure conditions, and optional procedural variations. GEN execute and evaluate these interactions according to their respective modes. The agent package owns decision making and its internal memory and history management.
 
 Scenario skills can orchestrate domain tools; the agent decides when to call the exposed capabilities. Implementing an agent belongs in a separate guide.
 

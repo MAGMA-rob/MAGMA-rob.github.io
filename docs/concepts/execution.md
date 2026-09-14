@@ -19,7 +19,7 @@ Three kinds of parallelism are independent: multiple robots in one scene, multip
 
 ## Preserving unrelated actors
 
-`ToolExecution.allowed_moving_actors` declares which actor changes an executor may preserve. In the current GEN and BENCH executors, other actors are restored from the saved source state after tool execution.
+`ToolExecution.allowed_moving_actors` declares which actor changes an executor may preserve. In the current GEN executors, other actors are restored from the saved source state after tool execution.
 
 - `None`: no explicit protection.
 - `[]`: no actor may retain changes.

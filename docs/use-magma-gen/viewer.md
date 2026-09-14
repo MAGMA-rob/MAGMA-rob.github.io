@@ -15,7 +15,7 @@ With the viewer dependencies and bundled frontend assets installed:
 magma-gen viewer --output-dir output
 ```
 
-Open `http://127.0.0.1:8900`. The optional dependencies are available through `magma_gen[gui]`. A source checkout must also contain the built frontend assets; if startup reports missing assets, use a package with those assets or follow its packaging instructions.
+Open `http://127.0.0.1:8900`. The optional dependencies are available through `magma_gen[gui]`. The PyPI release includes compiled frontend assets; no Node.js or frontend build is needed.
 
 The viewer scans run directories beneath `--output-dir`. Start it before generation for live observation. GEN attempts to connect to `http://127.0.0.1:8900` at run startup, and the run's resolved path must be inside the viewer's output directory. Keep both processes pointed at the same local output tree.
 
@@ -24,6 +24,8 @@ A different port can be selected with `--port`; set `MAGMA_VIEWER_URL` in the ge
 ## Follow a live run or inspect a saved one
 
 Select a run from the dropdown; the filter matches scenario, target, and run name. **Actualiser** refreshes the run catalog and **Recentrer** fits the graph to the viewport. Pan and zoom to follow alternative continuations. The current interface uses French labels.
+
+![Generation graph displayed in the viewer, including coached branches](/docs/viewer_screen.png)
 
 The viewer accepts one live generation at a time. Another run cannot take over that live slot, but completed runs remain available for inspection. If the viewer is absent, refuses a connection, or loses events, GEN disables visualization and continues collecting. Starting the viewer after the run began does not attach it retroactively to that live event stream; inspect the saved run afterward.
 

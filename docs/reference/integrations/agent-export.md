@@ -28,10 +28,4 @@ An exported result requires records. Skipped/error results require a reason and 
 
 The current GEN command selects examples from saved graph scores before calling the exporter. It checks producer `agent_id` and `agent_version` against the exporter, writes datasets and a manifest, and partitions by task. Exporters define the model-specific rows; they should avoid loading inference weights when rendering recorded examples.
 
-## Offpolicy adapter
-
-Register separately under `magma.export.offpolicy`. The current adapter base is `BaseAgentFormat` in `magma_offpolicy_gen.agents.base`, not `GenExporter`. Its responsibilities include projecting prepared task data and rendering channel rows. Use optional dependencies so GEN export need not load offpolicy code.
-
-Both adapters can share the agent's `DatasetRenderer` for consistent dataset schemas. The detailed offpolicy input contract, projection lifecycle, and augmentation options belong in the forthcoming [offpolicy guide](../../use-magma-gen/offpolicy.md).
-
 **Guide:** [Implement and register an exporter](../../custom-agent/export.md). **Commands:** [Export GEN data](../../use-magma-gen/export.md).

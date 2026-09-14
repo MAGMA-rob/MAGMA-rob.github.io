@@ -29,8 +29,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "my-magma-agent"
 version = "0.1.0"
-requires-python = ">=3.10"
-dependencies = ["magma_core>=2.0.0,<3.0.0", "fastapi", "uvicorn"]
+requires-python = ">=3.12,<3.13"
+dependencies = ["magma_core>=2.0.0b1,<3.0.0", "fastapi", "uvicorn"]
 
 [project.scripts]
 my-agent = "my_agent.server:main"

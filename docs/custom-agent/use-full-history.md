@@ -9,10 +9,11 @@ Use `full-history-agent` when one model should receive the full interaction hist
 
 ## Install and launch
 
-Use Python 3.10 or newer and install the package through your configured MAGMA distribution. From a checkout containing `magma-core-dev/` and `agents/`:
+Follow [installation](../use-magma-gen/quickstart/installation.md) first. Use the same
+Python 3.12 environment as MAGMA-GEN, with the reference agent installed through
+`python -m pip install -e ./full-history-agent`. Then launch a compatible model:
 
 ```bash
-python -m pip install -e ./magma-core-dev -e ./agents/full-history-agent
 full-history-agent --model /models/my-qwen --model-format qwen --quantization none
 ```
 
@@ -40,8 +41,8 @@ This checks model/server integration. It does not demonstrate success on a robot
 
 ## What full-history remembers
 
-The agent appends the current instruction and valid decision to `memory.history`. Initial persistent rules use `memory.memory_list`. Other keys are preserved. Returned memory is a complete replacement; to make a second manual request, pass the first response's memory back in its input. GEN and BENCH do this for their own trajectories.
+The agent appends the current instruction and valid decision to `memory.history`. Initial persistent rules use `memory.memory_list`. Other keys are preserved. Returned memory is a complete replacement; to make a second manual request, pass the first response's memory back in its input. GEN do this for their own trajectories.
 
 `extra_keys.inference_mode=true` selects deterministic decoding in this implementation; false uses its sampling settings. Asking for several deterministic candidates can produce identical outputs.
 
-**Next:** [Connect this server to GEN and BENCH](connect.md), or [adapt your model's prompt](model-prompts.md).
+**Next:** [Connect this server to GEN](connect.md), or [adapt your model's prompt](model-prompts.md).

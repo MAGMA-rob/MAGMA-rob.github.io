@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Configure and launch a first generation run."
+    "description": "Install MAGMA-GEN, configure its services, and launch a first generation run."
   }
 }

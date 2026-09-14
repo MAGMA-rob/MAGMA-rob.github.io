@@ -56,7 +56,7 @@ Inspect:
 
 The current tester skips text-only stages. It does not validate answers, coaching, or a custom agent's reasoning. Its CLI accepts individual tool calls, not a full simultaneous multi-robot skill workflow.
 
-It applies explicit `state_updates`, but does not reproduce the actor-restoration protection of GEN/BENCH. The shared result context applies attribute-edit logs to its own attribute copy, but this tester does not synchronize that copy back into the attributes used for the next manual call. Do not use it to certify persistence of an edit across calls. The tester also does not reproduce full budget accounting. Check those behaviors in the consuming runtime before treating the scenario as validated.
+It applies explicit `state_updates`, but does not reproduce the actor-restoration protection of GEN. The shared result context applies attribute-edit logs to its own attribute copy, but this tester does not synchronize that copy back into the attributes used for the next manual call. Do not use it to certify persistence of an edit across calls. The tester also does not reproduce full budget accounting. Check those behaviors in the consuming runtime before treating the scenario as validated.
 
 ## Test request construction
 

@@ -20,8 +20,6 @@ GEN recognizes correction opportunities such as a failed stage, absence of usefu
 
 For trajectory-level failure diagnosis, GEN supplies the stage objective, relevant decisions and execution feedback, plus available error descriptions and hints. Diagnosis identifies a candidate root-cause decision and explains why revisiting it may help. In the current implementation, a trajectory with only one diagnosable decision can use a deterministic diagnosis without a model call. Format repair and text-only rewriting also have their own paths; the three conceptual phases do not require three LLM calls every time.
 
-The paper calls the coach *privileged*: task-generation information can reveal the active objective and rules more directly than the agent's partial interaction history does. In v2, GEN assembles the objective, trajectory evidence, applicable error descriptions and available hints for diagnosis. This generation-time assistance is separate from the ordinary policy input. An assisted branch should not be interpreted as an unassisted benchmark result.
-
 Suboptimal diagnosis asks whether a defensible inefficiency can be identified. It may decline to propose a repair. An explanation from a judge or coach remains a hypothesis about the behavior, not execution evidence of improvement.
 
 ## Propose: let the agent repair its own behavior
@@ -48,10 +46,6 @@ For example, an agent attempts to place an object it has not picked up. A diagno
 
 The current failure path can also offer a recovery point after suitable invalid tool-call feedback. That asks a different question: **what should the agent do now that it has observed this failure?** It retains the feedback instead of replacing the earlier decision. The allowed anchors determine which intervention is being tested; a recovery is not interchangeable with a rewind to an earlier state.
 
-Section 4.3 of the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) describes matched comparisons, including holding sampled stage perturbations fixed across sibling branches. In the current runtime, a saved continuation includes environment state, logs, attributes, call accounting and active error state; these are restored/copied for execution from the selected source. Whether every source of randomness is controlled also depends on the scenario and tools. Do not equate snapshot restoration alone with a guarantee of identical random outcomes.
-
-This is a physical/runtime continuation from saved state, not merely a rewritten transcript or a language-model prediction of success. Its conclusion is limited to the tested context and checks. It does not guarantee identical future randomness or prove that the chosen diagnosis is the only possible cause.
-
 ## Validate: observe the revised continuation
 
 GEN routes the repaired decision through its usual execution and validation machinery: tool results, physical/log conditions, applicable text validation, and call budgets. The repaired branch may succeed, remain ongoing, fail again, or be terminated by exploration limits.
@@ -68,9 +62,11 @@ A `coached` marker identifies origin, not success. Inspect the candidate's statu
 
 ## From validation to supervision
 
-After the local intervention, the current agent continues the branch. A correction is useful because of the downstream progress it enables, not because its origin is coaching. Policy-sampled candidates and coach-proposed candidates are compared using observed continuations. A failed context can therefore contribute a successful recovery target, while an unsupported coach suggestion need not become a training label.
+After the local intervention, the current agent continues the branch. A correction is useful because of the downstream progress it enables. Policy-sampled candidates and coach-proposed candidates are compared using observed continuations. A failed context can therefore contribute a successful recovery target, while an unsupported coach suggestion need not become a training label.
 
-Section 4.4 of the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) formalizes selection by downstream stage success, followed by supervised training. The [v2 export command](export.md) implements its current selection policy over saved descendant scores. The graph retains the explored evidence; the training dataset is a selected product of that evidence.
+:::info
+See [export](export.md) for more details on how the graph is transformed into a supervised dataset.
+:::
 
 ## Configure assistance and read its logs
 
@@ -79,9 +75,3 @@ Coaching settings belong to GEN's top-level `coaching` configuration and its bac
 Use `--no-coaching` to collect without coaching. When coaching is enabled, GEN reads the agent's advertised kinds and generic text-resume support. Unsupported corrections are unavailable even if a provider is configured.
 
 Diagnostics and remote coaching logs are recorded under the run's `_coaching_logs/` directory. Use them alongside the [graph viewer](viewer.md) to follow a diagnosis, its proposal, and the actual continuation. Optional successful-coaching example registration/reuse can provide cases to later diagnosis; these settings are separate from exporting a training dataset and do not train the agent during the run.
-
-## Keep the other services distinct
-
-User simulation creates or varies inputs where requested by the scenario. A semantic verifier checks relevant textual objectives. A planner supports physical tool execution. The agent produces task decisions, and coaching assists selected corrections. Several roles can use the same configured model service without becoming the same operation.
-
-The final dataset can contain ordinary policy decisions and assisted continuations. Their provenance and subsequent outcomes matter when interpreting training data. Continue with [export selection](export.md), and use the [paper](https://openreview.net/pdf?id=r7ZN8cPEcj) for scientific claims and experimental comparisons rather than treating any individual run as evidence of general improvement.

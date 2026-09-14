@@ -5,11 +5,11 @@ title: Manage Memory and Multiple Models
 
 # Manage Memory and Multiple Models
 
-Your package owns the full agent algorithm. It can retrieve context, invoke several models, keep a plan, summarize history, or route an instruction. GEN and BENCH still see one input and one final decision per candidate.
+Your package owns the full agent algorithm. It can retrieve context, invoke several models, keep a plan, summarize history, or route an instruction. GEN still see one input and one final decision per candidate.
 
 ## Return complete, independent state
 
-The input's `memory` is the state of this particular interaction. Every candidate returns a complete replacement, not a patch. GEN/BENCH preserve it for the next step on that trajectory.
+The input's `memory` is the state of this particular interaction. Every candidate returns a complete replacement, not a patch. GEN preserve it for the next step on that trajectory.
 
 ```text
 Input with memory M

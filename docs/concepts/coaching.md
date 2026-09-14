@@ -41,5 +41,3 @@ Full-history currently implements specialized corrections and replacement decisi
 GEN owns the coaching provider configuration and sends effective settings to supported agent coaching sessions. Agent inference/model settings stay in the agent package's configuration. Logs return to GEN for recording; the agent does not need the run's output directory mounted locally.
 
 For operating GEN and interpreting tested interventions, read [Diagnose, propose, validate](../use-magma-gen/coaching-and-generation.md).
-
-Begin an integration with coaching disabled, then [add your agent's coaching logic](../custom-agent/coaching.md). BENCH's inference client evaluates decisions without this GEN coaching exchange; official evaluation conditions belong in the [benchmark documentation](../use-magma-bench/overview.md).

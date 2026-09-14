@@ -1,8 +1,8 @@
 {
-  "label": "Generate Data \u2014 MAGMA-GEN",
+  "label": "Generate Data with MAGMA-GEN",
   "position": 4,
   "link": {
-    "type": "generated-index",
-    "description": "Understand on-policy collection, counterfactual coaching, graph inspection, and training-data export."
+    "type": "doc",
+    "id": "overview"
   }
 }

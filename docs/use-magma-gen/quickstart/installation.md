@@ -3,161 +3,83 @@ sidebar_position: 1
 slug: /use-magma-gen/quickstart/installation
 ---
 
-# Setup
+# Install MAGMA-GEN
 
-How to **setup** MAGMA-GEN for your configuration.
+This guide targets MAGMA-GEN **2.0.0b1**, Core **2.0.0b1**, and Scenarios
+**2.0.0**. GEN and Core are beta releases; APIs and configuration may change.
 
-## Prerequies
+Install generation and the agent in the same Python environment. Run the planner
+in Docker to isolate its dependencies.
 
-You must have completed the **core installation procedure**. You have the choice between [**hybrid**](../../getting-started/installation.md), [conda](../../getting-started/installation.md), or [docker](../../getting-started/installation.md).
+## Prerequisites
 
-## Install 
+- Linux x86_64 and Python 3.12 (or Conda to create a Python 3.12 environment).
+- Git and a working Docker installation: `docker version` must reach the daemon.
+- An NVIDIA GPU with enough memory for your model and simulation, compatible
+  PyTorch drivers, and Vulkan support for rendering. Follow the
+  [ManiSkill system setup](https://maniskill.readthedocs.io/en/latest/user_guide/getting_started/installation.html)
+  if rendering is not configured.
+- A model checkpoint supported by the reference agent. See
+  [model and prompt formats](../../custom-agent/model-prompts.md).
 
-### for hybrid / conda
+The example paths below use `~/magma-workspace`.
+
+## 1. Install MAGMA-GEN
 
 ```bash
-pip install git+https://github.com/MAGMA-rob/magma-gen.git@main
+mkdir -p ~/magma-workspace
+cd ~/magma-workspace
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install "magma_gen[gui]==2.0.0b1"
 ```
 
-### for docker
+This installs core with simulation support, the official scenarios, and the
+viewer dependencies.
+
+If you prefer Conda, use `conda create -n magma python=3.12` and
+`conda activate magma` instead of the two venv commands. Activate that same
+environment in every Python terminal used below.
+
+## 2. Install the reference agent
+
+From the same workspace and activated environment:
 
 ```bash
-git clone https://github.com/MAGMA-rob/magma-gen.git
+git clone https://github.com/MAGMA-rob/full-history-agent.git
+python -m pip install -e ./full-history-agent
+python -m pip check
+magma-gen --version
+full-history-agent --help
+magma-scenarios list
 ```
 
-Be sure that the running docker script correctly mount the folder and run pip install at the launch.
+Editable installation lets you adapt the agent code. It also registers its local
+exporter so MAGMA-GEN can export datasets. The agent server communicates with gen
+through HTTP, while export uses the installed Python package directly.
 
-## Setup 
+## 3. Clone the planner
 
-`magma_core` provides a default configuration file located at:
-
-```
-magma-core/src/magma_core/configs/default_config.yaml
-```
-
-This file defines the default behavior of MAGMA and can be overridden if needed.
-
----
-
-# Configuration Structure
-
-The configuration is composed of three main sections:
-
-- `backends`
-- `magma_agent_address` and `magma_planner_address`
-- Default pipeline arguments (`generate`, `benchmark`)
-
----
-
-### Backends
-
-```yaml
-backends: {}
+```bash
+cd ~/magma-workspace
+git clone https://github.com/MAGMA-rob/magma-planner-mplib.git
 ```
 
-The `backends` section defines the list of language model backends available to MAGMA.
+The launch script `bash scripts/launch_planner.bash -p 8000` builds its image locally. Its first launch requires network access and takes longer while dependencies are installed.
 
-These backends are used by:
-- [Coaching](../../concepts/coaching.md)
-- [User Simulation](../coaching-and-generation.md#keep-the-other-services-distinct)
-- Curriculum systems
-- Any component requiring LLM interaction
+**Why Docker?** The planner requires MPLib **0.2.1**. ManiSkill **3.0.1** requires
+MPLib **0.1.1** on Linux. Magma-gen is based on Maniskill. They cannot share a Python environment. Docker keeps the planner separate. The two services communicate over HTTP.
 
-You can define multiple backend instances, each with its own configuration.
+### Without Docker
 
-Example:
+Use a separate environment, never the generation environment:
 
-```yaml
-backends:
-  default_ollama:
-    type: ollama
-    endpoint: "http://172.16.21.1:21601/v1/chat/completions"
-    default_model: "gpt-oss:20b"
-    timeout: 30
-    max_retry: 3
-    headers:
-      Authorization: null
-      Content-type: "application/json"
+```bash
+cd ~/magma-workspace/magma-planner-mplib
+python3.12 -m venv .venv-planner
+.venv-planner/bin/python -m pip install -e .
+.venv-planner/bin/magma-planner serve --host 127.0.0.1 --port 8000
 ```
 
-#### Parameters
-
-- `type` — Backend type (currently only `ollama`)
-- `endpoint` — Full HTTP endpoint of the model server
-- `default_model` — Model name used by default
-- `timeout` — Request timeout (seconds)
-- `max_retry` — Number of retries on failure
-- `headers` — Optional HTTP headers (e.g. authorization)
-
-Currently we mostly support Ollama server. But you can create your own clients if needed. See [**Create your own backend**](../../reference/integrations/create-backends.md).
-
----
-
-### MAGMA Services
-
-```yaml
-magma_agent_address: "http://localhost:8888"
-magma_planner_address: "http://localhost:8000"
-```
-
-These fields specify the addresses of:
-
-- `magma_agent` server
-- `magma_planner` server
-
-They must match the actual running services. If you are changing them when launching their servers, you must update this path.
-
----
-
-### Generation Pipeline Defaults (MAGMA-GEN)
-
-```yaml
-generate:
-  mode: single
-  seed: null
-  nb_branch: 2
-  history_length: 3
-  nb_env: 64
-  nb_max_update: 10
-  max_start_per_stage: 10
-  randomized: true
-  coaching: true
-```
-
-This section defines the default parameters for the MAGMA-GEN pipeline.
-
-These values are used unless overridden at runtime.
-
-#### Parameters
-
-- `mode` — Generation mode. Use `single` in the current launcher; `dual` is still parsed but rejected by `magma_gen.launch`.
-- `seed` — Optional seed for reproducible task creation and runtime randomization
-- `nb_branch` — Number of candidate answers generated per state
-- `history_length` — History window size kept for dual-mode internals
-- `nb_env` — Number of parallel ManiSkill environments
-- `nb_max_update` — Maximum number of states processed in parallel
-- `max_start_per_stage` — Maximum number of trajectories per stage
-- `randomized` — Whether the task uses randomization
-- `coaching` — Enables coaching feedback during generation
-
----
-
-### How to set your own config
-
-When using MAGMA-GEN, the configuration is loaded from our current directory. So you can create a `config.yaml` and specify the different parameters value.
-
-:::tip Quick Setup
-For your first run, if you do not change servers port, you just have to specify **one** backend to start using.
-:::
-
-When launching the pipeline, you can also overidde some of the MAGMA-GEN parameters directly with CLI. It allows you to quiclky apply some modification without modifying your default configuration.
-
-:::tip Config with **Docker-only** Installation
-Be aware that using the **docker-only** procedure, you will need to mount this `config.yaml` to the home of the container `/home/magma` **OR** modify directly the `magma-core/src/magma_core/configs/default-config.yaml`.
-:::
-
-## Next Step
-
-Once your config is ready, continue with [Launch the first generation](launch-first-generation.md).
-
-If you want the full runtime reference, see [MAGMA-GEN Generation CLI](../../reference/generation-cli.md).
+This replaces the Docker planner terminal in the launch guide. Leave it running.

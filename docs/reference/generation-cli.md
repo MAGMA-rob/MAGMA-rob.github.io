@@ -149,7 +149,6 @@ The YAML overlay in `MAGMAConfig.load()` is shallow at the top level.
 This means if your custom YAML redefines:
 
 - `generate`
-- `benchmark`
 - `backends`
 
 you should provide the full subsection, not just one key, otherwise you replace the whole default subsection.
@@ -518,7 +517,7 @@ Valid forms:
 
 ### User YAML overlays are shallow at the top level
 
-If you redefine `generate`, `benchmark`, or `backends`, provide the full block.
+If you redefine `generate` or `backends`, provide the full block.
 
 ## Troubleshooting
 

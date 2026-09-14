@@ -77,17 +77,3 @@ magma-gen export output/my_run --agent my-agent
 Use a run produced by your matching agent identity and version. The hello-only example checks the protocol, so it may have no candidates that satisfy GEN's execution/score selection; use a working task policy before expecting a useful dataset.
 
 The entry point is a no-argument factory returning a `GenExporter`. It runs locally in the export process, without an HTTP endpoint or a running inference server. The example imports no model loader. Install your package where export runs, even if inference ran on a different machine.
-
-## Add an offpolicy input adapter later
-
-| GEN export | Offpolicy projection |
-| --- | --- |
-| Input: recorded `ExportExample` objects | Input: tasks prepared by the offpolicy workflow |
-| Contract: `GenExporter` from the core | Contract: `BaseAgentFormat` from the offpolicy package |
-| Entry point: `magma.export.gen` | Entry point: `magma.export.offpolicy` |
-
-Share a `DatasetRenderer` between these adapters when they produce examples for the same model. This keeps columns and JSON conventions aligned while the input preparation remains specific to each workflow. The provided agents register both factories and load offpolicy dependencies only for the corresponding integration.
-
-Inference HTTP compatibility does not supply an offpolicy adapter automatically. Detailed projection, augmentation, and scenario-extension instructions belong in the forthcoming [offpolicy generation guide](../use-magma-gen/offpolicy.md).
-
-**Reference:** [local export contract](../reference/integrations/agent-export.md). To export existing full-history runs, see [GEN export commands](../use-magma-gen/export.md).

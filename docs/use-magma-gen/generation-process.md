@@ -21,7 +21,7 @@ User: Press sw0, then sw1.
   → the next checkpoint is evaluated
 ```
 
-The agent receives the task's public input, available tool descriptions, attributes, and its own memory. It proposes tool calls or a user-facing answer. The simulator and scenario evaluate the effect; the agent cannot certify success by merely saying that it succeeded.
+The agent receives the task's public input, available tool descriptions, attributes, and its own memory. It proposes tool calls or a user-facing answer. The simulator and scenario evaluate the effect.
 
 A stage can verify physical conditions, execution logs, or a textual answer. The configured semantic judge is used where the stage requires one. An intermediate checkpoint may continue the same instruction, introduce another request, or end the interaction with a completion answer. See [stages and interaction](../concepts/stages.md) for these meanings.
 
@@ -29,7 +29,7 @@ A stage can verify physical conditions, execution logs, or a textual answer. The
 
 Ordinary decisions are sampled from the connected agent. Later inputs depend on the states those decisions reached and the memory that candidate returned. Consequently, collection includes contexts arising from the agent's behavior, including its mistakes; it is not limited to replaying a supplied successful solution.
 
-This describes how experience is collected. It does not mean an optimizer updates weights online, nor that every operation in the pipeline is an unassisted policy action. Scenario sampling, user simulation, judges, and coaching have separate roles. In particular, [coaching](coaching-and-generation.md) introduces proposed alternatives that retain their provenance.
+This describes how experience is collected. It does not mean an optimizer updates weights online. Training must be done after using the data generated.
 
 ## Explore more than one continuation
 
@@ -41,9 +41,9 @@ Situation S: instruction + context + memory + saved environment
   └─ candidate B → execution result B → situation S_B
 ```
 
-Each branch keeps its own memory and execution state. Subsequent outcomes can therefore be compared from a shared starting situation without one branch inheriting another's actions. The graph also retains alternatives created by coaching; it is not simply a linear chat transcript.
+Each branch keeps its own memory and execution state. Subsequent outcomes can therefore be compared from a shared starting situation without one branch inheriting another's actions. The graph also retains alternatives created by coaching.
 
-The branch count controls candidate exploration. It does not guarantee distinct answers: deterministic decoding can return identical candidates. A wider graph may reveal more successful continuations, but also costs more inference, simulation, and validation work.
+The branch count controls candidate exploration. It does not guarantee distinct answers: deterministic decoding can return identical candidates. A wider graph may reveal more successful continuations, but also costs more inference, simulation, and validation work. This can be set with the `nb_branch` cli and config parameters.
 
 ## Parallel simulation is a resource pool
 

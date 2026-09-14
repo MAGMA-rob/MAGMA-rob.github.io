@@ -5,7 +5,7 @@ title: Use Your Model or Agent
 
 # Use Your Model or Agent
 
-An agent turns MAGMA's instructions, tool descriptions, task attributes, and memory into a response or tool calls. Its package owns prompt construction, model access, decision making, and memory updates. MAGMA-GEN and MAGMA-BENCH execute the proposed actions and evaluate their effects.
+An agent turns MAGMA's instructions, tool descriptions, task attributes, and memory into a response or tool calls. Its package owns prompt construction, model access, decision making, and memory updates. MAGMA-GEN executes the proposed actions and evaluate their effects.
 
 ## Do I need to create a package?
 
@@ -24,7 +24,7 @@ One package represents the whole agent, even if it contains several models. The 
 
 1. [Run a first LLM](use-full-history.md) and inspect its response.
 2. [Adapt its prompt](model-prompts.md) if your checkpoint needs another template.
-3. [Connect it to GEN and BENCH](connect.md).
+3. [Connect it to GEN](connect.md).
 4. If you need different behavior, [create your package](create-agent.md) and [define its state](memory-and-models.md).
 5. Add your agent's [coaching logic](coaching.md) and [dataset export](export.md) when needed.
 

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 4
-title: Connect to GEN and BENCH
+title: Connect to GEN
 ---
 
-# Connect to GEN and BENCH
+# Connect to GEN
 
-A running agent exposes the same inference interface to both consumers. Start with [full-history](use-full-history.md) and confirm a direct HTTP response before launching simulation.
+A running agent exposes the MAGMA inference interface to the generator. Start with [full-history](use-full-history.md) and confirm a direct HTTP response before launching simulation.
 
 ## Generate a first trajectory
 
@@ -14,34 +14,21 @@ Install MAGMA-GEN, the scenario provider, simulation dependencies, and the plann
 ```bash
 magma-gen run first_agent_run --preset press_button.ButtonPressPreset1 \
   --config-path ./config.yaml --magma-agent-address http://localhost:8888 \
-  --nb-env 1 --nb-branch 1 --no-coaching
+  --nb-env 1 --nb-branch 1 --no-coaching --no-judge
 ```
 
 This uses an installed preset and disables coaching to check inference and action execution first. Inspect agent errors and stage results before increasing the branch count. GEN can request multiple candidates from the same input to explore independent continuations.
 
 The configuration field for the runtime URL is `magma_agent_address`. Model loading and private inference settings belong in the agent configuration. Coaching backends belong in GEN configuration and are supplied to the agent separately when coaching is enabled.
 
-## Evaluate with BENCH
-
-Use an existing benchmark artifact directory produced by the benchmark build workflow, plus a working simulation/planner configuration:
-
-```bash
-magma-bench run --benchmark-root /data/my-benchmark \
-  --config-path ./config.yaml --agent-address http://localhost:8888 \
-  --extra-keys '{"inference_mode":true}'
-```
-
-Replace the artifact path with your actual benchmark. The current BENCH client requests one candidate per input. It carries each episode's returned memory forward and validates the protocol response. `--agent-name` changes the run label; `/v1/info` supplies the runtime identity. Benchmark metrics and official evaluation conditions belong in the [BENCH section](../use-magma-bench/overview.md).
-
 ## Runtime and export are separate integrations
 
 | Operation | What must be available |
 | --- | --- |
-| GEN or BENCH inference | Running HTTP agent reachable from the consumer |
+| GEN inference | Running HTTP agent reachable from the consumer |
 | GEN dataset export | Compatible agent exporter installed in the export process |
-| Offpolicy dataset projection | Installed agent format adapter for that workflow |
 
-There is no export HTTP server. See [agent export](export.md) and the future [offpolicy guide](../use-magma-gen/offpolicy.md).
+There is no export HTTP server. See [agent export](export.md).
 
 ## Diagnose integration problems
 

@@ -98,6 +98,5 @@ Each constructed task should contain three `PressNamedButton` stages, in a sampl
 
 Add [constraints](../interactions/constraint-cycle.md), [questions](../interactions/asking-request.md), or [interruptions](../interactions/interruption.md). When a sequence contains repeated actions on already-completed physical state, explicitly define the needed reset or transition; symbolic construction does not reset the simulator.
 
-To use your scenario with offpolicy generation, you will need to define an extension; see [Offpolicy generation](../../use-magma-gen/offpolicy.md).
 
 **Reference:** [definition and request contracts](../../reference/scenarios/create-tasks-definition.md).

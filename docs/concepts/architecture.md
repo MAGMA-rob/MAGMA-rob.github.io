@@ -12,14 +12,13 @@ MAGMA separates scenario logic, runtime orchestration, and agent implementation.
 | `magma_core` | Shared contracts, state structures, and optional simulation/interface support |
 | `magma_scenarios` | Environments, tools, task presets, requests, and scenario skills |
 | `magma_gen` | Generate and evaluate branching interactions, coordinate coaching, record graphs |
-| `magma_bench` | Run benchmark episodes against an agent and collect results |
 | Agent package | Model access, prompts, decisions, memory, optional coaching and dataset rendering |
 | Motion planner | Compute trajectories needed by physical tools |
 | Configured model/human backends | User simulation, validation, or coaching assistance according to their assigned role |
 
 ## Inference crosses a service boundary
 
-GEN and BENCH call the same [agent HTTP API](../reference/integrations/agent-http.md). They need a compatible reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
+GEN call the same [agent HTTP API](../reference/integrations/agent-http.md). They need a compatible reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
 
 One agent package can contain several models. Scenario tools execute the proposed actions. Model resources can remain loaded, but interaction memory is passed explicitly so episodes and branches remain independent.
 
@@ -27,7 +26,7 @@ One agent package can contain several models. Scenario tools execute the propose
 
 GEN provides coaching configuration and context; the agent owns its repair strategy. See [coaching](coaching.md).
 
-Export is a local Python integration. Install the agent exporter in the export environment and discover it through `magma.export.gen` or the separate offpolicy group. No export HTTP server is needed. An inference-only HTTP implementation can use any language; implementing a local exporter is an additional integration.
+Export is a local Python integration. Install the agent exporter in the export environment and discover it through `magma.export.gen`. No export HTTP server is needed. An inference-only HTTP implementation can use any language; implementing a local exporter is an additional integration.
 
 ## Deploy together or separately
 

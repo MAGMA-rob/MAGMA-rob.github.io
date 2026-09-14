@@ -1,39 +1,104 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 slug: /use-magma-gen/quickstart/launch-first-generation
-title: Run Configuration and Services
+title: Launch Your First Generation
 ---
 
-# Run Configuration and Services
+# Launch Your First Generation
 
-Using GEN requires a configured scenario, a compatible running agent, simulation dependencies, and any planner/backend services needed by the task. These components can run in different processes or containers; their configured addresses must be reachable from their callers.
+Start after [installation](installation.md) and
+[configuration](configuration.md). Use four terminals so service logs remain
+visible. The commands assume the venv setup; with Conda, use `conda activate magma`
+instead of `source .venv/bin/activate`.
 
-For one LLM, use [full-history-agent](../../custom-agent/use-full-history.md). Its model settings belong to the agent process. GEN's configuration covers simulation, service addresses, exploration and coaching. You do not need to edit generator code or implement a new agent to run a compatible checkpoint.
-
-## Select the task and collection settings
-
-A typical command using a working `config.yaml` and an installed preset is:
+## Terminal 1 — planner
 
 ```bash
-magma-gen run my_run --preset press_button.ButtonPressPreset1 \
-  --config-path ./config.yaml --magma-agent-address http://localhost:8888 \
-  --nb-env 1 --nb-branch 1 --no-coaching
+cd ~/magma-workspace/magma-planner-mplib
+bash scripts/launch_planner.bash -p 8000
 ```
 
-This illustrates the inputs to a run, not a complete installation recipe. The button tools need their planner. Use a fresh run name: the launcher can clear existing contents in the target output directory. Run data is saved under `output/my_run`.
+Wait for Uvicorn to report startup. The script builds and starts the container;
+keep it running. If you chose the native planner installation, use its launch
+command instead. Start only one planner on port 8000.
 
-`--preset` selects an explicit task; `--definition` selects a request-based task definition. Branching changes exploration, environment count changes simulation concurrency, and `--no-coaching` disables assistance. See [the collection process](../generation-process.md) for their effects and [CLI/configuration reference](../../reference/generation-cli.md) for exact options.
+## Terminal 2 — agent
 
-## Observe generation and preserve the run
+```bash
+cd ~/magma-workspace
+source .venv/bin/activate
+full-history-agent --config ./agent.json
+```
 
-Start the [viewer](../viewer.md) separately before generation if you want live graph inspection. An unavailable viewer does not prevent collection. The simulation window enabled by `--gui` is a different interface.
+Wait for model loading to finish. In another terminal, check readiness:
 
-During the run, inspect progress, failures and pending corrections. Completion of generation means the run has stopped collecting and saved its graph; it is not a guarantee that all branches succeeded or that the output contains enough selected training examples.
+```bash
+curl --fail http://localhost:8888/health
+```
 
-Keep the run directory, its `config.json`, graph files and `_coaching_logs/` where present. [Export](../export.md) reads the saved graph and produces datasets afterward. The agent exporter must be installed in that export environment, even if the inference server ran elsewhere.
+Expect `{"status":"ready"}`. The configured checkpoint and GPU memory determine
+how long startup takes.
 
-## Enable coaching when it is meaningful
+:::info
+You can also run the **agent server** inside a docker on a distant machine if your local gpu has not enought memory. In that case, you still need to have the package installed on the host to be able to export properly.
+:::
 
-GEN uses the agent's advertised correction capabilities. Configure the top-level `coaching` section and its providers/backends, then collect with coaching enabled. A connected provider cannot supply correction behavior absent from the agent.
+## Terminal 3 — viewer
 
-Read [diagnose, propose, validate](../coaching-and-generation.md) to interpret proposals and tested outcomes. The exact session and repair interfaces belong to agent development, not to operating GEN.
+```bash
+cd ~/magma-workspace
+source .venv/bin/activate
+magma-gen viewer --output-dir ./output
+```
+
+Open **http://127.0.0.1:8900**. Start the viewer before generation for live updates.
+The viewer and generator must use the same output directory.
+
+## Terminal 4 — generation
+
+```bash
+cd ~/magma-workspace
+source .venv/bin/activate
+magma-gen run first_run --preset press_button.ButtonPressPreset1 \
+  --config-path ./config.yaml --nb-env 1 --nb-branch 1 \
+  --no-coaching --no-judge --no-randomized
+```
+
+Use a new run name each time: an existing target directory can be cleared by the
+launcher. Data is saved under `~/magma-workspace/output/first_run`. Select the run
+in the viewer to inspect decisions and tool results. The `--gui` option, if used,
+opens the simulation window; it is separate from the graph viewer.
+
+This first run checks the service connections and simulation. It has no semantic
+answer judge or coaching backend, and a completed run does not guarantee a
+successful task. For data collection with these features, follow
+[backend configuration](configuration.md#add-a-language-model-backend-later).
+
+## Export the saved run
+
+After generation finishes, from the workspace with the same environment active:
+
+```bash
+magma-gen export output/first_run --agent full-history-agent
+```
+
+The local exporter selects eligible examples from the saved graph. A failed or
+short run may contain no eligible examples. It does not require the agent server
+to remain running. See [export](../export.md) for output files and selection rules.
+
+## Stop and troubleshoot
+
+Stop the agent and viewer with `Ctrl+C` in their terminals. Stop the planner with
+`docker stop magma_mplib` from another terminal.
+
+| Problem | Check |
+| --- | --- |
+| Agent connection refused | Model loading completed; `/health` succeeds; port matches config |
+| Planner connection refused | Docker container is running on port 8000 |
+| MPLib dependency conflict | Planner was installed in the generation environment; use Docker or a separate environment |
+| CUDA/Vulkan or model memory error | Drivers, checkpoint size, and GPU memory remaining for simulation |
+| Exporter not found | `full-history-agent` was installed in the same environment as gen |
+| Viewer is empty | Same workspace/output path; viewer started before the run; refresh after completion |
+
+Continue with [the viewer guide](../viewer.md), [generation settings](../../reference/generation-cli.md),
+or [custom scenarios](../../create-scenarios/overview.md).

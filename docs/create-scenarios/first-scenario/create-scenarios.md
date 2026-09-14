@@ -39,7 +39,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "my-magma-scenarios"
 version = "0.1.0"
-requires-python = ">=3.10"
+requires-python = ">=3.12,<3.13"
 dependencies = ["magma_scenarios>=2.0.0,<3.0.0"]
 
 [project.entry-points."magma.scenarios"]
