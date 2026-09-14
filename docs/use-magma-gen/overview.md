@@ -1,56 +1,49 @@
 ---
+pagination_next: use-magma-gen/quickstart/installation
 sidebar_position: 1
-title: Understand and Use MAGMA-GEN
-description: Collect agent trajectories, validate corrected continuations, inspect runs, and export training data.
+title: Generate Data with MAGMA-GEN
+description: Run a task, inspect agent decisions, and export training data.
 slug: /use-magma-gen/overview
 ---
 
-import DocCardList from '@theme/DocCardList';
+# Generate Data with MAGMA-GEN
 
-# Understand and Use MAGMA-GEN
+MAGMA-GEN collects training data by running an agent on tasks in simulation. It records the agent's decisions and their outcomes in an interaction graph. Optional coaching proposes corrections that GEN executes and checks.
 
-New here? Follow [installation](quickstart/installation.md), then
-[launch your first generation](quickstart/launch-first-generation.md). This guide
-covers the v2 beta.
+## Your first run
 
-MAGMA-GEN collects training data by letting an agent interact with tasks in simulation. It explores alternative decisions, checks their consequences, and can request coaching when a trajectory fails or is inefficient. The resulting graph records both the agent's behavior and the outcomes of attempted corrections.
+Use a provided button task and the full-history agent to check the complete workflow:
 
-:::tip
-If you are not familiar with 'coaching'. Refer to our MAGMA-GEN CORL paper or read [Diagnose, propose, validate](coaching-and-generation.md).
+1. [Install MAGMA-GEN](quickstart/installation.md), the agent package, and the planner.
+2. [Configure your model and services](quickstart/configuration.md).
+3. [Launch a first generation](quickstart/launch-first-generation.md).
+4. [Inspect the run](viewer.md) to see what the agent did and whether the task succeeded.
+5. [Export the saved graph](export.md) and inspect the training examples.
+
+The first run uses one environment and one branch, with coaching and semantic answer checks disabled. It checks the integration; task success depends on your model. A short or unsuccessful run may produce an empty dataset.
+
+:::info Bring your own model
+MAGMA model checkpoints have not been released yet. You need a checkpoint compatible with the provided agent, or [your own agent integration](../custom-agent/overview.md). Without a model, you can still [create and manually test a scenario](../create-scenarios/first-scenario/create-scenarios.md).
 :::
 
-You use GEN by selecting a scenario, connecting an agent and the required services, configuring collection, and inspecting the run. You do not need to modify the generator. [Scenario authoring](../create-scenarios/overview.md) and [agent implementation](../custom-agent/overview.md) have their own guides.
-
-## The generation-to-training workflow
+## What you get
 
 ```text
-Scenario + agent + generation settings
-  → agent-generated trajectories in simulation (+ optional coaching)
-  → saved interaction graph, inspected in the viewer
-  → selection and agent-specific dataset export
-  → training (not provided by magma)
+Task + agent + generation settings
+  → agent decisions executed in simulation
+  → saved interaction graph
+  → selected examples rendered by the agent exporter
+  → training and validation datasets
 ```
 
-| What you want to understand | Read |
-| --- | --- |
-| Where the situations and decisions come from | [On-policy collection and branching](generation-process.md) |
-| How a mistake becomes a candidate correction | [Diagnose, propose, validate](coaching-and-generation.md) |
-| How to examine progress, decisions and coached branches | [Use the graph viewer](viewer.md) |
-| Which recorded examples become training data | [Export generated data](export.md) |
-| Which services and run options to configure | [Run configuration](quickstart/configuration.md) and [launch commands](quickstart/launch-first-generation.md) |
+GEN records experience and exports data. Model training happens separately; a generation run does not update the agent's weights.
 
-## Browse the guides
+## Understand and extend the workflow
 
-<DocCardList />
+After your first run, read [collection and branching](generation-process.md) to understand how GEN explores alternatives. [Coaching: diagnose, propose, validate](coaching-and-generation.md) explains how a failure can lead to a tested correction.
 
-## Why collect the agent's own experience?
+To collect data for your own application, [create a scenario](../create-scenarios/overview.md) or [connect your model or agent](../custom-agent/overview.md). You can change either independently.
 
-A provided successful trajectory shows one way to finish a task which does not expose the agent ot its own distribution. Causing an inference distribution shift. To adress this we use agent's own rollout to exposes the situations reached through its choices: a missed observation, an incorrect tool argument, or a decision made after an unsuccessful action. These contexts are useful when the training objective includes handling mistakes and recovering from them.
+## Software and paper versions
 
-Inspired by well known **Dagger** approaches, the coaching system allows to automatize this idea to provide guidance without needing a human supervision via the **Diagnose, propose, validate** mechanism. For the scientific formulation and experiments, see the [MAGMA-GEN paper: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution](https://openreview.net/pdf?id=r7ZN8cPEcj).
-
-The agent's weights are not updated automatically during a generation run. Training happens afterward using exported data. This approach is more efficient than a pure Reinforcement Learning approaches that requires millions of inference steps allowing to train with supervised loss.
-
-:::warning
-The code version corresponding exactly to the paper is the v0.1. The current documentation is for a newest version of the framework.
-:::
+These guides cover the **v2 beta**. The software version used for the MAGMA-GEN paper is **v0.1**; its commands and implementation details may differ from this version.

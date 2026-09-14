@@ -6,7 +6,7 @@ export default function MagmaBenchPage() {
   return (
     <Layout
       title="MAGMA-Bench"
-      description="MAGMA-Bench — Launching September 2026">
+      description="MAGMA-Bench — Targeting November 2026">
       <main className={styles.benchComingPage}>
         <div className="container">
           <div className={styles.benchCenterBlock}>
@@ -22,9 +22,14 @@ export default function MagmaBenchPage() {
 
             <div className={styles.benchLaunchBox}>
               <span className={styles.benchLaunchText}>
-                Coming September 2026
+                Targeting November 2026
               </span>
             </div>
+
+            <p className={styles.benchSubtitle}>
+              We aim to release the benchmark paper and code before CoRL.
+              This timeline is tentative.
+            </p>
 
           </div>
         </div>

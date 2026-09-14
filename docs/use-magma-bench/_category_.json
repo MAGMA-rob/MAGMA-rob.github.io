@@ -1,8 +1,8 @@
 {
-  "label": "Evaluate Your Agent — MAGMA-BENCH",
-  "position": 3,
+  "label": "MAGMA-BENCH \u2014 Coming Soon",
+  "position": 7,
   "link": {
-    "type": "generated-index",
-    "description": "Run the benchmark and understand evaluation results."
+    "type": "doc",
+    "id": "overview"
   }
 }

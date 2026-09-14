@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+pagination_next: create-scenarios/first-scenario/testing
+sidebar_position: 4
 slug: /use-magma-gen/tutorials/building-blocks/create-tasks-light
 title: Create a Task Preset
 ---

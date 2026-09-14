@@ -61,7 +61,7 @@ There is no `redo` callback. Use a [skill](skills.md) for repeated calls or adap
 
 ## Actor protection and detection
 
-`allowed_moving_actors=None` disables explicit protection; `[]` preserves no actor changes; a list permits those actor names. GEN combine batch lists and restore disallowed actor states after tool updates. Any `None` disables batch protection. Incompatible layouts/names skip protection with a warning.
+`allowed_moving_actors=None` disables explicit protection; `[]` preserves no actor changes; a list permits those actor names. GEN combines batch lists and restores disallowed actor states after tool updates. Any `None` disables batch protection. Incompatible layouts/names skip protection with a warning.
 
 `is_detection=True` forces `allowed_moving_actors=[]`, even if the tool returns another value. Protection concerns the `actors` mapping, not general articulation safety. The manual tool tester currently does not apply this restoration pass.
 

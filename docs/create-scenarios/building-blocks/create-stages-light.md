@@ -63,7 +63,7 @@ stage = AskingBaseStage(
 )
 ```
 
-Text-only stages use a verification prompt, have no environment goals, and cannot override the log verifier. The interactive tool tester skips them; validate them with an agent-capable runtime.
+Text-only stages use a verification prompt, have no environment goals, and cannot override the log verifier. The interactive tool tester skips them; validate them [with an agent and semantic answer checks](../first-scenario/generate.md#check-answers-and-multi-stage-interactions).
 
 ## Continue an interaction
 

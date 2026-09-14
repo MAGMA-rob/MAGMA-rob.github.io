@@ -5,7 +5,7 @@ title: Run Your First LLM
 
 # Run Your First LLM
 
-Use `full-history-agent` when one model should receive the full interaction history and decide the next response or tool call. You supply a compatible checkpoint; the package already implements the MAGMA server, history management, and response conversion.
+Use `full-history-agent` when one model should receive the full interaction history and decide the next response or tool call. MAGMA model checkpoints have not been released yet. You supply a compatible checkpoint; the package already implements the MAGMA server, history management, and response conversion.
 
 ## Install and launch
 
@@ -39,9 +39,29 @@ Health should report `{"status":"ready"}`. The response is a JSON **array** cont
 
 This checks model/server integration. It does not demonstrate success on a robot task.
 
+## Request a tool call
+
+Before starting simulation, check that your model can select a tool and return its arguments. Send a fresh request with the button tool and robot vocabulary:
+
+```bash
+curl --fail http://localhost:8888/v1/responses \
+  -H 'Content-Type: application/json' \
+  --data '{"request_id":"first-tool-call","inputs":[{"id":0,"instruction":{"type":"user","content":"Use panda to press sw0."},"tools":[{"name":"press_button","description":"Press a button.","parameters":{"id":{"description":"Button name.","type":"str"}}}],"attributes":{"objects":["sw0"],"known_robots":["panda"]},"memory":{},"num_outputs":1}]}'
+```
+
+Inspect `output.tool_calls`. The expected decision is:
+
+```json
+{"say":"","tool_calls":[{"name":"press_button","arguments":{"id":"sw0"},"target_robot_name":"panda"}]}
+```
+
+This is an expected output, not a recorded model result. The HTTP call only asks the agent to choose an action; it does not move a robot. If the model produces an invalid response or only answers in text, inspect its raw completion and [prompt/parser configuration](model-prompts.md) before continuing.
+
+Once both requests work, [connect the agent to GEN](connect.md) to execute its decisions in simulation.
+
 ## What full-history remembers
 
-The agent appends the current instruction and valid decision to `memory.history`. Initial persistent rules use `memory.memory_list`. Other keys are preserved. Returned memory is a complete replacement; to make a second manual request, pass the first response's memory back in its input. GEN do this for their own trajectories.
+The agent appends the current instruction and valid decision to `memory.history`. Initial persistent rules use `memory.memory_list`. Other keys are preserved. Returned memory is a complete replacement; to make a second manual request, pass the first response's memory back in its input. GEN passes this memory back automatically on each trajectory.
 
 `extra_keys.inference_mode=true` selects deterministic decoding in this implementation; false uses its sampling settings. Asking for several deterministic candidates can produce identical outputs.
 

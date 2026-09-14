@@ -1,12 +1,15 @@
 ---
+pagination_next: use-magma-gen/overview
 sidebar_position: 1
 slug: /intro
 ---
 
-# Welcome to MAGMA Official Documentation v2 BETA
+# MAGMA v2 Beta Documentation
 
-:::warning
-The documentation is still in progress. We are working to clarify it, publish the benchmark (article and code) and provide some open-sourced model checkpoint. 
+:::warning Beta status
+This documentation is a work in progress and covers the MAGMA v2 beta. APIs and examples may change. MAGMA model checkpoints have not been released yet; the agent guides currently require you to supply a compatible model.
+
+We aim to release the benchmark paper, code, and model checkpoints in November, before CoRL. This is a tentative target, not a confirmed release date.
 :::
 
 MAGMA is a framework for embodied AI agents working on interactive, long-horizon, multi-robot tasks. Use provided scenarios or build your own tasks and environments to generate training data with MAGMA-GEN.
@@ -16,11 +19,12 @@ MAGMA is a framework for embodied AI agents working on interactive, long-horizon
 | I want to… | Start here |
 | --- | --- |
 | Generate data for training | [Generate data](use-magma-gen/overview.md) |
-| Deploy my own custom agent | [Use your model or agent](custom-agent/overview.md) |
-| Evaluate my agent (coming soon) | [MAGMA-BENCH](use-magma-bench/overview.md) |
+| Use my own model or agent | [Use your model or agent](custom-agent/overview.md) |
 | Create my own tasks and scenarios | [Create scenarios and tasks](create-scenarios/overview.md) |
 
-Start with the workflow you need. You can explore the shared concepts and implementation details as you go.
+New to MAGMA? Start with **Generate data** to run a provided task, inspect its trajectory, and export the result. If you already have a specific goal, follow the corresponding guide above.
+
+The [MAGMA-BENCH evaluation guide](use-magma-bench/overview.md) is being prepared.
 
 ## Understand and look things up
 

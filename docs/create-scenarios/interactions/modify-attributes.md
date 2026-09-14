@@ -77,6 +77,6 @@ An attribute-edit request must also update `TaskState` in `apply_request`, using
 
 ## Validate at the right layer
 
-`test-requests` checks symbolic construction. The shared result context processes attribute-edit logs, but the tool tester does not propagate the updated copy back into the attributes used by subsequent manual calls. Validate the full edit-and-use sequence in the consuming runtime, including an action that refers to the newly added value.
+`test-requests` checks symbolic construction. The shared result context processes attribute-edit logs, but the tool tester does not propagate the updated copy back into the attributes used by subsequent manual calls. Validate the full edit-and-use sequence [in GEN](../first-scenario/generate.md), including an action that refers to the newly added value.
 
 For physical changes, use [environment transitions or state updates](../execution/env-transitions.md), not attribute logs.

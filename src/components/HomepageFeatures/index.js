@@ -15,7 +15,7 @@ const FeatureList = [
     ),
   },
   {
-    title: 'MAGMA-BENCH [SEPTEMBER 2026]',
+    title: 'MAGMA-BENCH [TARGET: NOVEMBER 2026]',
     image: require('@site/static/img/magma-bench-logo.png').default,
     link: '/magma-bench',
     description: (

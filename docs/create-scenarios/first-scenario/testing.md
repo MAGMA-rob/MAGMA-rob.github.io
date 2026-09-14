@@ -1,12 +1,14 @@
 ---
-sidebar_position: 3
+pagination_next: create-scenarios/first-scenario/generate
+pagination_prev: create-scenarios/first-scenario/create-scenarios
+sidebar_position: 2
 title: Test Your Scenario
 slug: /create-scenarios/testing
 ---
 
 # Test Your Scenario
 
-If you followed [the first tutorial](create-scenarios.md), you have a **preset**: a task whose stages are already assembled. Follow **Check discovery** and **Test tools in simulation** below. That is enough to check the physical button example.
+If you followed [the first tutorial](create-scenarios.md), you have a **preset**: a task whose stages are already assembled. Follow **Check discovery** and **Test tools in simulation** below. That is enough to check the physical button example. Then continue to [Generate Data from Your Scenario](generate.md).
 
 The later **Test request construction** section is a separate workflow. A **request** constructs one or more stages from sampled parameters; a **definition** groups requests to create varied tasks. Read [Build Tasks with Requests](../procedural-tasks/requests.md) before using that test. You do not need requests to test a preset.
 
@@ -56,7 +58,12 @@ Inspect:
 
 The current tester skips text-only stages. It does not validate answers, coaching, or a custom agent's reasoning. Its CLI accepts individual tool calls, not a full simultaneous multi-robot skill workflow.
 
+<details>
+<summary>Advanced limits: state updates and execution accounting</summary>
+
 It applies explicit `state_updates`, but does not reproduce the actor-restoration protection of GEN. The shared result context applies attribute-edit logs to its own attribute copy, but this tester does not synchronize that copy back into the attributes used for the next manual call. Do not use it to certify persistence of an edit across calls. The tester also does not reproduce full budget accounting. Check those behaviors in the consuming runtime before treating the scenario as validated.
+
+</details>
 
 ## Test request construction
 
@@ -83,4 +90,4 @@ It deep-copies requests before execution, whereas a consumer may reuse request i
 
 ## Recommended development loop
 
-Inspect discovery, validate the preset's action path, inspect a few request chains, and then run a larger construction sample. Finally verify text responses, interruption/resumption, errors, and reconstruction requirements in the runtime that will consume your scenario.
+Inspect discovery, validate the preset's action path, inspect a few request chains, and then run a larger construction sample. Finally [run your scenario with GEN](generate.md) to inspect responses, interruptions, errors, and state restoration during agent execution.

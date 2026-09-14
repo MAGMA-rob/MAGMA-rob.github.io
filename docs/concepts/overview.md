@@ -1,4 +1,5 @@
 ---
+pagination_prev: null
 sidebar_position: 1
 slug: /core-concepts/overview
 title: Concepts and Architecture

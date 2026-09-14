@@ -22,7 +22,7 @@ in Docker to isolate its dependencies.
 - A model checkpoint supported by the reference agent. See
   [model and prompt formats](../../custom-agent/model-prompts.md).
 
-The example paths below use `~/magma-workspace`.
+The example paths below use `~/magma-workspace`. MAGMA model checkpoints have not been released yet. If you do not have a compatible model, you can install GEN and the planner, then [create and test a task manually](../../create-scenarios/first-scenario/create-scenarios.md) without the reference agent.
 
 ## 1. Install MAGMA-GEN
 
@@ -56,7 +56,7 @@ magma-scenarios list
 ```
 
 Editable installation lets you adapt the agent code. It also registers its local
-exporter so MAGMA-GEN can export datasets. The agent server communicates with gen
+exporter so MAGMA-GEN can export datasets. The agent server communicates with MAGMA-GEN
 through HTTP, while export uses the installed Python package directly.
 
 ## 3. Clone the planner
@@ -69,7 +69,7 @@ git clone https://github.com/MAGMA-rob/magma-planner-mplib.git
 The launch script `bash scripts/launch_planner.bash -p 8000` builds its image locally. Its first launch requires network access and takes longer while dependencies are installed.
 
 **Why Docker?** The planner requires MPLib **0.2.1**. ManiSkill **3.0.1** requires
-MPLib **0.1.1** on Linux. Magma-gen is based on Maniskill. They cannot share a Python environment. Docker keeps the planner separate. The two services communicate over HTTP.
+MPLib **0.1.1** on Linux. MAGMA-GEN uses ManiSkill, so these planner and simulation dependencies cannot share a Python environment. Docker keeps the planner separate. The two services communicate over HTTP.
 
 ### Without Docker
 

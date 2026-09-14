@@ -76,6 +76,6 @@ Errors needing a target may defer binding by returning `None` from `initialize`.
 
 ## Test recovery
 
-Exercise the physical tool manually, then use the consuming agent runtime to verify that a failed status leads to an appropriate retry or alternative action. Inspect actual injected-error flags and effective tool-call accounting rather than treating all failures as agent mistakes.
+Exercise the physical tool manually, then [run the preset with GEN](../first-scenario/generate.md) to verify that a failed status leads to an appropriate retry or alternative action. Inspect actual injected-error flags and effective tool-call accounting rather than treating all failures as agent mistakes.
 
 Full hooks, naming requirements, and validation: [error reference](../../reference/scenarios/errors.md).

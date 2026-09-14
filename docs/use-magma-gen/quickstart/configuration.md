@@ -26,7 +26,7 @@ Replace the path with a compatible local checkpoint. This example uses the Qwen
 adapter without additional quantization, so the model must fit in available
 memory alongside simulation. Other model formats and quantization options are
 explained in [Run your first LLM](../../custom-agent/use-full-history.md).
-Model weights are not included in the agent repository.
+Model weights are not included in the agent repository, and MAGMA checkpoints have not been released yet. See the [beta status](../../intro.md).
 
 ## Generation configuration
 

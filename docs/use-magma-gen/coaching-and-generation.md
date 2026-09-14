@@ -1,5 +1,6 @@
 ---
-sidebar_position: 4
+pagination_next: null
+sidebar_position: 6
 slug: /use-magma-gen/running-generation/key-systems
 title: Coaching — Diagnose, Propose, Validate
 ---
@@ -72,6 +73,6 @@ See [export](export.md) for more details on how the graph is transformed into a 
 
 Coaching settings belong to GEN's top-level `coaching` configuration and its backend definitions. GEN supplies effective settings to supported agent sessions. Providers can be LLM-based or human; their network addresses must be reachable from the process using them. The graph viewer is separate from the human coaching interface.
 
-Use `--no-coaching` to collect without coaching. When coaching is enabled, GEN reads the agent's advertised kinds and generic text-resume support. Unsupported corrections are unavailable even if a provider is configured.
+Follow [backend configuration](quickstart/configuration.md#add-a-language-model-backend-later) to enable coaching on a working run. Use `--no-coaching` to collect without coaching. When coaching is enabled, GEN reads the agent's advertised kinds and generic text-resume support. Unsupported corrections are unavailable even if a provider is configured.
 
 Diagnostics and remote coaching logs are recorded under the run's `_coaching_logs/` directory. Use them alongside the [graph viewer](viewer.md) to follow a diagnosis, its proposal, and the actual continuation. Optional successful-coaching example registration/reuse can provide cases to later diagnosis; these settings are separate from exporting a training dataset and do not train the agent during the run.

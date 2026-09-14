@@ -18,7 +18,7 @@ MAGMA separates scenario logic, runtime orchestration, and agent implementation.
 
 ## Inference crosses a service boundary
 
-GEN call the same [agent HTTP API](../reference/integrations/agent-http.md). They need a compatible reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
+GEN calls the [agent HTTP API](../reference/integrations/agent-http.md) through a compatible, reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
 
 One agent package can contain several models. Scenario tools execute the proposed actions. Model resources can remain loaded, but interaction memory is passed explicitly so episodes and branches remain independent.
 

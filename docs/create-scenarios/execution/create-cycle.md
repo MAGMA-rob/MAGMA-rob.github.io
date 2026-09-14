@@ -57,7 +57,7 @@ skills={
 },
 ```
 
-`PressPair` is the registry key; `press_pair` is the public skill name in its spec. A skill-aware consumer loads and enables it, for example using `load_skills("my_buttons.FirstTask", ["PressPair"])`. Registration alone does not enable the skill in every consumer, and `test-tools` does not accept skill calls.
+`PressPair` is the registry key; `press_pair` is the public skill name in its spec. A skill-aware consumer loads and enables it, for example using `load_skills("my_buttons.FirstTask", ["PressPair"])`. For GEN, [pass the registered skill key with `--skills PressPair`](../first-scenario/generate.md#check-answers-and-multi-stage-interactions). Registration alone does not enable the skill in every consumer, and `test-tools` does not accept skill calls.
 
 The task still needs matching goals and stage boundaries. A skill does not define stage success. For repeated presses of an already-depressed button, arrange appropriate stage resets or an environment/tool capable of repeated presses.
 

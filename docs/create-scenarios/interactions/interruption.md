@@ -44,6 +44,6 @@ Delivering a new instruction does not automatically abort a physical trajectory 
 
 ## Validate the behavior
 
-Inspect stage inputs with `test-requests ... trace`. Use the tool tester for individual physical actions. To verify status ordering, pending work, and resumption, run an agent-capable consumer with skills enabled as appropriate: the manual tool tester does not exercise that complete lifecycle.
+If your stages are built by a definition, inspect them with `test-requests ... trace`. For a preset, use the tool tester to check individual physical actions. Then [run the task with GEN](../first-scenario/generate.md#check-answers-and-multi-stage-interactions) to inspect status ordering, pending work, and resumption. Enable any required skills; the manual tool tester does not exercise that complete lifecycle.
 
 See [skills](../execution/create-cycle.md) and [interaction concepts](../../concepts/stages.md).

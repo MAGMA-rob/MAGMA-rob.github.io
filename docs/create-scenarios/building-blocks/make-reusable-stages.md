@@ -77,7 +77,7 @@ print(inspect.getsource(SortByColorStage))
 
 For “all objects sorted,” one stage checking the full arrangement may suffice. Several thresholds let you inspect progress, introduce an interruption, or change the world between actions. A single stage covering all moves needs an appropriate budget; a per-placement limit does not fit an arbitrarily long task.
 
-An [entry transition](../execution/env-transitions.md) is useful when an external event changes the scene, such as a new delivery or simulate a human action. Ordinary pick-and-place belongs in tools; repeated orchestration belongs in a [skill](../execution/create-cycle.md).
+An [entry transition](../execution/env-transitions.md) is useful when an external event changes the scene, such as a new delivery or a simulated human action. Ordinary pick-and-place belongs in tools; repeated orchestration belongs in a [skill](../execution/create-cycle.md).
 
 ## Apply the pattern in your package
 

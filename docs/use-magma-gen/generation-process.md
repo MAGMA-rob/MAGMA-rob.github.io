@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: On-policy Collection and Branching
 ---
 
@@ -29,7 +29,7 @@ A stage can verify physical conditions, execution logs, or a textual answer. The
 
 Ordinary decisions are sampled from the connected agent. Later inputs depend on the states those decisions reached and the memory that candidate returned. Consequently, collection includes contexts arising from the agent's behavior, including its mistakes; it is not limited to replaying a supplied successful solution.
 
-This describes how experience is collected. It does not mean an optimizer updates weights online. Training must be done after using the data generated.
+This describes how experience is collected. It does not mean an optimizer updates weights online. Train your model afterward using the exported data.
 
 ## Explore more than one continuation
 
@@ -43,7 +43,7 @@ Situation S: instruction + context + memory + saved environment
 
 Each branch keeps its own memory and execution state. Subsequent outcomes can therefore be compared from a shared starting situation without one branch inheriting another's actions. The graph also retains alternatives created by coaching.
 
-The branch count controls candidate exploration. It does not guarantee distinct answers: deterministic decoding can return identical candidates. A wider graph may reveal more successful continuations, but also costs more inference, simulation, and validation work. This can be set with the `nb_branch` cli and config parameters.
+The branch count controls candidate exploration. It does not guarantee distinct answers: deterministic decoding can return identical candidates. A wider graph may reveal more successful continuations, but also costs more inference, simulation, and validation work. Set the branch count with `--nb-branch` or `generate.nb_branch` in your configuration.
 
 ## Parallel simulation is a resource pool
 

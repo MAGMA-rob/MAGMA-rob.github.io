@@ -94,6 +94,20 @@ magma-scenarios test-requests my_buttons.Definition mass --count 100 --seed 0
 
 Each constructed task should contain three `PressNamedButton` stages, in a sampled order, followed by no eligible request. This verifies construction, not physical execution. Use the preset tool test for physical behavior.
 
+## Generate from the definition
+
+After checking request construction, start the services described in [Generate Data from Your Scenario](../first-scenario/generate.md). From your MAGMA workspace with its Python environment active:
+
+```bash
+magma-gen run my_button_variations --definition my_buttons.Definition \
+  --config-path ./config.yaml --nb-env 1 --nb-branch 1 \
+  --no-coaching --no-judge --no-randomized
+```
+
+Use a new run name for each collection. `--definition` asks GEN to construct the task from your requests; `--preset` would load an already assembled task. Inspect `my_button_variations` in the viewer, then export it with the agent that produced the run.
+
+This button definition uses physical goals and Python sampling. Definitions that generate text or check semantic answers may also need a [language-model backend](../../use-magma-gen/quickstart/configuration.md#add-a-language-model-backend-later).
+
 ## Extend the interaction
 
 Add [constraints](../interactions/constraint-cycle.md), [questions](../interactions/asking-request.md), or [interruptions](../interactions/interruption.md). When a sequence contains repeated actions on already-completed physical state, explicitly define the needed reset or transition; symbolic construction does not reset the simulator.

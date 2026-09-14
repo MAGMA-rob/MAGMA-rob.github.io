@@ -69,7 +69,7 @@ magma-scenarios test-tools my_buttons.ButtonSequence --nb-env 1
 
 Enter `press_button(id="sw0")`, then `press_button(id="sw1")`. The world is preserved between checkpoints. The provided tool logs successful presses, so a successful press of `sw1` at the first checkpoint fails its log check. Failed calls without such a log do not establish that a button was pressed.
 
-The manual tester checks the action path; it does not validate the final user-facing answer. Check that answer in the consuming agent runtime.
+The manual tester checks the action path; it does not validate the final user-facing answer. Check that answer [by running this preset with GEN](../first-scenario/generate.md#check-answers-and-multi-stage-interactions).
 
 ## Completion answer {#flag_answer_to_user}
 

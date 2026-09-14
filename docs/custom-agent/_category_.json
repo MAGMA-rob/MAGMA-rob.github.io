@@ -1,6 +1,6 @@
 {
   "label": "Use Your Model or Agent",
-  "position": 6,
+  "position": 4,
   "link": {
     "type": "doc",
     "id": "custom-agent/overview"

@@ -40,7 +40,7 @@ Expect `{"status":"ready"}`. The configured checkpoint and GPU memory determine
 how long startup takes.
 
 :::info
-You can also run the **agent server** inside a docker on a distant machine if your local gpu has not enought memory. In that case, you still need to have the package installed on the host to be able to export properly.
+You can run the **agent server** on another machine or in a container if your local GPU has insufficient memory. Set `magma_agent_address` to a URL reachable from GEN. Install the agent package in the export environment as well, so its local exporter is available.
 :::
 
 ## Terminal 3 — viewer
@@ -97,8 +97,7 @@ Stop the agent and viewer with `Ctrl+C` in their terminals. Stop the planner wit
 | Planner connection refused | Docker container is running on port 8000 |
 | MPLib dependency conflict | Planner was installed in the generation environment; use Docker or a separate environment |
 | CUDA/Vulkan or model memory error | Drivers, checkpoint size, and GPU memory remaining for simulation |
-| Exporter not found | `full-history-agent` was installed in the same environment as gen |
+| Exporter not found | `full-history-agent` was installed in the same environment as MAGMA-GEN |
 | Viewer is empty | Same workspace/output path; viewer started before the run; refresh after completion |
 
-Continue with [the viewer guide](../viewer.md), [run configuration](configuration.md),
-or [custom scenarios](../../create-scenarios/overview.md).
+**Next:** [Inspect the run in the viewer](../viewer.md), then [read the exported data](../export.md).

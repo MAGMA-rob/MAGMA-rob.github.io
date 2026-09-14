@@ -1,4 +1,5 @@
 ---
+pagination_next: create-scenarios/first-scenario/testing
 sidebar_position: 1
 slug: /use-magma-gen/tutorials/create-scenarios
 title: Create Your Own Scenario Package
@@ -10,7 +11,9 @@ This tutorial creates `my_buttons.FirstTask` in your own package. It reuses an i
 
 ## Prerequisites
 
-Use a Python environment with MAGMA 2.0 simulation dependencies and `magma_scenarios` installed. The interactive tool test needs a working display and the planner service used by the provided button tool. These are runtime prerequisites, not files to copy into your provider.
+Follow [installation](../../use-magma-gen/quickstart/installation.md) for the Python environment, simulation dependencies, and planner. You can skip installing the reference agent for this manual tutorial. Start the [planner service](../../use-magma-gen/quickstart/launch-first-generation.md#terminal-1--planner) before testing tools. A working display is required; an LLM is not.
+
+Create `my-magma-scenarios/` under `~/magma-workspace`. Run the manual tests from that package directory. If your planner uses a different address from the default, create a `config.yaml` there with `magma_planner_address` set to its URL; see [test configuration](testing.md#test-tools-in-simulation).
 
 ## 1. Create the package
 
@@ -54,18 +57,6 @@ This declares a dependency requirement, not a specific package-distribution chan
 ## 2. Write a stage
 
 A **stage** is a checkpoint: it introduces what is requested and checks whether that part of the task is complete. Here we reuse `Pressed(button)`, a **goal** that reads the button's physical state. The tool moves the robot; the goal only checks the outcome.
-
-### Choose what counts as success
-
-| What needs checking? | Mechanism | Example |
-| --- | --- | --- |
-| The world reached the desired state | Physical goals | A button is depressed; objects are in their target zones |
-| Actions followed a required method or order | Log verification | The tool recorded the expected button name, the sorted object order |
-| The agent gave an appropriate answer | A text-only stage with a verification prompt | Answer a question or acknowledge a rule |
-
-An **action stage** can combine physical goals and logs. Tools must emit the evidence the log verifier needs, including parameter values when those matter. A **text-only stage** validates an answer and can optionally permit tools before it. A semantic check uses a verification prompt with the `JUDGE` validation mode.
-
-This tutorial uses only a physical goal. [Stages and interaction](../../concepts/stages.md) explains the alternatives; [log verification](../building-blocks/log-verification.md) and [question stages](../interactions/asking-request.md) show how to add them later.
 
 ### Declare the button checkpoint
 
@@ -180,8 +171,20 @@ magma-scenarios test-tools my_buttons.FirstTask --nb-env 1 --button sw2
 
 Then enter `press_button(id="sw2")`. See [testing](testing.md) for configuration, reset, and the test coverage limits.
 
+## Choose what counts as success
+
+| What needs checking? | Mechanism | Example |
+| --- | --- | --- |
+| The world reached the desired state | Physical goals | A button is depressed; objects are in their target zones |
+| Actions followed a required method or order | Log verification | The tool recorded the expected button name, the sorted object order |
+| The agent gave an appropriate answer | A text-only stage with a verification prompt | Answer a question or acknowledge a rule |
+
+An **action stage** can combine physical goals and logs. Tools must emit the evidence the log verifier needs, including parameter values when those matter. A **text-only stage** validates an answer and can optionally permit tools before it. A semantic check uses a verification prompt with the `JUDGE` validation mode.
+
+This tutorial uses only a physical goal. [Stages and interaction](../../concepts/stages.md) explains the alternatives; [log verification](../building-blocks/log-verification.md) and [question stages](../interactions/asking-request.md) show how to add them later.
+
 ## Next step
 
-Continue with [Create a Task Preset](create-tasks-light.md) to change the interaction you just tested. For a real example of one stage class serving several objectives, read [color-sorting checkpoints](../building-blocks/make-reusable-stages.md).
+Continue with [Test Your Scenario](testing.md), then [generate data from your task](generate.md). To change initialization or parameters afterward, use [Create a Task Preset](create-tasks-light.md).
 
 Later, a **request** can construct stages from sampled parameters when you need many varied interactions. The [request tutorial](../procedural-tasks/requests.md) introduces that separate workflow; it is not required to complete this one.

@@ -1,5 +1,6 @@
 ---
-sidebar_position: 3
+pagination_next: custom-agent/connect
+sidebar_position: 4
 title: Adapt Your Model's Prompt
 ---
 

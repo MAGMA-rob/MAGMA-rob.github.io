@@ -1,11 +1,11 @@
 {
-  "label": "1. Your First Scenario",
+  "label": "Your First Scenario",
   "position": 1,
   "collapsed": true,
   "link": {
     "type": "generated-index",
     "title": "Your First Scenario",
-    "description": "Start here. Create your own package, assemble a task, and check it with the interactive testers.",
+    "description": "Create your package, test a task manually, then run it with an agent and export the data.",
     "slug": "/create-scenarios/first-scenario"
   }
 }

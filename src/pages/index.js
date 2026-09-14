@@ -70,12 +70,12 @@ function WhySection() {
             <h3>Efficient & Deployable Agents</h3>
             <p>
               MAGMA promotes structured training and analysis for compact models
-              (&lt;2B parameters), enabling fast inference and deployment on edge
+              (&lt;4B parameters), enabling fast inference and deployment on edge
               robotic platforms without sacrificing adaptability.
             </p>
           </div>
         </div>
-      </div>
+      </div>2B
     </section>
   );
 }

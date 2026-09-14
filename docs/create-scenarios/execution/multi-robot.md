@@ -42,4 +42,4 @@ This restoration policy is separate from shared-zone scheduling. It does not mak
 
 ## Validate concurrency
 
-The manual tool CLI accepts one call at a time; it is useful for each robot individually. Use the consuming runtime to verify simultaneous calls, reservations, group delays, and interruption of running skills.
+The manual tool CLI accepts one call at a time; it is useful for each robot individually. Then [run your preset with GEN](../first-scenario/generate.md#check-answers-and-multi-stage-interactions) to verify simultaneous calls, reservations, group delays, and interruption of running skills.
