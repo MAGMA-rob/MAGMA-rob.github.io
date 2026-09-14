@@ -1,8 +1,8 @@
 {
-  "label": "Planner and Backend Integration",
+  "label": "Agent Integration",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Extend model backends and motion planners."
+    "description": "Look up agent inference and coaching contracts."
   }
 }

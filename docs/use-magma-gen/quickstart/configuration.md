@@ -82,5 +82,5 @@ backends:
 Replace the model and URL with the actual service values. Both the generator and
 agent must be able to reach the backend. Remove `--no-judge` to enable answer
 verification; set `coaching.enabled: true` and remove `--no-coaching` when you
-want coaching. See [coaching](../coaching-and-generation.md) and the
-[configuration reference](../../reference/generation-cli.md).
+want coaching. See [coaching](../coaching-and-generation.md) for the correction
+workflow and `magma-gen run --help` for available command-line options.

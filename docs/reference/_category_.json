@@ -3,6 +3,6 @@
   "position": 8,
   "link": {
     "type": "generated-index",
-    "description": "Look up detailed contracts, reusable components, and command-line options."
+    "description": "Look up scenario authoring and agent integration contracts."
   }
 }

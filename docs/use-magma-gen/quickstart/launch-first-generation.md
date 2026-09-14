@@ -100,5 +100,5 @@ Stop the agent and viewer with `Ctrl+C` in their terminals. Stop the planner wit
 | Exporter not found | `full-history-agent` was installed in the same environment as gen |
 | Viewer is empty | Same workspace/output path; viewer started before the run; refresh after completion |
 
-Continue with [the viewer guide](../viewer.md), [generation settings](../../reference/generation-cli.md),
+Continue with [the viewer guide](../viewer.md), [run configuration](configuration.md),
 or [custom scenarios](../../create-scenarios/overview.md).

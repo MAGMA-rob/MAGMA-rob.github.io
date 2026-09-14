@@ -80,7 +80,7 @@ An unfinished branch can continue while it remains eligible and within budget. F
 | Target/max tool calls | Expected efficiency and execution budget declared by the task |
 | Coaching enabled and available | Whether supported corrections can add continuations |
 
-For definitions, the generated-task target budget controls how much work is assembled; it is not a direct limit on total wall time or all model calls in the exploration graph. See the [CLI reference](../reference/generation-cli.md) for exact option names and configuration.
+For definitions, the generated-task target budget controls how much work is assembled; it is not a direct limit on total wall time or all model calls in the exploration graph. See [run configuration](quickstart/configuration.md) for a starting configuration and `magma-gen run --help` for available command-line options.
 
 ## Preserve evidence, then select data
 

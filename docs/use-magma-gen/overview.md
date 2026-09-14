@@ -37,7 +37,7 @@ Scenario + agent + generation settings
 | How a mistake becomes a candidate correction | [Diagnose, propose, validate](coaching-and-generation.md) |
 | How to examine progress, decisions and coached branches | [Use the graph viewer](viewer.md) |
 | Which recorded examples become training data | [Export generated data](export.md) |
-| Which services and run options to configure | [Run configuration](quickstart/launch-first-generation.md) and [CLI reference](../reference/generation-cli.md) |
+| Which services and run options to configure | [Run configuration](quickstart/configuration.md) and [launch commands](quickstart/launch-first-generation.md) |
 
 ## Browse the guides
 

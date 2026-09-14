@@ -34,4 +34,4 @@ The agent, simulator, and planner can run in separate environments or containers
 
 The minimal custom HTTP example uses the core protocol without importing ManiSkill. Simulation dependencies are needed where environments/tools execute, not inherently in every agent process.
 
-See the [integration reference](../reference/overview.md) for model backends and motion planners.
+See [run configuration](../use-magma-gen/quickstart/configuration.md) for service addresses and model backends, and [installation](../use-magma-gen/quickstart/installation.md) for the planner setup.

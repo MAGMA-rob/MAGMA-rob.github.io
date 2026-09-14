@@ -9,7 +9,7 @@ A running agent exposes the MAGMA inference interface to the generator. Start wi
 
 ## Generate a first trajectory
 
-Install MAGMA-GEN, the scenario provider, simulation dependencies, and the planner needed by the task. Start from your working [generation configuration](../reference/generation-cli.md); changing the agent address does not configure the planner or validation backends.
+Install MAGMA-GEN, the scenario provider, simulation dependencies, and the planner needed by the task. Start from your working [generation configuration](../use-magma-gen/quickstart/configuration.md); changing the agent address does not configure the planner or validation backends.
 
 ```bash
 magma-gen run first_agent_run --preset press_button.ButtonPressPreset1 \

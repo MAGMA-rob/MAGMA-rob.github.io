@@ -3,7 +3,11 @@ sidebar_position: 1
 slug: /intro
 ---
 
-# Welcome to MAGMA Official Documentation
+# Welcome to MAGMA Official Documentation v2 BETA
+
+:::warning
+The documentation is still in progress. We are working to clarify it, publish the benchmark (article and code) and provide some open-sourced model checkpoint. 
+:::
 
 MAGMA is a framework for embodied AI agents working on interactive, long-horizon, multi-robot tasks. Use provided scenarios or build your own tasks and environments to generate training data with MAGMA-GEN.
 
@@ -21,4 +25,4 @@ Start with the workflow you need. You can explore the shared concepts and implem
 ## Understand and look things up
 
 - [Concepts and architecture](concepts/overview.md) explains scenarios, tasks, stages, tools, environments, and services.
-- [Reference](reference/overview.md) collects detailed contracts, reusable components, and CLI options.
+- [Reference](reference/overview.md) collects scenario authoring and agent integration contracts.
