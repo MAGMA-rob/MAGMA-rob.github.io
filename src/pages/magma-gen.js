@@ -27,17 +27,17 @@ export default function MagmaGenPage() {
   return (
     <Layout
       title="MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution"
-      description="Project landing page for MAGMA-Gen.">
+      description="Official project page for MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution.">
       <main className={styles.genPage}>
         <header className={`hero hero--primary ${styles.genHeader}`}>
           <div className="container text--center">
-            <p className={styles.genVenue}>Under Review at CoRL 2026</p>
+            <p className={styles.genVenue}>Published at CoRL 2026</p>
             <Heading as="h1" className={styles.genTitle}>
               MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution
             </Heading>
             <p className={styles.genAuthors}>{authors.join(' · ')}</p>
             <p className={styles.genSubtitle}>
-              A generation framework to build interaction-grounded data in highly interactive and long-horizon tasks for language agents.
+              Turning ambiguous failures into recovery supervision through diagnosis, correction, and counterfactual re-execution.
             </p>
             <div className={styles.genActions}>
               <Link
@@ -48,9 +48,17 @@ export default function MagmaGenPage() {
               <Link
                 className={`button button--lg ${styles.repoButton}`}
                 to="https://github.com/MAGMA-rob/magma-gen">
-                GitHub
+                Code
+              </Link>
+              <Link
+                className={`button button--lg ${styles.repoButton}`}
+                to="/docs/use-magma-gen/overview">
+                Documentation
               </Link>
             </div>
+            <p className={styles.versionNote}>
+              The paper uses software version v0.1. The current documentation covers the v2 beta.
+            </p>
           </div>
         </header>
 
@@ -82,8 +90,31 @@ export default function MagmaGenPage() {
               Method
             </Heading>
             <p className={styles.methodIntro}>
-              MAGMA-GEN generates recovery supervision by re-executing ambiguous failure states under counterfactual choices, validating
-              which interventions recover task progress before using them as training signal.
+              A failed action does not always reveal which decision caused the
+              problem. MAGMA-GEN tests alternative continuations
+              before retaining a proposed correction as recovery supervision.
+            </p>
+            <ol className={styles.methodSteps}>
+              <li>
+                <strong>Diagnose.</strong> Use the task objective and execution
+                feedback to identify a possible cause of the failure and a
+                decision worth revisiting.
+              </li>
+              <li>
+                <strong>Propose.</strong> Use a privileged coach to propose a localized
+                correction or recovery action at the selected decision point.
+              </li>
+              <li>
+                <strong>Validate.</strong> Re-execute the revised continuation from
+                the same state under matched conditions and check whether it
+                improves downstream task progress. The coach’s suggestion alone is
+                not evidence that the repair works.
+              </li>
+            </ol>
+            <p>
+              Ordinary trajectories are collected from the agent’s current policy.
+              Validated continuations provide examples for subsequent supervised
+              training, without updating the agent’s weights during collection.
             </p>
             <figure className={styles.pipelineFigure}>
               <img

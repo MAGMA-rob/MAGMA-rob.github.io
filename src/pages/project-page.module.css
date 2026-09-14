@@ -248,3 +248,31 @@
   font-weight: 600;
   font-size: 1.1rem;
 }
+
+.statusNote {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  line-height: 1.7;
+}
+
+.methodSteps {
+  padding-left: 1.5rem;
+  line-height: 1.7;
+}
+
+.methodSteps li + li {
+  margin-top: 0.8rem;
+}
+
+.versionNote {
+  margin: 1.2rem auto 0;
+  max-width: 72ch;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.benchTimeline {
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}

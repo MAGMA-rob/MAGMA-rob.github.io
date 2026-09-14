@@ -8,5 +8,5 @@ description: Publications and preprints from the MAGMA project.
 ## MAGMA-Gen
 **title:** MAGMA-GEN: Validated Recovery Supervision from Ambiguous Failures via Counterfactual Re-Execution
 
-*conference*: under review at CoRL 2026. [HAL](https://hal.science/hal-05514580)
+*conference*: CoRL 2026. [HAL](https://hal.science/hal-05514580)
 

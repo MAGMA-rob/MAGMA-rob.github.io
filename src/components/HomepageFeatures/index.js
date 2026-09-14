@@ -2,53 +2,41 @@ import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-const FeatureList = [
+const projects = [
   {
     title: 'MAGMA-GEN',
+    status: 'Available in beta',
     image: require('@site/static/img/magma-gen-logo.png').default,
     link: '/magma-gen',
-    description: (
-      <>
-        A data generation pipeline to create interaction-grounded data 
-        for training agents without humans demonstrations.
-      </>
-    ),
+    description: 'Generate training data from your agent’s own experience. Explore decisions, test coached corrections, and export examples for supervised learning.',
+    action: 'Explore data generation →',
   },
   {
-    title: 'MAGMA-BENCH [TARGET: NOVEMBER 2026]',
+    title: 'MAGMA-BENCH',
+    status: 'In development',
     image: require('@site/static/img/magma-bench-logo.png').default,
     link: '/magma-bench',
-    description: (
-      <>
-        A benchmark for long-horizon, multi-robot tasks in highly-interactive environments.
-      </>
-    ),
+    description: 'Evaluate agents on interactive manipulation tasks and track progress between model versions. The benchmark paper, code, and evaluation protocol are being prepared.',
+    action: 'See the planned benchmark →',
   },
 ];
-
-function Feature({image, title, description, link}) {
-  return (
-    <div className="col col--6">
-      <Link to={link} className={styles.featureCard}>
-        <div className="text--center">
-          <img src={image} className={styles.featureImg} alt={title} />
-        </div>
-        <div className="text--center padding-horiz--md">
-          <Heading as="h3">{title}</Heading>
-          <p>{description}</p>
-        </div>
-      </Link>
-    </div>
-  );
-}
 
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
+        <Heading as="h2">Two projects supporting the learning workflow</Heading>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {projects.map(({title, status, image, link, description, action}) => (
+            <div className="col col--6" key={title}>
+              <Link to={link} className={styles.featureCard}>
+                <img src={image} className={styles.featureImg} alt="" loading="lazy" />
+                <p className={styles.projectStatus}>{status}</p>
+                <Heading as="h3">{title}</Heading>
+                <p>{description}</p>
+                <span className={styles.projectAction}>{action}</span>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
