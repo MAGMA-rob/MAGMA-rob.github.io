@@ -1,5 +1,5 @@
 ---
-sidebar_position: 12
+sidebar_position: 13
 title: Packages and Services
 ---
 
@@ -11,10 +11,10 @@ MAGMA separates scenario logic, runtime orchestration, and agent implementation.
 | --- | --- |
 | `magma_core` | Shared contracts, state structures, and optional simulation/interface support |
 | `magma_scenarios` | Environments, tools, task presets, requests, and scenario skills |
-| `magma_gen` | Generate and evaluate branching interactions, coordinate coaching, record graphs |
+| `magma_gen` | Generate and evaluate branching interactions, coordinate coaching, record graphs, serve the viewer |
 | Agent package | Model access, prompts, decisions, memory, optional coaching and dataset rendering |
 | Motion planner | Compute trajectories needed by physical tools |
-| Configured model/human backends | User simulation, validation, or coaching assistance according to their assigned role |
+| Configured model backends | User simulation, semantic validation, or automatic coaching assistance |
 
 ## Inference crosses a service boundary
 
@@ -24,13 +24,13 @@ One agent package can contain several models. Scenario tools execute the propose
 
 ## Coaching and export
 
-GEN provides coaching configuration and context; the agent owns its repair strategy. See [coaching](coaching.md).
+GEN provides coaching configuration and context; the agent owns its repair strategy. See [coaching](coaching.md). Inference and coaching share Core's HTTP protocol `2.0`.
 
 Export is a local Python integration. Install the agent exporter in the export environment and discover it through `magma.export.gen`. No export HTTP server is needed. An inference-only HTTP implementation can use any language; implementing a local exporter is an additional integration.
 
 ## Deploy together or separately
 
-The agent, simulator, and planner can run in separate environments or containers. Configure addresses reachable from each caller; `localhost` identifies the current process's host or container. HTTPS may terminate at a reverse proxy. Model loading settings belong to the agent, simulation settings to the consumer, and coaching provider settings to GEN.
+The agent, simulator, and planner can run in separate environments or containers. Configure addresses reachable from each caller; `localhost` identifies the current process's host or container. HTTPS may terminate at a reverse proxy. Model loading settings belong to the agent, simulation settings to the consumer, and coaching backend settings to GEN.
 
 The minimal custom HTTP example uses the core protocol without importing ManiSkill. Simulation dependencies are needed where environments/tools execute, not inherently in every agent process.
 

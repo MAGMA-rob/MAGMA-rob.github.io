@@ -1,0 +1,279 @@
+.matrixChoice {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1.5rem 1rem 1rem;
+  border: 1px solid #283930;
+  border-radius: 20px;
+  color: #edf5ef;
+  background:
+    radial-gradient(ellipse at 50% 35%, #26362d 0%, transparent 65%),
+    #101713;
+  box-shadow: 0 16px 36px rgb(12 24 17 / 12%);
+  isolation: isolate;
+}
+
+.prompt {
+  margin: 0;
+  color: #dce9df;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.robot {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: -1.5rem 0.5rem 0;
+}
+
+.choice {
+  display: block;
+  min-width: 0;
+  color: #edf5ef;
+  text-align: center;
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.blue {
+  --accent: #8ccaff;
+  --glow: rgb(56 153 255 / 50%);
+  --turn: -5deg;
+}
+
+.red {
+  --accent: #ffaca5;
+  --glow: rgb(255 69 58 / 50%);
+  --turn: 5deg;
+}
+
+.capsule {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: 18%;
+  /* The palms stay at this height relative to the artwork's width. */
+  margin-top: 41%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.red .capsule {
+  left: 82%;
+}
+
+.capsuleMotion {
+  display: block;
+  animation: float 4s ease-in-out infinite;
+}
+
+.red .capsuleMotion {
+  animation-delay: -2s;
+}
+
+.capsuleImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 4px rgb(0 0 0 / 35%)) drop-shadow(0 0 7px var(--glow));
+  transition: transform 250ms ease, filter 250ms ease;
+}
+
+.copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.pillName {
+  color: var(--accent);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.label {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.overlay {
+  position: absolute;
+  bottom: calc(100% + 6rem);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: rgb(14 22 18 / 96%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  background: #0e1612;
+  transform: rotate(45deg);
+}
+
+.product {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+}
+
+.description {
+  color: #d1ddd5;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.action {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.choice:hover,
+.choice:focus-visible {
+  color: #fff;
+}
+
+.choice:focus-visible {
+  outline: none;
+}
+
+.choice:hover .copy,
+.choice:focus-visible .copy {
+  border-color: var(--accent);
+  background: rgb(255 255 255 / 4%);
+}
+
+.choice:hover .capsuleImage,
+.choice:focus-visible .capsuleImage {
+  transform: translateY(-6px) rotate(var(--turn)) scale(1.08);
+  filter: drop-shadow(0 8px 5px rgb(0 0 0 / 30%)) drop-shadow(0 0 16px var(--glow));
+}
+
+.choice:hover .overlay,
+.choice:focus-visible .overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.hint {
+  margin: 0.75rem 0 0;
+  color: #a3b5a8;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (max-width: 640px), (hover: none) {
+  .matrixChoice {
+    padding: 1.25rem 0.75rem 1rem;
+  }
+
+  .choices {
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .copy {
+    padding: 0.75rem 0.5rem;
+    border-color: #31443a;
+    background: rgb(0 0 0 / 16%);
+  }
+
+  .label {
+    font-size: 0.85rem;
+  }
+
+  .overlay {
+    position: static;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .overlay::after {
+    display: none;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .action {
+    margin-top: auto;
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capsuleMotion {
+    animation: none;
+  }
+
+  .copy,
+  .capsuleImage,
+  .overlay {
+    transition: none;
+  }
+
+  .choice:hover .capsuleImage,
+  .choice:focus-visible .capsuleImage {
+    transform: none;
+  }
+}

@@ -9,7 +9,10 @@ const sidebars = {
       type: 'category',
       label: 'Get Started',
       customProps: {sidebarLanding: true},
-      items: [{type: 'doc', id: 'intro', label: 'Overview'}],
+      items: [
+        {type: 'doc', id: 'intro', label: 'Overview'},
+        {type: 'doc', id: 'get-started/play-a-task'},
+      ],
     },
     {
       type: 'category',

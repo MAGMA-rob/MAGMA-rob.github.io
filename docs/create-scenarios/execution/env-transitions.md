@@ -68,11 +68,11 @@ Actor updates also interact with `allowed_moving_actors`: a subsequent protectio
 Inside your environment class, for an existing batched `self.machine_on` tensor:
 
 ```python
- def get_magma_extra_state(self) -> dict:
-     return {"machine_on": self.machine_on.clone()}
+def get_magma_extra_state(self) -> dict:
+    return {"machine_on": self.machine_on.clone()}
 
- def set_magma_extra_state(self, state: dict) -> None:
-     self.machine_on = state["machine_on"].clone()
+def set_magma_extra_state(self, state: dict) -> None:
+    self.machine_on = state["machine_on"].clone()
 ```
 
 Create and initialize that tensor as part of your environment lifecycle. `DefaultEnv` includes it under `magma_extra_state` during snapshot save/restore. Expose it separately in observations if tools need to read it.

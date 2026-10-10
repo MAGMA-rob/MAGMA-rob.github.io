@@ -43,7 +43,7 @@ build-backend = "setuptools.build_meta"
 name = "my-magma-scenarios"
 version = "0.1.0"
 requires-python = ">=3.12,<3.13"
-dependencies = ["magma_scenarios>=2.0.0,<3.0.0"]
+dependencies = ["magma_core[simulation]>=2.0.1,<3.0.0", "magma_scenarios>=2.1.1,<3.0.0"]
 
 [project.entry-points."magma.scenarios"]
 my_buttons = "my_magma_scenarios.manifest:SCENARIO"
@@ -52,7 +52,8 @@ my_buttons = "my_magma_scenarios.manifest:SCENARIO"
 where = ["src"]
 ```
 
-This declares a dependency requirement, not a specific package-distribution channel. Use the MAGMA distribution configured for your environment.
+These dependencies provide the stable Core API, simulation support, and the
+current provided scenarios. Install them in the same environment as your package.
 
 ## 2. Write a stage
 

@@ -57,7 +57,7 @@ export default function MagmaGenPage() {
               </Link>
             </div>
             <p className={styles.versionNote}>
-              The paper uses software version v0.1. The current documentation covers the v2 beta.
+              The paper uses software version v0.1. The current documentation covers the stable v2 packages.
             </p>
           </div>
         </header>

@@ -34,6 +34,7 @@ Agent → tool or skill calls → environment → results → stage verification
 | How do several robots share resources? | [Execution and concurrency](execution.md) |
 | How are failures introduced? | [Errors and recovery](errors.md) |
 | How are agent mistakes corrected? | [Coaching and corrections](coaching.md) |
+| How are alternative trajectories collected? | [Collection and branching](generation.md) |
 | What must an environment preserve? | [Environments](envs.md) |
 
 These abstractions support generation and evaluation workflows. Each consumer determines which optional capabilities it requires.

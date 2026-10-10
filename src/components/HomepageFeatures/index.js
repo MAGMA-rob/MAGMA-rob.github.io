@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const projects = [
   {
     title: 'MAGMA-GEN',
-    status: 'Available in beta',
+    status: 'Stable v2 release',
     image: require('@site/static/img/magma-gen-logo.png').default,
     link: '/magma-gen',
     description: 'Generate training data from your agent’s own experience. Explore decisions, test coached corrections, and export examples for supervised learning.',

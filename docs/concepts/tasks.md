@@ -17,6 +17,11 @@ A task is one runnable interaction. It connects an environment, a tools API, an 
 
 A preset can have constructor parameters; it need not be one hardcoded case. A definition is a construction recipe, not a runnable task with stages already assembled. Its `build_default_task()` copies the common configuration; a generator must still populate the stages.
 
+GEN requires an exact `target_tool_calls` on every generated stage and a
+positive total target for each sampled request. Individual zero-target stages
+are allowed inside a request with a positive total. Empty or entirely zero-target
+requests are rejected by GEN.
+
 ## Task configuration
 
 - `maniskill_env_id` selects the registered environment.

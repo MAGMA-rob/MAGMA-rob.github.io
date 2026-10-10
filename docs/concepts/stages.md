@@ -13,6 +13,11 @@ An action stage checks environment goals, execution logs, or both. Verification 
 
 A text-only stage has a `verification_prompt` and no environment goals or custom log verifier. `JUDGE` requests semantic validation; `SAY_ONLY` is used for a direct completion message. A text-only stage may explicitly allow tools before the answer.
 
+`StageGlobalParameters.reset_at_end` defaults to false. Some built-in templates,
+including `AskingBaseStage` and `ConstraintBaseStage`, enable it explicitly.
+An acknowledgement or question can therefore reset the physical world unless
+the stage's reset policy is adjusted for a continuing interaction.
+
 `target_tool_calls` describes expected efficiency; `max_tool_calls` limits execution. They are absolute counts, not target plus tolerance. A stage with no known target can be `UNASSESSED`, although some task generators require exact targets. Success and efficiency are separate results.
 
 ## One instruction, several stages

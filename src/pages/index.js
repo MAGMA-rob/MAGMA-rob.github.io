@@ -29,11 +29,10 @@ export default function Home() {
               Explore MAGMA-GEN
             </Link>
           </div>
-          <p className={styles.betaNote}>
-            <strong>v2 beta.</strong> Generation and customization guides are available.
-            MAGMA model checkpoints and MAGMA-BENCH have not been released yet.
-            November 2026 is a tentative release target.{' '}
-            <Link to="/docs/intro">Read the current status</Link>.
+          <p className={styles.releaseNote}>
+            <strong>Stable v2.</strong> Generate data, inspect runs, and submit human
+            corrections in the viewer.{' '}
+            <Link to="/docs/use-magma-gen/overview">Get started with MAGMA-GEN</Link>.
           </p>
         </div>
       </header>
