@@ -1,56 +1,183 @@
 ---
 sidebar_position: 3
-title: Inspect Runs in the Viewer
+title: View and Coach Runs
 ---
 
-# Inspect Runs in the Viewer
+# View and Coach Runs
 
-The graph viewer helps you understand which decisions were explored, where trajectories stopped, and what followed a coaching intervention. It reads live generation events or saved v2 graphs. It is an inspection interface, separate from the simulator window, the human coaching interface, and dataset export.
+Use the viewer to browse a generation graph, inspect agent decisions, and
+submit human corrections while a run is active.
 
-## Open the viewer
+## Start the viewer
 
-With the viewer dependencies and bundled frontend assets installed:
+From the workspace used to launch generation, with the MAGMA environment active:
 
 ```bash
-magma-gen viewer --output-dir output
+cd ~/magma-workspace
+magma-gen viewer --output-dir ./output
 ```
 
-Open `http://127.0.0.1:8900`. The optional dependencies are available through `magma_gen[gui]`. The PyPI release includes compiled frontend assets; no Node.js or frontend build is needed.
+Open **http://127.0.0.1:8900**. Install `magma_gen[gui]` if the command reports
+missing dependencies. The packaged release includes the frontend; Node.js is
+only needed when building it from source.
 
-The viewer scans run directories beneath `--output-dir`. Start it before generation for live observation. GEN attempts to connect to `http://127.0.0.1:8900` at run startup, and the run's resolved path must be inside the viewer's output directory. Keep both processes pointed at the same local output tree.
+For live updates and coaching, start the viewer **before** generation. Launch
+GEN from the same workspace so its `output/<run-name>` is inside the viewer's
+output directory. Follow [the launch guide](quickstart/launch-first-generation.md)
+to start the planner, agent, and generation process.
 
-A different port can be selected with `--port`; set `MAGMA_VIEWER_URL` in the generation process to the matching URL. The viewer binds to the loopback interface. The generation command's `--gui` opens the simulation GUI; it does not start this graph viewer.
+The viewer opens the graph in your browser. Add `--gui` to the generation command
+if you also want the separate simulation window.
 
-## Follow a live run or inspect a saved one
+### Use another port
 
-Select a run from the dropdown; the filter matches scenario, target, and run name. **Actualiser** refreshes the run catalog and **Recentrer** fits the graph to the viewport. Pan and zoom to follow alternative continuations. The current interface uses French labels.
+Start the viewer with:
+
+```bash
+magma-gen viewer --output-dir ./output --port 8901
+```
+
+Then, in the generation terminal, before launching the run:
+
+```bash
+export MAGMA_VIEWER_URL=http://127.0.0.1:8901
+```
+
+Open that address in your browser. The viewer listens on the local loopback
+interface; the viewer and generator need access to the same output tree.
+
+## Browse a live run
+
+1. Select your run in the dropdown. Use the filter to search by scenario, target,
+   or run name.
+2. Click **Recentrer** to fit the graph to the viewport. Pan and zoom to follow
+   branches.
+3. Click a node to open its details. Read **Instruction** and **Output** to compare
+   the received input with the proposed decision.
+4. Expand **Autres éléments d’entrée**, **Erreur**, and **Coaching** as needed.
+   For agents that record internal calls, expand **Requête envoyée** and
+   **Réponse brute** to inspect prompts and raw completions.
+5. Click a stage in the stage bar to see its objective and target/maximum tool-call
+   budget. Check the outcome and subsequent nodes to see how far the branch went.
+
+The interface currently uses French labels.
+
+Use the node label to choose what to inspect:
+
+| Node label | Check |
+| --- | --- |
+| En cours | Wait for execution and follow new nodes |
+| Fini | Inspect the stage and subsequent outcomes |
+| Optimal / Sous-optimal | Compare execution against the stage's declared target |
+| Échec / Réponse invalide | Read the error and the decision that produced it |
+| Non évalué | Inspect completion separately; no efficiency target was available |
 
 ![Generation graph displayed in the viewer, including coached branches](/docs/viewer_screen.png)
 
-The viewer accepts one live generation at a time. Another run cannot take over that live slot, but completed runs remain available for inspection. If the viewer is absent, refuses a connection, or loses events, GEN disables visualization and continues collecting. Starting the viewer after the run began does not attach it retroactively to that live event stream; inspect the saved run afterward.
+The viewer follows one live generation at a time. Saved runs remain available
+in the dropdown. If the viewer connection fails, GEN continues collecting
+without live visualization. Starting the viewer after generation began does
+not attach it to that run's live stream; open the saved graph afterward.
 
-| Run status | Interpretation |
+## Open a saved run
+
+Point `--output-dir` at the directory containing your run folders, then click
+**Actualiser** and select the run. You can inspect completed runs without
+starting the agent or planner. Keep the original graph files, including
+`config.json` and the situation/node files; exported `datasets/` files alone
+cannot be opened as a generation graph.
+
+| Run status | What to do |
 | --- | --- |
-| Running | Live updates are being received |
-| Finished | The graph save was marked complete; this is not a claim that every task branch succeeded |
-| Interrupted | The live connection expired; generation may still be continuing without visualization |
-| Incomplete | A discovered disk save is not marked complete |
-| Unsupported | The saved graph schema is not supported by this viewer |
+| Running | Follow the live graph or enter Coach mode |
+| Finished | Inspect the saved decisions and outcomes |
+| Interrupted | Check the generator terminal; the viewer connection expired |
+| Incomplete | Check the generator logs; partial saves cannot be opened offline |
+| Unsupported | Read the compatibility reason and use a compatible reader or generate a new run |
 
-Offline inspection requires compatible graph files, not exported training rows. A `datasets/` directory alone is not a generation graph. Refresh after a run finishes to discover the saved result.
+Offline viewing requires a complete graph save (`export_complete: true`).
+Incomplete runs can appear in the list, but their saved graph cannot be opened.
 
-## Read nodes and stages together
+A saved graph must come from the same major GEN version and a producer no newer
+than the installed reader. Older saves containing `schema_version` are refused;
+there is no automatic conversion. Generate a new run for those files. Use the
+same updated Python installation for GEN and its viewer.
 
-Click a node to inspect its instruction, decision output, other input fields (including memory and tools), errors, and coaching information. When the agent recorded internal calls, expand their full prompts, structured inputs, and raw completions. The panel shows only recorded information; it cannot reconstruct omitted model diagnostics.
+## Coach an active run
 
-Node statuses distinguish ongoing, finished, optimal, suboptimal, failed, invalid, and unassessed decisions where present. A node marked finished can simply have completed execution; inspect its stage and continuation before concluding the task succeeded. A `coached` badge marks a candidate originating from coaching. It does not establish that the intervention worked.
+### Prepare a run with coaching enabled
 
-Click a stage in the stage bar to read its objective, action/text type, request type when recorded, and target/maximum tool-call budget. Interpret efficiency labels against those declared targets, not as a universal measure of plan quality.
+Complete [backend configuration](quickstart/configuration.md#add-a-language-model-backend-later)
+and [enable coaching](coaching-and-generation.md#enable-coaching). Coach mode
+currently requires **full-history-agent** with correction reinjection support;
+its Llama adapter does not support this operation.
 
-## Understand a failure or correction
+Start the viewer before generation and remove **both** `--no-coaching` and
+`--no-judge` from the generation command. A backend is required by the current
+coaching configuration, even though your manual correction does not call the
+coaching LLM. Automatic coaching may run alongside your interventions.
 
-Follow the branch up to the failure and inspect the input the agent actually received. Compare its decision and raw output with the available tools and stage objective. Then inspect the coached alternative, its source/attempt information, and subsequent node outcomes.
+### Enter Coach mode and select a decision
 
-This separates a malformed response, a valid but unsuccessful action, a completed local stage, and a successful longer continuation. For the diagnostic explanation and coaching dialogue, read the run's `_coaching_logs/` files alongside the graph. Detailed execution and score records are also available in the saved graph; not every stored field has a dedicated viewer panel.
+1. While generation is active, click **Passer en Coach**. Wait for confirmation.
+   The viewer selects the live run and locks the run dropdown.
+2. Select an agent node containing tool calls **after its execution has returned**.
+   The stage can still be ongoing; you do not need to wait for its final outcome.
+3. Click **Créer une alternative** at the top of the node panel.
 
-The viewer helps explain the collected experience. The [exporter](export.md) applies its own selection rules, so a visible node, a green outcome, or a coached badge does not by itself mean a row will appear in the training dataset.
+Only one browser tab can own Coach mode. Keep that tab open and connected while
+you work. Coach mode keeps the run alive while you inspect it; it does not pause
+ongoing execution. A finished run can be inspected but cannot be reopened for
+coaching. Invalid responses, text-only decisions, and internal execution nodes
+are unavailable as correction starting points.
+
+### Write and submit the alternative
+
+Choose **Appels d’outils** to replace the action:
+
+1. Select the **Robot** and **Outil** from the available choices.
+2. Fill the displayed arguments. Enter strings as plain text, numbers as numbers,
+   and lists/objects as valid JSON, such as `["sw0", "sw1"]`.
+3. Use **Ajouter un appel** or **Retirer** if the decision needs a different
+   number of calls. All calls must use available robots and tools.
+
+Alternatively, choose **Message (say)** and write a nonempty answer. Submit
+one type of decision at a time: a message or tool calls.
+
+Fill **Raison du diagnostic** and **Décision attendue**; both are required. For
+example, when the agent pressed the wrong button, explain which button the
+instruction requested and describe the correct press. Select `press_button`
+and enter that button's name in `id`.
+
+Click **Réinjecter la correction**. Wait for **Correction acceptée, création de
+l’alternative…**, then **Alternative créée : nœud …**. If submission fails, read
+the displayed error, correct the form, and retry.
+
+### Inspect the result and leave Coach mode
+
+Find the new branch in the graph and follow its outcomes. Click **Revenir au
+Viewer** to return to the inspection panels and read **Coaching** for the human
+source and diagnosis. The original branch remains available for comparison.
+
+Returning to Viewer restores normal run termination. Already accepted
+corrections continue after you leave. If the tab loses its connection for
+20 seconds, Coach presence expires and normal termination resumes. Stage
+exploration limits still apply and can stop an alternative before the last stage.
+
+To understand saved-state replay and validation, read [coaching
+concepts](../concepts/coaching.md#human-corrections-in-the-viewer). To select
+training examples from the resulting graph, [export the run](export.md).
+
+## Troubleshoot the viewer
+
+| Problem | Check |
+| --- | --- |
+| No runs listed | Correct `--output-dir`; original graph files present; click **Actualiser** |
+| No live updates | Viewer started before GEN; matching output path and `MAGMA_VIEWER_URL` |
+| Coach button disabled | Run still active; coaching enabled; neither disabling flag passed; supported full-history adapter; no other tab owns Coach mode |
+| No **Créer une alternative** button | Agent tool decision selected; execution returned; response valid; no correction already pending for that node |
+| Correction accepted but run did not complete the task | Inspect the new node, later outcomes, and stage budgets; acceptance is followed by execution checks |
+| Frontend assets missing | Install the packaged release, or build `frontend` with `npm ci` and `npm run build` before installing from source |
+
+For automatic coaching diagnostics, also inspect the run's `_coaching_logs/`
+folder using [the coaching guide](coaching-and-generation.md#inspect-corrections).

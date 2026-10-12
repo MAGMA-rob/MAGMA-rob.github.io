@@ -1,4 +1,5 @@
 ---
+pagination_prev: custom-agent/coaching
 pagination_next: null
 sidebar_position: 8
 title: Export Your Agent's Training Data
@@ -13,6 +14,8 @@ The agent package knows how its internal inputs and outputs become training exam
 Extend the package from [Create your agent](create-agent.md) with `src/my_agent/export.py`. This minimal exporter writes structured context and final decisions for the sample agent; a model-specific exporter can instead emit one row per recorded internal call.
 
 ```python title="src/my_agent/export.py"
+from typing import Any
+
 from magma_core.protocol.agent_export import (
     DatasetRenderer, ExportExample, ExportRecord, ExportResult, GenExporter,
 )
@@ -22,7 +25,7 @@ from magma_core.protocol.agent import JsonObject
 class Renderer(DatasetRenderer):
     filenames = {"decisions": "decisions.json"}
 
-    def render(self, channel: str, example: dict) -> JsonObject:
+    def render(self, channel: str, example: dict[str, Any]) -> JsonObject:
         if channel != "decisions":
             raise ValueError(f"Unknown channel: {channel}")
         return {"context": example["context"], "decision": example["decision"]}
@@ -40,7 +43,7 @@ class Exporter(GenExporter):
     ) -> list[ExportResult]:
         if options:
             raise ValueError("This exporter has no private options")
-        results = []
+        results: list[ExportResult] = []
         for example in examples:
             decision = example.candidate.output
             if example.candidate.response_status != "completed" or decision is None:

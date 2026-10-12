@@ -12,13 +12,14 @@ MAGMA separates scenario logic, runtime orchestration, and agent implementation.
 | `magma_core` | Shared contracts, state structures, and optional simulation/interface support |
 | `magma_scenarios` | Environments, tools, task presets, requests, and scenario skills |
 | `magma_gen` | Generate and evaluate branching interactions, coordinate coaching, record graphs, serve the viewer |
+| `magma_bench` | Evaluate an agent on a fixed benchmark, save episode results, and produce evaluation reports |
 | Agent package | Model access, prompts, decisions, memory, optional coaching and dataset rendering |
 | Motion planner | Compute trajectories needed by physical tools |
 | Configured model backends | User simulation, semantic validation, or automatic coaching assistance |
 
 ## Inference crosses a service boundary
 
-GEN calls the [agent HTTP API](../reference/integrations/agent-http.md) through a compatible, reachable server. Start with `full-history-agent` or [create your own package](../custom-agent/overview.md).
+GEN and BENCH call the same [agent HTTP API](../reference/integrations/agent-http.md) through a compatible, reachable server. Start with [a provided agent](../custom-agent/use-full-history.md) or [create your own package](../custom-agent/overview.md), then [connect it to either consumer](../custom-agent/connect.md).
 
 One agent package can contain several models. Scenario tools execute the proposed actions. Model resources can remain loaded, but interaction memory is passed explicitly so episodes and branches remain independent.
 

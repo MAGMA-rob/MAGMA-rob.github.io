@@ -15,9 +15,9 @@ The schemas live in `magma_core.protocol.agent_coaching`. They define transport 
 | `POST /v1/coaching` | `SpecializedCoachingRequest` → `SpecializedCoachingResponse` |
 | `DELETE /v1/coaching/sessions/{run_id}` | Close workers after active requests; shared helper returns 204 |
 
-`CoachingSessionConfig` carries `backends`, `provider` (`llm` or `human`), optional `endpoint`, positive `connect_timeout`, and `capture_logs`. LLM sessions require backends; human sessions require an endpoint. Backend definitions include type, endpoint, model, headers, timeout and retry count. GEN supplies effective settings. The shared session helper rejects conflicting reconfiguration with 409 and unknown/closing sessions with 404 on acquisition.
+`CoachingSessionConfig` carries a nonempty `backends` mapping and `capture_logs` (boolean, default true). Backend definitions require `type`, `endpoint`, and `default_model`; optional fields are `headers` (default `{}`), positive `timeout` (default 30 seconds), and nonnegative `max_retry` (default 3). GEN supplies effective settings. The shared session helper rejects conflicting reconfiguration with 409 and unknown/closing sessions with 404 on acquisition.
 
-Advertise `coaching_session_version="1"` for the current session lifecycle. Inference protocol version `2.0` is a separate version.
+Inference and coaching share `protocol_version="2.0"` in `/v1/info`; there is no separate coaching version field. Advertise supported kinds through `specialized_coaching` and `capabilities.coaching`. Human interventions use the GEN viewer, not `provider`, `endpoint`, or `connect_timeout` fields in a coaching session.
 
 ## Request and proposal
 

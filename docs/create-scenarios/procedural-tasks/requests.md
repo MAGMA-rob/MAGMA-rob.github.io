@@ -74,14 +74,19 @@ The task's initial visible vocabulary remains the three buttons. The generator's
 
 Each stage used by the current GEN `TaskGenerator` must have an exact, non-`None` `target_tool_calls`. It uses those targets to budget task construction. The core permits some stages with only a maximum, but request construction testing alone does not check this generator requirement.
 
+Every sampled request must produce a **positive total** `target_tool_calls`.
+GEN rejects an empty stage list or a list whose targets sum to zero. Individual
+zero-target stages are allowed when the same request also includes positive
+targets. Stop sampling by returning weight zero when no work remains.
+
 ## 3. Register and inspect
 
 Add this mapping to `ScenarioManifest`:
 
 ```python
- definitions={
-     "Definition": "my_magma_scenarios.scenarios.buttons.definition:ButtonDefinition",
- },
+definitions={
+    "Definition": "my_magma_scenarios.scenarios.buttons.definition:ButtonDefinition",
+},
 ```
 
 Start a new CLI process and run:

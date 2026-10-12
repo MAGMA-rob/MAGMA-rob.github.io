@@ -1,4 +1,6 @@
 ---
+pagination_prev: custom-agent/memory-and-models
+pagination_next: custom-agent/export
 sidebar_position: 7
 title: Define Your Agent's Coaching Logic
 ---
@@ -15,13 +17,13 @@ Full-history is one implementation: it supports `replace_say` and `replace_decis
 
 ## Advertise support accurately
 
-In `/v1/info`, list implemented `specialized_coaching` kinds (`failure`, `suboptimal`, `format`), set `capabilities.coaching`, and advertise `coaching_session_version="1"` when implementing the session protocol. `coaching_resume=True` separately opts into GEN's generic text-replacement resume path; it requires handling `replace_say` through the response endpoint.
+In `/v1/info`, list implemented `specialized_coaching` kinds (`failure`, `suboptimal`, `format`) and set `capabilities.coaching`. Inference and coaching share `protocol_version="2.0"`; no separate coaching version is advertised. `coaching_resume=True` separately opts into GEN's generic text-replacement resume path; it requires handling `replace_say` through the response endpoint.
 
 Leave unsupported capabilities false or empty. An inference-only agent needs none of the following coaching routes.
 
 ## Implement the session and correction exchange
 
-GEN registers its effective provider configuration with `PUT /v1/coaching/sessions/{run_id}` before specialized requests. The configuration contains backend definitions or human-provider settings. It belongs to GEN; do not require a second, conflicting coaching-backend configuration in the agent.
+GEN registers its effective LLM backend configuration with `PUT /v1/coaching/sessions/{run_id}` before specialized requests. The configuration contains a nonempty `backends` mapping and optional `capture_logs`. It belongs to GEN; do not require a second, conflicting coaching-backend configuration in the agent. Human corrections use [the viewer](../use-magma-gen/viewer.md#coach-an-active-run), not a separate human-provider session configuration.
 
 `POST /v1/coaching` receives a `SpecializedCoachingRequest`: correction kind, target step, stage objective, available diagnosis, active errors, trajectory inputs/decisions/internal steps, and allowed reinjection points. Your implementation returns a `SpecializedCoachingResponse`:
 

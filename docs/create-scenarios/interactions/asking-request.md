@@ -23,4 +23,8 @@ When the agent must inspect the scene first, set `allow_tools_before_answer=True
 
 Questions depending on earlier rules belong in requests: derive the expected answer from the same pre-request state used to produce the question. Do not expose the answer as a new instruction to the agent.
 
+`AskingBaseStage` resets the environment after the answer by default. If later
+stages must continue from the current physical state, set
+`stage.global_parameters.reset_at_end = False` before assembling the task.
+
 The tool tester skips text-only stages. Validate response correctness [with GEN and a semantic judge](../first-scenario/generate.md#check-answers-and-multi-stage-interactions). See [stage reference](../../reference/scenarios/create-stages.md).

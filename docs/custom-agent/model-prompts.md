@@ -1,12 +1,13 @@
 ---
-pagination_next: custom-agent/connect
-sidebar_position: 4
+pagination_prev: custom-agent/connect
+pagination_next: custom-agent/memory-and-models
+sidebar_position: 5
 title: Adapt Your Model's Prompt
 ---
 
 # Adapt Your Model's Prompt
 
-Keep full-history when its memory and decision logic fit your use case. Adapt the prompt and verify the output parser before writing a new server.
+Keep full-history when its memory and decision logic fit your use case. Starter MAGMA already includes its trained template: use [the starter command](use-full-history.md#full-history-with-starter-magma) without a custom template. The following guide is for adapting other checkpoints.
 
 ```text
 MAGMA input → messages and template variables → rendered prompt
@@ -91,7 +92,7 @@ The second completion is appropriate only when the input declares that robot, to
 {"say":"","tool_calls":[{"name":"press_button","arguments":{"id":"sw0"},"target_robot_name":"panda"}]}
 ```
 
-The internal `action` format is an adapter convention; `tool_calls` is the public protocol. A candidate cannot contain both a nonempty `say` and tool calls. With the JSON parser, Markdown fences or explanatory text around the JSON are invalid. The other trained output style, `qwen_format`, parses textual blocks and tool-call content; select it only for a matching checkpoint.
+The internal `action` format is an adapter convention; `tool_calls` is the public protocol. Choose either a nonempty `say` or tool calls for a step; the HTTP decision schema does not itself enforce this choice. With the JSON parser, Markdown fences or explanatory text around the JSON are invalid. The default `qwen_format` parser reads textual blocks and tool-call content; it matches Starter MAGMA's included template.
 
 Changing the template does not change the parser, the model architecture supported by the loader, or memory management. If your model uses another output representation, remote API, or inference engine, [implement that conversion in your agent](create-agent.md).
 

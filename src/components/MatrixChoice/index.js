@@ -17,7 +17,7 @@ const choices = [
     image: 'red_capsule.png',
     label: 'Evaluate your model',
     product: 'MAGMA-BENCH',
-    description: 'Compare your agents on interactive robot tasks. The evaluation guide is coming soon.',
+    description: 'Install the required packages, download the benchmark, and evaluate your agent on interactive robot tasks.',
     action: 'Explore the benchmark',
     destination: '/docs/use-magma-bench/overview',
   },

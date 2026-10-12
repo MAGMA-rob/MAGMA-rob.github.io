@@ -1,89 +1,94 @@
 ---
 sidebar_position: 5
-title: On-policy Collection and Branching
+title: Configure Data Collection
 ---
 
-# On-policy Collection and Branching
+# Configure Data Collection
 
-A GEN run repeatedly asks an agent what to do, executes the proposed actions, and checks task progress. The important unit is the interaction: an instruction or tool result, the context available to the agent, its decision, and the consequences of that decision.
+Start from a working [first run](quickstart/launch-first-generation.md). Adjust
+collection settings in `config.yaml`, then launch a new run and inspect its
+[graph in the viewer](viewer.md).
 
-## One trajectory
+## Explore more candidates
 
-For a button task, the interaction might be:
+Replace the `generate` block with:
 
-```text
-User: Press sw0, then sw1.
-  → agent calls press_button(sw0)
-  → simulator executes the tool and returns its status
-  → task checks whether the checkpoint is satisfied
-  → agent receives the next input with its updated memory
-  → agent calls press_button(sw1)
-  → the next checkpoint is evaluated
+```yaml
+generate:
+  seed: 42
+  nb_branch: 2
+  nb_env: 1
+  nb_max_update: 2
+  max_start_per_stage: 5
+  randomized: false
 ```
 
-The agent receives the task's public input, available tool descriptions, attributes, and its own memory. It proposes tool calls or a user-facing answer. The simulator and scenario evaluate the effect.
+This requests two candidates per sampled situation and allows more trajectory
+starts per stage. Keep one environment until the task and service connections
+work reliably. Use a new run name:
 
-A stage can verify physical conditions, execution logs, or a textual answer. The configured semantic judge is used where the stage requires one. An intermediate checkpoint may continue the same instruction, introduce another request, or end the interaction with a completion answer. See [stages and interaction](../concepts/stages.md) for these meanings.
-
-## What on-policy means in this workflow
-
-Ordinary decisions are sampled from the connected agent. Later inputs depend on the states those decisions reached and the memory that candidate returned. Consequently, collection includes contexts arising from the agent's behavior, including its mistakes; it is not limited to replaying a supplied successful solution.
-
-This describes how experience is collected. It does not mean an optimizer updates weights online. Train your model afterward using the exported data.
-
-## Explore more than one continuation
-
-GEN can request several candidates from the same situation:
-
-```text
-Situation S: instruction + context + memory + saved environment
-  ├─ candidate A → execution result A → situation S_A
-  └─ candidate B → execution result B → situation S_B
+```bash
+magma-gen run branching_buttons --preset press_button.ButtonPressOrdered \
+  --config-path ./config.yaml --no-coaching --no-judge --no-randomized \
+  --sequence_of_buttons sw0,sw1 --instruction "Press sw0 then sw1."
 ```
 
-Each branch keeps its own memory and execution state. Subsequent outcomes can therefore be compared from a shared starting situation without one branch inheriting another's actions. The graph also retains alternatives created by coaching.
+Select `branching_buttons` in the viewer. Compare the candidates' decisions and
+stage outcomes. Multiple candidates can contain the same answer; increasing
+`nb_branch` does not guarantee different choices.
 
-The branch count controls candidate exploration. It does not guarantee distinct answers: deterministic decoding can return identical candidates. A wider graph may reveal more successful continuations, but also costs more inference, simulation, and validation work. Set the branch count with `--nb-branch` or `generate.nb_branch` in your configuration.
+## Adjust concurrency and exploration
 
-## Parallel simulation is a resource pool
+| Configuration | CLI override | Use it to… |
+| --- | --- | --- |
+| `generate.nb_branch` | `--nb-branch 2` | Request more candidate decisions per situation |
+| `generate.nb_env` | `--nb-env 4` | Run more physical executions concurrently |
+| `generate.nb_max_update` | `--nb-max-update 4` | Increase the manager's simultaneous node-update capacity; minimum 2 |
+| `generate.max_start_per_stage` | `--max-launch-per-stage 5` | Bound trajectory starts per stage |
+| `generate.seed` | `--seed 42` | Seed task creation and vocabulary randomization |
+| `generate.randomized` | `--no-randomized` | Disable public vocabulary randomization |
 
-The environment count controls how many physical executions can be processed concurrently. It is independent of the number of candidates requested from the agent.
+Increase concurrency gradually while watching GPU memory and agent/planner
+response times. More environments do not change how many candidates are requested
+from one situation. Increase the stage launch limit when alternatives stop
+before reaching later stages. Scenario-defined tool-call limits still apply.
 
-GEN restores a branch's saved state into an available simulation slot, executes its tools, and records the resulting state. Slots can then serve other branches. The graph can contain many more trajectories than there are simultaneous environments; each branch does not need its own permanently occupied simulator.
+For a slow agent, add `--agent-timeout 600` or set `magma_agent_timeout: 600` at
+the top level of the configuration. The timeout covers discovery and inference.
 
-Snapshots and runtime context preserve the state needed for continuation, including task progress and execution logs. A scenario's custom state must be covered by its save/restore contract. This is also what makes the [counterfactual re-execution](coaching-and-generation.md#counterfactual-re-execution) meaningful.
+## Collect procedural task variations
 
-## Interpret outcomes at the right level
+Use `--definition` once you have a tested task definition:
 
-| Observation | What it establishes |
-| --- | --- |
-| Valid agent response | The decision obeyed the response format |
-| Successful tool status | That tool's execution/verifier reported success |
-| Completed stage | The stage's configured checks were satisfied |
-| Optimal/suboptimal classification | Efficiency relative to the stage's declared accounting and target |
-| Completed task trajectory | The required stage sequence was traversed successfully |
-| Selected export example | The candidate also passed the exporter workflow's selection criteria |
+```bash
+magma-gen run button_variations --definition my_buttons.Definition \
+  --config-path ./config.yaml --max-total-target-tool-calls 10 \
+  --no-coaching --no-judge --no-randomized
+```
 
-These are different claims. A tool can run successfully without completing the goal. A stage can succeed using more calls than its target. “Optimal” is a local task-defined classification, not a proof of the globally shortest plan. Tool retries, injected failures, and forgiven calls can affect effective accounting.
+This command requires the installed definition from [Build Tasks with
+Requests](../create-scenarios/procedural-tasks/requests.md). Choose either
+`--preset` or `--definition` for each run. The old `--scenarios` option is unavailable.
 
-An unfinished branch can continue while it remains eligible and within budget. Failed or exhausted trajectories can stop, receive an eligible coaching attempt, or remain as recorded evidence. GEN does not continue every branch indefinitely, and stopping a run does not imply every sampled trajectory solved the task.
+`--max-total-target-tool-calls` controls the sum of declared stage targets used
+to construct one task (default 40). Requests are kept whole; the first request
+can exceed that budget. Each sampled request must produce a positive total
+target, even if some of its stages have a zero target.
 
-## Choose collection settings by their effect
+## Enable scenario skills or coaching
 
-| Setting or input | Effect on the collected run |
-| --- | --- |
-| Preset | Explicit task/stage sequence |
-| Definition | Task constructed from sampled requests |
-| Branch count | Alternative agent candidates per sampled situation |
-| Environment count | Physical execution concurrency |
-| Stage launch/continuation limits | Bounds on exploration within stages |
-| Target/max tool calls | Expected efficiency and execution budget declared by the task |
-| Coaching enabled and available | Whether supported corrections can add continuations |
+Pass registered skill keys with `--skills`, for example `--skills PressPair` for
+[the two-button skill](../create-scenarios/execution/create-cycle.md). Install the
+provider and register the skill before running the command.
 
-For definitions, the generated-task target budget controls how much work is assembled; it is not a direct limit on total wall time or all model calls in the exploration graph. See [run configuration](quickstart/configuration.md) for a starting configuration and `magma-gen run --help` for available command-line options.
+To collect corrected alternatives, [configure coaching](coaching-and-generation.md).
+For interventions you write yourself, [switch the viewer to Coach mode](viewer.md#coach-an-active-run).
 
-## Preserve evidence, then select data
+## Inspect and export
 
-The saved graph retains inputs, decisions, internal model records supplied by the agent, outcomes, and coaching provenance. Some nodes will be invalid, unsuccessful, unassessed, or unsuitable for training. Inspect these in the [viewer](viewer.md) before interpreting the final [export](export.md).
+Check the stages reached and the outcomes of the recorded candidates before
+[exporting the run](export.md). A finished generation can contain failed or
+unfinished branches and can produce an empty dataset.
 
-Collection is valuable precisely because it exposes what the policy did and what followed. Whether those experiences improve a trained model is an empirical question; the [MAGMA-GEN paper](https://openreview.net/pdf?id=r7ZN8cPEcj) is the scientific reference for the method and evaluation.
+Read [collection and branching](../concepts/generation.md) for the explanation of
+branch state, simulation slots, and outcome classifications.

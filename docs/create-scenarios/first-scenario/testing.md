@@ -84,7 +84,7 @@ The stage cap preserves request atomicity: a request that would exceed it is not
 
 ### What request testing does not validate
 
-The tester calls `sample_parameters`, `create_stages`, and `apply_request`, with optional state replay. It does not execute the simulation, materialize completion-answer stages, or perform all runtime stage validation. The mode name `trace` means a construction trace. The current GEN generator also requires an exact `target_tool_calls` on every generated stage; this tester does not enforce that requirement.
+The tester calls `sample_parameters`, `create_stages`, and `apply_request`, with optional state replay. It does not execute the simulation, materialize completion-answer stages, or perform all runtime stage validation. The mode name `trace` means a construction trace. The current GEN generator also requires an exact `target_tool_calls` on every generated stage and a positive total per request; this tester does not enforce those requirements.
 
 It deep-copies requests before execution, whereas a consumer may reuse request instances. Keep sampled data in the parameter object rather than mutable request fields.
 

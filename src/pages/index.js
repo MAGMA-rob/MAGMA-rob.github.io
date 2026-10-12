@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Layout
       title="MAGMA — Robot agents for natural-language tasks"
-      description="Develop robot agents you can adapt to your tasks and run locally. Generate data with MAGMA-GEN and prepare to evaluate progress with MAGMA-BENCH.">
+      description="Develop robot agents you can adapt to your tasks and run locally. Generate data with MAGMA-GEN and evaluate progress with MAGMA-BENCH.">
       <header className={`hero ${styles.heroBanner}`}>
         <div className="container text--center">
           <p className={styles.heroBadge}>MAGMA · A robotics research framework</p>
@@ -45,7 +45,7 @@ export default function Home() {
               Start with the provided simulation tasks and connect your model.
               Create your own tasks to expand the training corpus and specialize
               the agent for your application. Collect experience with MAGMA-GEN,
-              train with your own pipeline, and use the upcoming MAGMA-BENCH to
+              train with your own pipeline, and use MAGMA-BENCH to
               compare progress between model versions.
             </p>
             <figure className={styles.workflowFigure}>
@@ -61,7 +61,7 @@ export default function Home() {
               </a>
               <figcaption>
                 MAGMA-GEN collects the data. Training happens separately.
-                MAGMA-BENCH is under development.
+                MAGMA-BENCH evaluates your agent on a fixed suite of robot tasks.
               </figcaption>
             </figure>
           </div>

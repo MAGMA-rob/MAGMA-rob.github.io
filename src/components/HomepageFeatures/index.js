@@ -13,11 +13,11 @@ const projects = [
   },
   {
     title: 'MAGMA-BENCH',
-    status: 'In development',
+    status: 'Benchmark v1.0.0',
     image: require('@site/static/img/magma-bench-logo.png').default,
     link: '/magma-bench',
-    description: 'Evaluate agents on interactive manipulation tasks and track progress between model versions. The benchmark paper, code, and evaluation protocol are being prepared.',
-    action: 'See the planned benchmark →',
+    description: 'Evaluate agents on interactive manipulation tasks and track progress between model versions. Install the required packages, download the benchmark, and run your agent.',
+    action: 'Explore the benchmark →',
   },
 ];
 

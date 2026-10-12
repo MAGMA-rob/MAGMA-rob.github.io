@@ -1,4 +1,6 @@
 ---
+pagination_prev: custom-agent/model-prompts
+pagination_next: custom-agent/coaching
 sidebar_position: 6
 title: Manage Memory and Multiple Models
 ---
@@ -19,11 +21,11 @@ Input with memory M
 
 Copy mutable state before updating it. Never use a server-global conversation list or a cache keyed only by input ID as the authoritative history: IDs can be reused across requests and branches. Keep loaded model weights in the process, but make interaction state recoverable from the supplied memory. An empty or scenario-initialized memory starts a new interaction; the protocol has no separate reset endpoint.
 
-The schema is yours. Full-history uses `history` and `memory_list`; your package may use different keys. Preserve or explicitly migrate initial state you accept, and report incompatible input rather than mixing schemas. `TaskState` in a scenario is separate symbolic construction state.
+The schema is yours. The provided scenarios and agents use `memory_list` for permanent rules, as a list of strings. Preserve those rules when accepting this initial memory. Full-history additionally uses `history`; your package can choose its own keys for history, plans, or summaries. Preserve or explicitly migrate initial state you accept, and report incompatible input rather than mixing schemas. `TaskState` in a scenario is separate symbolic construction state.
 
 ## Example: add a summarizer before the decision model
 
-The existing `history_summarized_agent.runtime.agent.Runtime` demonstrates one possible design:
+Start from the runtime and memory handling in [full-history-agent on GitHub](https://github.com/MAGMA-rob/full-history-agent). To add a summarizer, you can extend that implementation with this strategy:
 
 1. Render the commander's prompt to measure its length.
 2. If it exceeds the configured threshold and history is nonempty, send the previous summary and history to a summarizer.
@@ -31,9 +33,9 @@ The existing `history_summarized_agent.runtime.agent.Runtime` demonstrates one p
 4. Give the current instruction, updated context, tools, and attributes to the commander.
 5. Copy the resulting base memory for each candidate, then append its own exchange.
 
-The current implementation defaults to 5,000 **characters**, not tokens. The current instruction is included in the commander prompt, not the history being summarized. A failed summary produces errors for that input's candidates without calling the commander. A valid summary is shared before independent candidate decisions are sampled.
+For example, choose a threshold of 5,000 **characters**, or measure tokens instead. Include the current instruction in the commander prompt, while summarizing only the preceding history. In this design, a failed summary returns errors for that input's candidates without calling the commander. A valid summary is shared before independent candidate decisions are sampled.
 
-This is an architectural example for your package, not a required algorithm. You may choose a token budget, retain recent messages, share one checkpoint across roles, or use retrieval. Specify what happens on each component's failure and whether candidates share preliminary computations. In the provided example, commander and summarizer require compatible trained templates; it is not an arbitrary pair of base models.
+This is one possible design for your package. You may retain recent messages, share one checkpoint across roles, or use retrieval. Specify what happens on each component's failure and whether candidates share preliminary computations. Give each model prompts and an output parser suited to its role.
 
 ## Record the internal calls
 

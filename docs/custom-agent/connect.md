@@ -1,34 +1,59 @@
 ---
+pagination_prev: custom-agent/create-agent
 pagination_next: null
-sidebar_position: 3
-title: Connect to GEN
+sidebar_position: 4
+title: Connect to GEN or BENCH
 ---
 
-# Connect to GEN
+# Connect to GEN or BENCH
 
-A running agent exposes the MAGMA inference interface to the generator. Use [full-history](use-full-history.md) or [your own agent server](create-agent.md). Confirm that it returns a valid tool call before launching simulation.
+A running agent exposes the same MAGMA HTTP protocol **2.0** to GEN and BENCH.
+Use [a provided agent](use-full-history.md) or [your own server](create-agent.md).
+Check the three endpoints and [request a tool call](use-full-history.md#request-a-tool-call)
+before launching simulation:
 
-## Prepare the run
+```bash
+curl --fail http://localhost:8888/health
+curl --fail http://localhost:8888/v1/info
+```
+
+Expect `status: "ready"`, compatible `protocol_version`, and
+`capabilities.inference: true`. Keep the agent running. Use an address reachable
+from the consumer, including when services run on different machines or in containers.
+
+| Consumer | Agent address |
+| --- | --- |
+| GEN | `magma_agent_address` in configuration, or `--magma-agent-address` |
+| BENCH | `--agent-address` |
+
+The agent is separate from the motion planner and from language-model backends
+used for judging answers or coaching. Its model/API settings belong to the agent;
+the consumer needs its MAGMA server URL.
+
+## Connect to GEN
+
+### Prepare the run
 
 Follow [installation](../use-magma-gen/quickstart/installation.md) and create the workspace's [generation configuration](../use-magma-gen/quickstart/configuration.md). If you use a custom server, its own model configuration replaces `agent.json`.
 
 Start the planner and viewer using [the launch guide](../use-magma-gen/quickstart/launch-first-generation.md). Keep your working agent server running instead of launching a second agent on the same port. Start the viewer before generation and point it at `~/magma-workspace/output`.
 
-## Generate a first trajectory
+### Generate a first trajectory
 
 From `~/magma-workspace`, with the MAGMA Python environment active, run the command below. Replace the agent URL if your server uses another host or port.
 
 ```bash
-magma-gen run first_agent_run --preset press_button.ButtonPressPreset1 \
+magma-gen run first_agent_run --preset press_button.ButtonPressOrdered \
   --config-path ./config.yaml --magma-agent-address http://localhost:8888 \
-  --nb-env 1 --nb-branch 1 --no-coaching --no-judge --no-randomized
+  --nb-env 1 --nb-branch 1 --no-coaching --no-judge --no-randomized \
+  --sequence_of_buttons sw0,sw1 --instruction "Press sw0 then sw1."
 ```
 
 This uses an installed preset and disables coaching to check inference and action execution first. Inspect agent errors and stage results before increasing the branch count. GEN can request multiple candidates from the same input to explore independent continuations.
 
 The configuration field for the runtime URL is `magma_agent_address`. Model loading and private inference settings belong in the agent configuration. Coaching backends belong in GEN configuration and are supplied to the agent separately when coaching is enabled.
 
-## Inspect and export
+### Inspect and export
 
 Use a fresh run name each time; the launcher may clear an existing run directory. Select `first_agent_run` in the [viewer](../use-magma-gen/viewer.md). Check the proposed tool name, button argument, robot name, tool result, and stage outcome. A model can return a valid decision and still fail the task.
 
@@ -42,7 +67,7 @@ Read [the output files and selection rules](../use-magma-gen/export.md). A custo
 
 To run the task you authored, follow [Generate Data from Your Scenario](../create-scenarios/first-scenario/generate.md). It uses the same services with your preset identifier.
 
-## Runtime and export are separate integrations
+### Runtime and export are separate integrations
 
 | Operation | What must be available |
 | --- | --- |
@@ -50,6 +75,28 @@ To run the task you authored, follow [Generate Data from Your Scenario](../creat
 | GEN dataset export | Compatible agent exporter installed in the export process |
 
 There is no export HTTP server. See [agent export](export.md).
+
+## Connect to BENCH
+
+Complete [benchmark installation and download](../use-magma-bench/installation.md)
+and keep the planner running. From your benchmark workspace and activated Python
+environment, check the connection with one scenario:
+
+```bash
+magma-bench run --dataset 1.0.0 \
+  --agent-address http://localhost:8888 \
+  --planner-address http://localhost:8000 \
+  --results-path ./eval/smoke-test \
+  --scenarios press_button --nb-env 1 --skip-judge --videos off
+```
+
+`--skip-judge` accepts textual answers automatically; use it for installation
+checks. For a full evaluation, configure the separate answer-verification backend
+and follow [Run an Evaluation](../use-magma-bench/run.md).
+
+BENCH requests one candidate per input and carries its returned memory to the
+next step. It requires inference, not GEN coaching or a dataset exporter. The
+same agent server can therefore be used for both consumers.
 
 ## Diagnose integration problems
 

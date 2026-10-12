@@ -1,31 +1,95 @@
 ---
+pagination_prev: custom-agent/overview
+pagination_next: custom-agent/create-agent
 sidebar_position: 2
-title: Run Your First LLM
+title: Use the Provided Agents
 ---
 
-# Run Your First LLM
+# Use the Provided Agents
 
-Use `full-history-agent` when one model should receive the full interaction history and decide the next response or tool call. MAGMA model checkpoints have not been released yet. You supply a compatible checkpoint; the package already implements the MAGMA server, history management, and response conversion.
+These agents implement the same MAGMA HTTP interface for GEN and BENCH. Choose one, start its server, check a response and a tool call, then [connect it](connect.md).
 
-## Install and launch
+| Agent | Model access | Extensions |
+| --- | --- | --- |
+| [full-history-agent](https://github.com/MAGMA-rob/full-history-agent) | Local weights through Transformers | Coaching with compatible clients, local dataset export |
+| [gpt-agent](https://github.com/MAGMA-rob/gpt-agent) | Remote OpenAI API | Inference only |
+| [gemini-agent](https://github.com/MAGMA-rob/gemini-agent) | Remote Gemini API | Inference only |
 
-Follow [installation](../use-magma-gen/quickstart/installation.md) first. Use the same
-Python 3.12 environment as MAGMA-GEN, with the reference agent installed through
-`python -m pip install -e ./full-history-agent`. Then launch a compatible model:
+Use Python 3.12 with MAGMA Core installed. For GEN, follow [installation](../use-magma-gen/quickstart/installation.md); for BENCH, follow [its installation guide](../use-magma-bench/installation.md).
+
+## Full-history with Starter MAGMA
+
+Full-history gives one model the interaction history, current instruction, tools, attributes, and permanent rules. It builds the prompt, runs inference, converts the completion into a MAGMA decision, and appends the exchange to `memory.history`.
+
+From your workspace with the Python environment active:
 
 ```bash
-full-history-agent --model /models/my-qwen --model-format qwen --quantization none
+git clone https://github.com/MAGMA-rob/full-history-agent.git
+python -m pip install -e ./full-history-agent
+full-history-agent \
+  --model lbernat/Starter-MAGMA-Qwen3-4B \
+  --model-format magma
 ```
 
-Replace `/models/my-qwen` with a local Qwen checkpoint supported by the provided adapter. This example disables additional quantization and needs enough memory for that checkpoint. Model startup loads weights; merely importing configuration does not. The server listens on port 8888 by default.
+If you already cloned and installed the agent during GEN installation, run only the launch command.
 
-The package also has GPT-OSS and MAGMA-template adapters. For a trained checkpoint or an explicit template, continue with [prompt formatting](model-prompts.md). GPT-OSS and checkpoints with native quantization must retain `--quantization auto`. Consult `full-history-agent --help` for dtype, token limits, and device placement options.
+[Starter MAGMA](https://huggingface.co/lbernat/Starter-MAGMA-Qwen3-4B) is an experimental merged Qwen3 4B checkpoint for getting started. The Hugging Face identifier is accepted directly: the first launch downloads and caches the tokenizer and weights. No separate base model or LoRA adapter is needed. Allow enough GPU memory for inference and simulation; the weights alone are about 8 GB. It can make mistakes, so use the first run to check integration.
 
-You can put model settings in a JSON configuration file and launch with `--config agent.json`. Explicit CLI options override configuration values.
+Select **`magma`**, even though the underlying architecture is Qwen3: this checkpoint uses the MAGMA prompt and output conventions. Keep its included chat template and the default `qwen_format` parser. The server listens on port 8888.
+
+For the equivalent `agent.json` configuration and launch, see [GEN configuration](../use-magma-gen/quickstart/configuration.md#agent-model). Explicit CLI settings override JSON settings.
+
+### Different model formats
+
+| Client (`--model-format`) | Purpose |
+| --- | --- |
+| `magma` | Checkpoints trained with the MAGMA conversation format, including Starter MAGMA |
+| `qwen` | Standard Qwen chat and tool-call conventions |
+| `harmony` | GPT-OSS using Harmony |
+| `llama` | Supported Llama chat and tool-call conventions; coaching is unavailable |
+
+The default `auto` detects supported formats, but explicit selection makes the starter setup clear. These clients are implementation choices in full-history. Your own agent can support a single format, use a different parser, or organize its components differently.
+
+Read [prompt formatting](model-prompts.md) when adapting a checkpoint and the [repository README](https://github.com/MAGMA-rob/full-history-agent#model-clients) for configuration examples. GPT-OSS and natively quantized checkpoints must retain `--quantization auto`. Use `full-history-agent --help` for available options.
+
+## GPT through a remote API
+
+```bash
+git clone https://github.com/MAGMA-rob/gpt-agent.git
+python -m pip install -e ./gpt-agent
+export OPENAI_API_KEY='your-key'
+gpt-agent --host 127.0.0.1 --port 8888
+```
+
+The key is read from `OPENAI_API_KEY`. The agent turns MAGMA memory and instructions into context for the Responses API, translates tool descriptions into provider function schemas, then converts returned text or function calls into `say` or `tool_calls`. The selected robot becomes `target_robot_name`, and the exchange is stored in the returned memory.
+
+Use `gpt-agent --help` or the [repository README](https://github.com/MAGMA-rob/gpt-agent) for model, reasoning, concurrency, retry, and timeout settings. It provides inference without coaching or a dataset exporter.
+
+## Gemini through a remote API
+
+```bash
+git clone https://github.com/MAGMA-rob/gemini-agent.git
+python -m pip install -e ./gemini-agent
+export GEMINI_API_KEY='your-restricted-key'
+gemini-agent --host 127.0.0.1 --port 8888
+```
+
+The key is read from `GEMINI_API_KEY`; the Robotics ER model requires a restricted Gemini API key. The agent builds context and function declarations for the Interactions API, sends the request, and converts the result back to a MAGMA decision and updated memory.
+
+Use `gemini-agent --help` or the [repository README](https://github.com/MAGMA-rob/gemini-agent) for its model and API settings. It also provides inference without coaching or a dataset exporter.
+
+Both remote agents illustrate the same flow:
+
+```text
+MAGMA input → provider context and tools → remote API
+            → text or function calls → MAGMA decision + updated memory
+```
+
+A vLLM server or proprietary API fits the same pattern: translate the input into what the service expects, call it, then translate its result back. Its model endpoint does not need to expose MAGMA directly; your agent exposes MAGMA's three inference endpoints.
 
 ## Send one instruction
 
-These commands run without a simulation or planner:
+Run one agent at a time on port 8888. These checks need no simulation or planner:
 
 ```bash
 curl --fail http://localhost:8888/health
@@ -35,13 +99,11 @@ curl --fail http://localhost:8888/v1/responses \
   --data '{"request_id":"first-call","inputs":[{"id":0,"instruction":{"type":"user","content":"Say hello briefly."},"tools":[],"attributes":{},"memory":{},"num_outputs":1}]}'
 ```
 
-Health should report `{"status":"ready"}`. The response is a JSON **array** containing one candidate. Inspect `status`, `output.say`, and `memory.history`. Exact wording depends on the model. A successful candidate contains its updated memory; an invalid model output is reported with `status="error"` and an explanation.
-
-This checks model/server integration. It does not demonstrate success on a robot task.
+Health should report `{"status":"ready"}`. The response is a JSON array containing one candidate. Check `status`, `output.say`, and the returned memory. An invalid completion or API failure should appear as a candidate with `status="error"` and diagnostics. See the [HTTP reference](../reference/integrations/agent-http.md) for response fields.
 
 ## Request a tool call
 
-Before starting simulation, check that your model can select a tool and return its arguments. Send a fresh request with the button tool and robot vocabulary:
+Send a fresh request with a tool and robot vocabulary:
 
 ```bash
 curl --fail http://localhost:8888/v1/responses \
@@ -49,20 +111,18 @@ curl --fail http://localhost:8888/v1/responses \
   --data '{"request_id":"first-tool-call","inputs":[{"id":0,"instruction":{"type":"user","content":"Use panda to press sw0."},"tools":[{"name":"press_button","description":"Press a button.","parameters":{"id":{"description":"Button name.","type":"str"}}}],"attributes":{"objects":["sw0"],"known_robots":["panda"]},"memory":{},"num_outputs":1}]}'
 ```
 
-Inspect `output.tool_calls`. The expected decision is:
+The expected decision in `output` is:
 
 ```json
 {"say":"","tool_calls":[{"name":"press_button","arguments":{"id":"sw0"},"target_robot_name":"panda"}]}
 ```
 
-This is an expected output, not a recorded model result. The HTTP call only asks the agent to choose an action; it does not move a robot. If the model produces an invalid response or only answers in text, inspect its raw completion and [prompt/parser configuration](model-prompts.md) before continuing.
+This is an expected output, not a recorded model result. The HTTP call asks for a decision; it does not move a robot. If the agent only returns text or reports a parsing error, inspect its completion and configuration before continuing.
 
-Once both requests work, [connect the agent to GEN](connect.md) to execute its decisions in simulation.
+## Continue with the returned memory
 
-## What full-history remembers
+For a second manual request, put the first candidate's entire `memory` into the new input. GEN and BENCH do this automatically. Full-history preserves `memory_list` and other keys, and adds the current instruction and valid decision to `history`.
 
-The agent appends the current instruction and valid decision to `memory.history`. Initial persistent rules use `memory.memory_list`. Other keys are preserved. Returned memory is a complete replacement; to make a second manual request, pass the first response's memory back in its input. GEN passes this memory back automatically on each trajectory.
+Full-history also accepts `extra_keys.inference_mode=true` for deterministic decoding; false uses sampling. Several deterministic candidates may be identical. This option belongs to the implementation, not to every MAGMA agent.
 
-`extra_keys.inference_mode=true` selects deterministic decoding in this implementation; false uses its sampling settings. Asking for several deterministic candidates can produce identical outputs.
-
-**Next:** [Connect this server to GEN](connect.md), or [adapt your model's prompt](model-prompts.md).
+**Next:** [Create your own agent](create-agent.md), or [connect this server to GEN or BENCH](connect.md).

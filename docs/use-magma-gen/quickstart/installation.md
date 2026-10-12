@@ -5,8 +5,8 @@ slug: /use-magma-gen/quickstart/installation
 
 # Install MAGMA-GEN
 
-This guide targets MAGMA-GEN **2.0.0b1**, Core **2.0.0b1**, and Scenarios
-**2.0.0**. GEN and Core are beta releases; APIs and configuration may change.
+This guide targets the stable releases MAGMA-GEN **2.0.0**, Core **2.0.1**,
+and Scenarios **2.1.1**.
 
 Install generation and the agent in the same Python environment. Run the planner
 in Docker to isolate its dependencies.
@@ -19,10 +19,13 @@ in Docker to isolate its dependencies.
   PyTorch drivers, and Vulkan support for rendering. Follow the
   [ManiSkill system setup](https://maniskill.readthedocs.io/en/latest/user_guide/getting_started/installation.html)
   if rendering is not configured.
-- A model checkpoint supported by the reference agent. See
-  [model and prompt formats](../../custom-agent/model-prompts.md).
+- Internet access for the first download of
+  [Starter MAGMA](https://huggingface.co/lbernat/Starter-MAGMA-Qwen3-4B).
 
-The example paths below use `~/magma-workspace`. MAGMA model checkpoints have not been released yet. If you do not have a compatible model, you can install GEN and the planner, then [create and test a task manually](../../create-scenarios/first-scenario/create-scenarios.md) without the reference agent.
+The example paths below use `~/magma-workspace`. The quickstart uses full-history
+with Starter MAGMA, downloaded automatically when the agent starts. You can also
+use [a remote GPT or Gemini agent](../../custom-agent/use-full-history.md), or
+[create your own agent](../../custom-agent/create-agent.md).
 
 ## 1. Install MAGMA-GEN
 
@@ -32,7 +35,7 @@ cd ~/magma-workspace
 python3.12 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install "magma_gen[gui]==2.0.0b1"
+python -m pip install "magma_gen[gui]==2.0.0" "magma_core[simulation]==2.0.1" "magma_scenarios==2.1.1"
 ```
 
 This installs core with simulation support, the official scenarios, and the
@@ -55,9 +58,28 @@ full-history-agent --help
 magma-scenarios list
 ```
 
+This installs [full-history-agent](https://github.com/MAGMA-rob/full-history-agent).
 Editable installation lets you adapt the agent code. It also registers its local
 exporter so MAGMA-GEN can export datasets. The agent server communicates with MAGMA-GEN
 through HTTP, while export uses the installed Python package directly.
+
+### Update an existing installation
+
+Upgrade the packages in the generation environment:
+
+```bash
+python -m pip install --upgrade "magma_gen[gui]==2.0.0" "magma_core[simulation]==2.0.1" "magma_scenarios==2.1.1"
+```
+
+Update the agent package and Core in the agent's environment as well, then restart
+the agent server, viewer, and generator. Inference and coaching now share the
+Core HTTP protocol `2.0`. A metadata compatibility error can mean that an older
+agent process is still running, even after its package was updated.
+
+Remove `provider` and `endpoint` from old `coaching` blocks; the current configuration
+rejects these fields. Use [the current configuration](configuration.md) and
+[coaching guide](../coaching-and-generation.md). For older saved graphs, see
+[viewer compatibility](../viewer.md#open-a-saved-run).
 
 ## 3. Clone the planner
 

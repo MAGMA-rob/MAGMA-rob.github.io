@@ -11,7 +11,7 @@ Export converts selected candidates from recorded GEN graphs into training datas
 
 ## From explored graph to training examples
 
-Generation saves the interaction graph before dataset export. Use the [viewer](viewer.md) to inspect ordinary decisions, failed branches, and [counterfactual continuations](coaching-and-generation.md#counterfactual-re-execution). Export then selects from that evidence and asks the matching agent package to render model-specific examples.
+Generation saves the interaction graph before dataset export. Use the [viewer](viewer.md) to inspect ordinary decisions, failed branches, and [counterfactual continuations](../concepts/coaching.md#counterfactual-re-execution). Export then selects from that evidence and asks the matching agent package to render model-specific examples.
 
 ```text
 Saved graph → candidate selection using recorded outcomes
@@ -107,7 +107,7 @@ The paper's Section 4.4 presents the principle as selecting the best action at a
 
 The agent exporter determines channels and row formats. Full-history renders commander examples; a multi-model agent may render separate datasets for each component. Raw prompts and internal records remain in graph saves even when they are not columns in the rendered dataset.
 
-Data is partitioned by task into training and validation sets, keeping related rows from that task together. The output includes a versioned manifest and export failures. `--skip-pre-made` verifies source/settings signatures rather than merely checking that a directory exists.
+Data is partitioned by task into training and validation sets, keeping related rows from that task together. The manifest records the calling package and agent identity/version, options, source signatures, and file hashes; there is no separate global export format version. Older manifests are regenerated on the next export. `--skip-pre-made` verifies signatures and file integrity before reusing an export.
 
 ## Use your own format
 
@@ -115,4 +115,4 @@ Follow [agent dataset export](../custom-agent/export.md) to implement a local ex
 
 ## Continue from your first dataset
 
-You have completed the first generation workflow. To collect data for your application, [run your own scenario](../create-scenarios/first-scenario/generate.md) or [connect your model](../custom-agent/connect.md). To understand how examples are collected, read [collection and branching](generation-process.md) and [coaching](coaching-and-generation.md).
+You have completed the first generation workflow. To collect data for your application, [run your own scenario](../create-scenarios/first-scenario/generate.md) or [connect your model](../custom-agent/connect.md). To understand how examples are collected, read [collection and branching](../concepts/generation.md) and [coaching](../concepts/coaching.md).

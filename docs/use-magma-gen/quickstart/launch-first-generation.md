@@ -36,11 +36,16 @@ Wait for model loading to finish. In another terminal, check readiness:
 curl --fail http://localhost:8888/health
 ```
 
-Expect `{"status":"ready"}`. The configured checkpoint and GPU memory determine
-how long startup takes.
+Expect `{"status":"ready"}`. With the quickstart configuration, this loads Starter
+MAGMA through the `magma` client. The first launch downloads its tokenizer and
+weights; later launches reuse the cache. Download speed and GPU memory affect
+startup time.
+
+If you chose [another provided agent](../../custom-agent/use-full-history.md),
+use its launch command here and keep `magma_agent_address` pointed at that server.
 
 :::info
-You can run the **agent server** on another machine or in a container if your local GPU has insufficient memory. Set `magma_agent_address` to a URL reachable from GEN. Install the agent package in the export environment as well, so its local exporter is available.
+You can run the **agent server** on another machine or in a container if your local GPU has insufficient memory. Set `magma_agent_address` to a URL reachable from GEN. To export a full-history run, also install its package in the export environment so its local exporter is available.
 :::
 
 ## Terminal 3 — viewer
@@ -59,9 +64,10 @@ The viewer and generator must use the same output directory.
 ```bash
 cd ~/magma-workspace
 source .venv/bin/activate
-magma-gen run first_run --preset press_button.ButtonPressPreset1 \
+magma-gen run first_run --preset press_button.ButtonPressOrdered \
   --config-path ./config.yaml --nb-env 1 --nb-branch 1 \
-  --no-coaching --no-judge --no-randomized
+  --no-coaching --no-judge --no-randomized \
+  --sequence_of_buttons sw0,sw1 --instruction "Press sw0 then sw1."
 ```
 
 Use a new run name each time: an existing target directory can be cleared by the
@@ -74,9 +80,15 @@ answer judge or coaching backend, and a completed run does not guarantee a
 successful task. For data collection with these features, follow
 [backend configuration](configuration.md#add-a-language-model-backend-later).
 
+The preset parameters request `sw0` followed by `sw1`, then a completion
+message. List-valued preset arguments use comma-separated values, as in
+`--sequence_of_buttons sw0,sw1`. To submit a correction yourself, follow
+[Coach mode in the viewer](../viewer.md#coach-an-active-run) on a new run with
+coaching enabled.
+
 ## Export the saved run
 
-After generation finishes, from the workspace with the same environment active:
+For a full-history run, after generation finishes, use the same environment:
 
 ```bash
 magma-gen export output/first_run --agent full-history-agent
@@ -85,6 +97,8 @@ magma-gen export output/first_run --agent full-history-agent
 The local exporter selects eligible examples from the saved graph. A failed or
 short run may contain no eligible examples. It does not require the agent server
 to remain running. See [export](../export.md) for output files and selection rules.
+Other agents need their own matching exporter; GPT and Gemini currently provide
+inference only.
 
 ## Stop and troubleshoot
 
@@ -99,5 +113,7 @@ Stop the agent and viewer with `Ctrl+C` in their terminals. Stop the planner wit
 | CUDA/Vulkan or model memory error | Drivers, checkpoint size, and GPU memory remaining for simulation |
 | Exporter not found | `full-history-agent` was installed in the same environment as MAGMA-GEN |
 | Viewer is empty | Same workspace/output path; viewer started before the run; refresh after completion |
+| Coach mode is unavailable | Active run, updated full-history agent with correction support, coaching enabled, neither `--no-judge` nor `--no-coaching` |
+| Agent metadata is incompatible | Upgrade Core and the agent together, then restart the agent server |
 
 **Next:** [Inspect the run in the viewer](../viewer.md), then [read the exported data](../export.md).

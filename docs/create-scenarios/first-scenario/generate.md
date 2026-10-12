@@ -11,7 +11,7 @@ Once the manual button test works, let an agent run `my_buttons.FirstTask` and e
 
 ## Prepare the services
 
-Complete [GEN installation](../../use-magma-gen/quickstart/installation.md) and [configuration](../../use-magma-gen/quickstart/configuration.md). Use a compatible model with full-history, or [connect your own agent](../../custom-agent/connect.md). MAGMA model checkpoints have not been released yet.
+Complete [GEN installation](../../use-magma-gen/quickstart/installation.md) and [configuration](../../use-magma-gen/quickstart/configuration.md). Use a compatible model with full-history, or [connect your own agent](../../custom-agent/connect.md).
 
 Install your scenario package in the Python environment running GEN. If you created it under `~/magma-workspace/my-magma-scenarios`:
 
